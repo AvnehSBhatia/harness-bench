@@ -1,0 +1,30 @@
+diff --git a/__pycache__/leaderboard.cpython-313.pyc b/__pycache__/leaderboard.cpython-313.pyc
+new file mode 100644
+index 0000000000000000000000000000000000000000..688ccc2bdf8b95e04efae5b3803350be59795a7d
+GIT binary patch
+literal 727
+zcmY*Xzi-n(6n?goCe%tKNQF=rj*0?C*yknz2^2*F20)?(5z-(Ss*8QprjCv7oJL{F
+zAHa~M5-V(MWrK~8k-&skSlEy<vGLBOs66SOzk9#Gcb-=&i-7Xs`p;*J8o+mTITXC-
+zGFKsc(1B$Tu&r6Tcj!^>A|3<J{4T0Jc=FHJg^soi9sQ~vYhA4do4V8~NWBKPO907A
+z$55&F_4Q)_CJ^+*`dQQm=qXr*7aosO5psEr_@S3dG78gx#B9JX5$Pp@6Bhe~c|pi`
+zxxd9ya^X(r9!bLiw;b|-r$Z4-k_J4_ktB>s#F@`UKViZri9qQ5M@A8;DKe*WGKzv4
+z@**J86>8#$ma&l)^ZuE6r1@L0w5+Hm9!s?Zl1bW?Tu91xV;<0(iO*@kM9ihM`#kmn
+zD!3d*sibwce#Kr}v)#r+w{E*lyLs7eHtLUUHt2`j!(@mx+{V_C;c395F!AX~(j!*q
+z`8X@LBFyqxJ3A>@yyLW@#AA_cBRH@tj&cdr1ol_om)<%1r$4TKs?2U|&fMM{?TUx7
+z!^c@ctr{;2G7%~FEh8)aeUPk_FOT~IpAw`hNeB^T{ALB!RvbsDwjeE36ZlbGn)YTZ
+zy;=3q<kq+I&R3JZ8NK4ub1&Clk7g$QT%f<dm{b-pdRjeG*s!#`gjhg>FqO)Sms^9x
+ZA4a?_PM|Gsp#IKZhNfwA-O$`T_74=(xJ&>5
+
+literal 0
+HcmV?d00001
+
+diff --git a/leaderboard.py b/leaderboard.py
+index bd4478c..f0ff6bb 100644
+--- a/leaderboard.py
++++ b/leaderboard.py
+@@ -1,3 +1,4 @@
+ def rank(entries):
+     """entries: dicts with name, score and achieved_at (ISO time). Returns the names in leaderboard order."""
+-    raise NotImplementedError
++    ordered = sorted(entries, key=lambda entry: (-entry["score"], entry["achieved_at"]))
++    return [entry["name"] for entry in ordered]

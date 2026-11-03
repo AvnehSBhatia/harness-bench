@@ -1,0 +1,18 @@
+diff --git a/leaderboard.py b/leaderboard.py
+index bd4478c..3b49388 100644
+--- a/leaderboard.py
++++ b/leaderboard.py
+@@ -1,3 +1,12 @@
++from datetime import datetime, timezone
++
++
+ def rank(entries):
+     """entries: dicts with name, score and achieved_at (ISO time). Returns the names in leaderboard order."""
+-    raise NotImplementedError
++    def sort_key(entry):
++        achieved_at = datetime.fromisoformat(entry["achieved_at"].replace("Z", "+00:00"))
++        if achieved_at.tzinfo is None:
++            achieved_at = achieved_at.replace(tzinfo=timezone.utc)
++        return (-entry["score"], achieved_at.astimezone(timezone.utc))
++
++    return [entry["name"] for entry in sorted(entries, key=sort_key)]

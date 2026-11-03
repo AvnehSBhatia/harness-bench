@@ -1,0 +1,153 @@
+diff --git a/__pycache__/connect.cpython-313.pyc b/__pycache__/connect.cpython-313.pyc
+new file mode 100644
+index 0000000000000000000000000000000000000000..d5dda0ee1bca5eed8caaeecf66ca9dd575878ad8
+GIT binary patch
+literal 3611
+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
+
+literal 0
+HcmV?d00001
+
+diff --git a/__pycache__/connect_test.cpython-313-pytest-8.4.1.pyc b/__pycache__/connect_test.cpython-313-pytest-8.4.1.pyc
+new file mode 100644
+index 0000000000000000000000000000000000000000..eb70518e712212d0cd83c75921e2dee786ddd636
+GIT binary patch
+literal 4795
+zcmd5=&2JM&6rbI-oz2E3Bor%66)>a;xQ%UMNa4^{Rim~Ns8D4SDQZzi8+&6ftar`q
+znvk9<wW@M#4^cVxnm-323L5p+6E_qW_1gDlcTJLAI}xe^Yx(WWy!Yng{oZ>sv)x=y
+zBk=rr?fIQAvxNMOmFP)_h3;)AY!jX6(hb5S@s_VEo?IZ;Q!HHwI2o1!j(lV2y2{i7
+znIPwhu1pd=bvv^(9(DQZy`ThTrZuEu`Z-o^79~Ei=sJ#B^S?4$X6=<UAyQcBeglPV
+za$8J<$-2Z8U7jQ?g@duQo&uWD(?Eyx3{X`c0y?a#Ks9|B=!mWX&FUjSb9$DYXyl3~
+zdIK+;p8p&yL2A*6IB*L7IN|R1K(@(uJ)SNtgk?usk(R<mfl%*R2uqH<LY5+v_PB(s
+z$hy2B2Mq<%AVuZo4;$q|_|pmpp8lLjrBIG36$bKNF*(^$7_Nb94b!I^7GS~nh~arA
+z^S`*)G3*_Mr##bM=cxuD#4~}2hdMA(-mI*Es8=!WJ7%-8=+@0j(_oJ2d8IYesWmIi
+z^g6chRjQY&AC>0kOP4M$U#gbotEK9-(!%_eZ%g+&R_$)37I;CWY1)=suWWcx3-tk?
+za(k1X!vZxNYPQ<`CS7w4R;NwFqmCQRyA=8oLRvmlJO@kgDnNcDe~nJQkW;xrSIL~z
+zwo)%nkn#NQXMa2Uc<lUE=9!v(s!lvoCm!bi7=NO^-vyQ9bQWo!v&c8Ow91BI3Jje#
+z0)m}{3ZD{-en4wrCIE`M4mIffgZaQ(ycn}jKhX*3t$PuOu+77(k4LAsQqRUtCmQ9{
+z6Lp520^wtfptw<P4K|8<bffeWoq{DYw9IiYHkK}yZWZvi8jJf?5!&(gLSF`OL}yIJ
+zh4t~PS>ac%V{cNk-Y`8{cY!#rPg}-a6MQU89MzbE9jbF4hTR*5N^YvFq(u~F2Swo<
+z$DoCVgXA2;0C2%ytQ`SEl{f>sL0%F^^aTJ7glA5`W7)RZFl<`4jE3uAAsM7=F_4a^
+zIR{X6_a)3TM@pD)15{!cjak0j4-rHbz=|p0zAAVL9CQX`4uq;GpmN+bx4wx{<Ix&(
+zJ<oC))TrMvYNmsGT*Ed!z7WIdC~8+RjHi(tb4HFOsa9aBxL3bMfM7&{TC&we?6A|g
+z=05rBLbxyPH~2bpThun!ed@cES&gR8FUM^D-~dW-rO#g@EZ)SH`M&^!dqo`4LYSro
+z0yKFjK;j^`CnAKceYcJHthv7Lwh{n3T<L2Z_yZ(wIwatjkDi>gYhbJR$9+6xB-*`y
+zhj2O<8#~g0!7;rzI66TpqBYmK@7f*TtkbsPH#r>b#WiiYceD-zqmRNWn0xQGew4%Y
+z+Yl7SCvdw96O_Ozc`rwao^`PlM=cN$>Y}3r5l|FqE$k|J!|4fyIWTD~fps*au*>+2
+zKuUBL%}I=&EEdivT4JA>VTVy?(R;A3olWvJuWd0nt_VN-@Gw8yBV0S+V`^@$t7zir
+znD2LV?D^OZe0><@Dy0rwYboU#r7gGKv9X+`6tBJ^XOz-)i+R3nIVRjSDI3F7l1K6$
+zk~2uoA(=sfw<d;1C5A^ORt3UOQ|kGKZ`G*b`^;K{xbmQ*D=2_DN!;ETek%|}T<nnf
+z3)z*2(=)qyB|W>V38F&v9nlt&+1>mwaFM*s=hCx5huBwfgsW>E%l6@z!Ly&W;nEz{
+z-lgqLgrXeW^exvZGjoGkzR8DsO?)V7(?D4uXE3gI9LvWFAA%%-pKgK=2<kGlEgJAO
+zK&)f`+PM00VBJsIBFqfGpm-O6yig=b`d1^8^fUQs^kqtx<bSlfB+dSM@#*;Vqw(pN
+J1Z!eV{{hBI%)|fy
+
+literal 0
+HcmV?d00001
+
+diff --git a/connect.py b/connect.py
+index 688dd68..9ded466 100644
+--- a/connect.py
++++ b/connect.py
+@@ -1,7 +1,61 @@
++from collections import deque
++
+ 
+ class ConnectGame:
+     def __init__(self, board):
+-        pass
++        self.board = [line.split() for line in board.splitlines() if line.strip()]
++
++    def _has_connection(self, player, starts, is_goal):
++        rows = len(self.board)
++        visited = set()
++        queue = deque()
++
++        for row, col in starts:
++            if self.board[row][col] == player:
++                visited.add((row, col))
++                queue.append((row, col))
++
++        while queue:
++            row, col = queue.popleft()
++            if is_goal(row, col):
++                return True
++
++            for next_row, next_col in (
++                (row, col - 1),
++                (row, col + 1),
++                (row - 1, col),
++                (row + 1, col),
++                (row - 1, col + 1),
++                (row + 1, col - 1),
++            ):
++                position = (next_row, next_col)
++                if (
++                    0 <= next_row < rows
++                    and 0 <= next_col < len(self.board[next_row])
++                    and position not in visited
++                    and self.board[next_row][next_col] == player
++                ):
++                    visited.add(position)
++                    queue.append(position)
++
++        return False
+ 
+     def get_winner(self):
+-        pass
++        if not self.board or not any(self.board):
++            return ""
++
++        if self._has_connection(
++            "O",
++            ((0, col) for col in range(len(self.board[0]))),
++            lambda row, col: row == len(self.board) - 1,
++        ):
++            return "O"
++
++        if self._has_connection(
++            "X",
++            ((row, 0) for row in range(len(self.board)) if self.board[row]),
++            lambda row, col: col == len(self.board[row]) - 1,
++        ):
++            return "X"
++
++        return ""

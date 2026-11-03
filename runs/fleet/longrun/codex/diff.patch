@@ -1,0 +1,716 @@
+diff --git a/CHANGELOG.md b/CHANGELOG.md
+index b580168..6cadcfd 100644
+--- a/CHANGELOG.md
++++ b/CHANGELOG.md
+@@ -1,3 +1,43 @@
+ # Changelog
+ 
+ - T0 word_count
++- T1 slugify
++- T2 count_vowels
++- T3 is_palindrome
++- T4 reverse_words
++- T5 caesar
++- T6 wrap
++- T7 initials
++- T8 run_length_encode
++- T9 run_length_decode
++- T10 camel_to_snake
++- T11 clamp
++- T12 gcd_list
++- T13 is_prime
++- T14 digit_sum
++- T15 to_roman
++- T16 from_roman
++- T17 mean
++- T18 median
++- T19 percent
++- T20 fizzbuzz
++- T21 chunk
++- T22 flatten
++- T23 dedupe
++- T24 rotate
++- T25 window
++- T26 interleave
++- T27 frequencies
++- T28 pairwise_diff
++- T29 transpose
++- T30 group_by_len
++- T31 is_leap
++- T32 days_in_month
++- T33 day_of_year
++- T34 parse_duration
++- T35 format_duration
++- T36 hhmm_to_minutes
++- T37 minutes_to_hhmm
++- T38 weekday
++- T39 add_days
++- T40 quarter
+diff --git a/kit/__init__.py b/kit/__init__.py
+index d9e42ca..e0d0e87 100644
+--- a/kit/__init__.py
++++ b/kit/__init__.py
+@@ -1,6 +1,97 @@
+ """kit: small utilities."""
+ 
+ from .errors import KitError
+-from .text import word_count
++from .dates import (
++    add_days,
++    day_of_year,
++    days_in_month,
++    format_duration,
++    hhmm_to_minutes,
++    is_leap,
++    minutes_to_hhmm,
++    parse_duration,
++    quarter,
++    weekday,
++)
++from .nums import (
++    clamp,
++    digit_sum,
++    fizzbuzz,
++    from_roman,
++    gcd_list,
++    is_prime,
++    mean,
++    median,
++    percent,
++    to_roman,
++)
++from .seqs import (
++    chunk,
++    dedupe,
++    flatten,
++    frequencies,
++    group_by_len,
++    interleave,
++    pairwise_diff,
++    rotate,
++    transpose,
++    window,
++)
++from .text import (
++    camel_to_snake,
++    caesar,
++    count_vowels,
++    initials,
++    is_palindrome,
++    reverse_words,
++    run_length_decode,
++    run_length_encode,
++    slugify,
++    word_count,
++    wrap,
++)
+ 
+-__all__ = ["KitError", "word_count"]
++__all__ = [
++    "KitError",
++    "word_count",
++    "slugify",
++    "count_vowels",
++    "is_palindrome",
++    "reverse_words",
++    "caesar",
++    "wrap",
++    "initials",
++    "run_length_encode",
++    "run_length_decode",
++    "camel_to_snake",
++    "clamp",
++    "gcd_list",
++    "is_prime",
++    "digit_sum",
++    "to_roman",
++    "from_roman",
++    "mean",
++    "median",
++    "percent",
++    "fizzbuzz",
++    "chunk",
++    "flatten",
++    "dedupe",
++    "rotate",
++    "window",
++    "interleave",
++    "frequencies",
++    "pairwise_diff",
++    "transpose",
++    "group_by_len",
++    "is_leap",
++    "days_in_month",
++    "day_of_year",
++    "parse_duration",
++    "format_duration",
++    "hhmm_to_minutes",
++    "minutes_to_hhmm",
++    "weekday",
++    "add_days",
++    "quarter",
++]
+diff --git a/kit/dates.py b/kit/dates.py
+index 3b2b68c..6398f0d 100644
+--- a/kit/dates.py
++++ b/kit/dates.py
+@@ -1,3 +1,148 @@
+ """Date and time utilities."""
+ 
+ from .errors import KitError  # noqa: F401
++
++
++def is_leap(year):
++    """Check whether a year is leap in the Gregorian calendar. [T31]"""
++    if not isinstance(year, int) or isinstance(year, bool) or year < 1:
++        raise KitError("year must be a positive int")
++    return year % 4 == 0 and (year % 100 != 0 or year % 400 == 0)
++
++
++def days_in_month(year, month):
++    """Return the number of days in a Gregorian month. [T32]"""
++    if not isinstance(year, int) or isinstance(year, bool) or year < 1:
++        raise KitError("year must be a positive int")
++    if not isinstance(month, int) or isinstance(month, bool) or not 1 <= month <= 12:
++        raise KitError("month must be an int from 1 to 12")
++    if month == 2:
++        return 29 if is_leap(year) else 28
++    return 30 if month in (4, 6, 9, 11) else 31
++
++
++def day_of_year(year, month, day):
++    """Return the one-based day number within a year. [T33]"""
++    if not isinstance(year, int) or isinstance(year, bool) or year < 1:
++        raise KitError("year must be a positive int")
++    if not isinstance(month, int) or isinstance(month, bool) or not 1 <= month <= 12:
++        raise KitError("month must be an int from 1 to 12")
++    if not isinstance(day, int) or isinstance(day, bool) or not 1 <= day <= days_in_month(year, month):
++        raise KitError("day is not valid for the given month")
++    return sum(days_in_month(year, prior) for prior in range(1, month)) + day
++
++
++def parse_duration(s):
++    """Parse ordered h, m, and s duration parts. [T34]"""
++    if not isinstance(s, str) or not s:
++        raise KitError("s must be a non-empty duration string")
++    factors = {"h": 3600, "m": 60, "s": 1}
++    order = {"h": 0, "m": 1, "s": 2}
++    total = 0
++    previous = -1
++    index = 0
++    found = False
++    while index < len(s):
++        start = index
++        while index < len(s) and "0" <= s[index] <= "9":
++            index += 1
++        if start == index or index == len(s) or s[index] not in factors:
++            raise KitError("s must contain ordered duration parts")
++        unit = s[index]
++        if order[unit] <= previous:
++            raise KitError("duration units must occur once in h, m, s order")
++        total += int(s[start:index]) * factors[unit]
++        previous = order[unit]
++        found = True
++        index += 1
++    if not found:
++        raise KitError("s must contain at least one duration part")
++    return total
++
++
++def format_duration(seconds):
++    """Format non-negative seconds as h, m, and s parts. [T35]"""
++    if not isinstance(seconds, int) or isinstance(seconds, bool) or seconds < 0:
++        raise KitError("seconds must be a non-negative int")
++    if seconds == 0:
++        return "0s"
++    hours, remainder = divmod(seconds, 3600)
++    minutes, secs = divmod(remainder, 60)
++    parts = []
++    if hours:
++        parts.append(f"{hours}h")
++    if minutes:
++        parts.append(f"{minutes}m")
++    if secs:
++        parts.append(f"{secs}s")
++    return "".join(parts)
++
++
++def hhmm_to_minutes(s):
++    """Convert a strict 24-hour HH:MM time to minutes. [T36]"""
++    if not isinstance(s, str) or len(s) != 5 or s[2] != ":" or not (s[:2].isdigit() and s[3:].isdigit()):
++        raise KitError("s must be in HH:MM format")
++    if not all("0" <= char <= "9" for char in s[:2] + s[3:]):
++        raise KitError("s must use ASCII digits")
++    hour, minute = int(s[:2]), int(s[3:])
++    if hour > 23 or minute > 59:
++        raise KitError("time is out of range")
++    return hour * 60 + minute
++
++
++def minutes_to_hhmm(m):
++    """Convert minutes after midnight to a wrapped HH:MM time. [T37]"""
++    if not isinstance(m, int) or isinstance(m, bool):
++        raise KitError("m must be an int")
++    minutes = m % (24 * 60)
++    hour, minute = divmod(minutes, 60)
++    return f"{hour:02d}:{minute:02d}"
++
++
++def weekday(year, month, day):
++    """Return the weekday as Monday zero through Sunday six. [T38]"""
++    ordinal = day_of_year(year, month, day)
++    days_before_year = 365 * (year - 1) + (year - 1) // 4 - (year - 1) // 100 + (year - 1) // 400
++    return (days_before_year + ordinal - 1) % 7
++
++
++def add_days(year, month, day, n):
++    """Add signed days to a valid Gregorian date. [T39]"""
++    if not isinstance(year, int) or isinstance(year, bool) or year < 1:
++        raise KitError("year must be a positive int")
++    if not isinstance(month, int) or isinstance(month, bool) or not 1 <= month <= 12:
++        raise KitError("month must be an int from 1 to 12")
++    if not isinstance(day, int) or isinstance(day, bool) or not 1 <= day <= days_in_month(year, month):
++        raise KitError("date does not exist")
++    if not isinstance(n, int) or isinstance(n, bool):
++        raise KitError("n must be an int")
++    before = 365 * (year - 1) + (year - 1) // 4 - (year - 1) // 100 + (year - 1) // 400
++    ordinal = before + sum(days_in_month(year, prior) for prior in range(1, month)) + day + n
++    if ordinal < 1:
++        raise KitError("resulting year must be at least 1")
++    # Gregorian years repeat every 400 years, so locate the year by cycles.
++    cycles, day_in_cycle = divmod(ordinal - 1, 146097)
++    low_year = cycles * 400 + 1
++    high_year = low_year + 400
++    while low_year < high_year:
++        mid = (low_year + high_year + 1) // 2
++        days_before = 365 * (mid - 1) + (mid - 1) // 4 - (mid - 1) // 100 + (mid - 1) // 400
++        if days_before <= cycles * 146097 + day_in_cycle:
++            low_year = mid
++        else:
++            high_year = mid - 1
++    year = low_year
++    days_before = 365 * (year - 1) + (year - 1) // 4 - (year - 1) // 100 + (year - 1) // 400
++    day_of_year_value = ordinal - days_before
++    month = 1
++    while day_of_year_value > days_in_month(year, month):
++        day_of_year_value -= days_in_month(year, month)
++        month += 1
++    return year, month, day_of_year_value
++
++
++def quarter(month):
++    """Return the calendar quarter for a month. [T40]"""
++    if not isinstance(month, int) or isinstance(month, bool) or not 1 <= month <= 12:
++        raise KitError("month must be an int from 1 to 12")
++    return (month - 1) // 3 + 1
+diff --git a/kit/nums.py b/kit/nums.py
+index fc475b9..ee5ee10 100644
+--- a/kit/nums.py
++++ b/kit/nums.py
+@@ -1,3 +1,136 @@
+ """Number utilities."""
+ 
+ from .errors import KitError  # noqa: F401
++
++
++def clamp(x, lo, hi):
++    """Limit x to the inclusive range from lo to hi. [T11]"""
++    try:
++        if lo > hi:
++            raise KitError("lo must not exceed hi")
++        return min(max(x, lo), hi)
++    except KitError:
++        raise
++    except Exception as exc:
++        raise KitError("values must be mutually comparable") from exc
++
++
++def gcd_list(nums):
++    """Find the greatest common divisor of a list of integers. [T12]"""
++    import math
++
++    if not isinstance(nums, list) or not nums:
++        raise KitError("nums must be a non-empty list")
++    if any(not isinstance(n, int) or isinstance(n, bool) for n in nums):
++        raise KitError("nums must contain only ints")
++    result = 0
++    for number in nums:
++        result = math.gcd(result, number)
++    return result
++
++
++def is_prime(n):
++    """Check whether an integer is prime. [T13]"""
++    if not isinstance(n, int) or isinstance(n, bool):
++        raise KitError("n must be an int")
++    if n < 2:
++        return False
++    if n % 2 == 0:
++        return n == 2
++    divisor = 3
++    while divisor * divisor <= n:
++        if n % divisor == 0:
++            return False
++        divisor += 2
++    return True
++
++
++def digit_sum(n):
++    """Sum the decimal digits of an integer. [T14]"""
++    if not isinstance(n, int) or isinstance(n, bool):
++        raise KitError("n must be an int")
++    return sum(int(char) for char in str(abs(n)))
++
++
++def to_roman(n):
++    """Format an integer as a standard Roman numeral. [T15]"""
++    if not isinstance(n, int) or isinstance(n, bool) or not 1 <= n <= 3999:
++        raise KitError("n must be an int from 1 to 3999")
++    values = ((1000, "M"), (900, "CM"), (500, "D"), (400, "CD"),
++              (100, "C"), (90, "XC"), (50, "L"), (40, "XL"),
++              (10, "X"), (9, "IX"), (5, "V"), (4, "IV"), (1, "I"))
++    result = []
++    for value, numeral in values:
++        count, n = divmod(n, value)
++        result.append(numeral * count)
++    return "".join(result)
++
++
++def from_roman(s):
++    """Parse a canonical Roman numeral. [T16]"""
++    if not isinstance(s, str) or not s:
++        raise KitError("s must be a canonical Roman numeral")
++    values = {"I": 1, "V": 5, "X": 10, "L": 50, "C": 100, "D": 500, "M": 1000}
++    if any(char not in values for char in s):
++        raise KitError("s must be a canonical Roman numeral")
++    total = 0
++    for index, char in enumerate(s):
++        value = values[char]
++        if index + 1 < len(s) and value < values[s[index + 1]]:
++            total -= value
++        else:
++            total += value
++    if not 1 <= total <= 3999 or to_roman(total) != s:
++        raise KitError("s must be a canonical Roman numeral")
++    return total
++
++
++def mean(xs):
++    """Return the arithmetic mean of a non-empty list. [T17]"""
++    if not isinstance(xs, list) or not xs:
++        raise KitError("xs must be a non-empty list")
++    try:
++        return float(sum(xs) / len(xs))
++    except Exception as exc:
++        raise KitError("xs must contain numbers") from exc
++
++
++def median(xs):
++    """Return the median without changing the input list. [T18]"""
++    if not isinstance(xs, list) or not xs:
++        raise KitError("xs must be a non-empty list")
++    try:
++        ordered = sorted(xs)
++        middle = len(ordered) // 2
++        if len(ordered) % 2:
++            return ordered[middle]
++        return float((ordered[middle - 1] + ordered[middle]) / 2)
++    except Exception as exc:
++        raise KitError("xs must contain comparable numbers") from exc
++
++
++def percent(part, whole, places=1):
++    """Return part as a rounded percentage of whole. [T19]"""
++    if whole == 0:
++        raise KitError("whole must not be zero")
++    try:
++        return round(part / whole * 100, places)
++    except Exception as exc:
++        raise KitError("part, whole, and places must support percentage calculation") from exc
++
++
++def fizzbuzz(n):
++    """Build FizzBuzz labels from one through n. [T20]"""
++    if not isinstance(n, int) or isinstance(n, bool) or n < 0:
++        raise KitError("n must be a non-negative int")
++    result = []
++    for value in range(1, n + 1):
++        if value % 15 == 0:
++            result.append("FizzBuzz")
++        elif value % 3 == 0:
++            result.append("Fizz")
++        elif value % 5 == 0:
++            result.append("Buzz")
++        else:
++            result.append(str(value))
++    return result
+diff --git a/kit/seqs.py b/kit/seqs.py
+index d126d95..eda8d94 100644
+--- a/kit/seqs.py
++++ b/kit/seqs.py
+@@ -1,3 +1,124 @@
+ """List utilities."""
+ 
+ from .errors import KitError  # noqa: F401
++
++
++def chunk(xs, n):
++    """Split a list into consecutive chunks. [T21]"""
++    if not isinstance(xs, list):
++        raise KitError("xs must be a list")
++    if not isinstance(n, int) or isinstance(n, bool) or n < 1:
++        raise KitError("n must be a positive int")
++    return [xs[index:index + n] for index in range(0, len(xs), n)]
++
++
++def flatten(xs):
++    """Flatten nested lists while preserving order. [T22]"""
++    if not isinstance(xs, list):
++        raise KitError("xs must be a list")
++    result = []
++    pending = list(reversed(xs))
++    while pending:
++        item = pending.pop()
++        if isinstance(item, list):
++            pending.extend(reversed(item))
++        else:
++            result.append(item)
++    return result
++
++
++def dedupe(xs):
++    """Keep the first occurrence of each hashable item. [T23]"""
++    if not isinstance(xs, list):
++        raise KitError("xs must be a list")
++    seen = set()
++    result = []
++    try:
++        for item in xs:
++            if item not in seen:
++                seen.add(item)
++                result.append(item)
++    except TypeError as exc:
++        raise KitError("items must be hashable") from exc
++    return result
++
++
++def rotate(xs, k):
++    """Rotate a list right by k places. [T24]"""
++    if not isinstance(xs, list):
++        raise KitError("xs must be a list")
++    if not isinstance(k, int) or isinstance(k, bool):
++        raise KitError("k must be an int")
++    if not xs:
++        return []
++    k %= len(xs)
++    return xs[-k:] + xs[:-k] if k else xs[:]
++
++
++def window(xs, n):
++    """Return every consecutive n-item tuple. [T25]"""
++    if not isinstance(xs, list):
++        raise KitError("xs must be a list")
++    if not isinstance(n, int) or isinstance(n, bool) or n < 1:
++        raise KitError("n must be a positive int")
++    return [tuple(xs[index:index + n]) for index in range(max(0, len(xs) - n + 1))]
++
++
++def interleave(a, b):
++    """Alternate items from two lists, then append the remainder. [T26]"""
++    if not isinstance(a, list) or not isinstance(b, list):
++        raise KitError("a and b must be lists")
++    result = []
++    for index in range(max(len(a), len(b))):
++        if index < len(a):
++            result.append(a[index])
++        if index < len(b):
++            result.append(b[index])
++    return result
++
++
++def frequencies(xs):
++    """Count items, preserving first appearance in the keys. [T27]"""
++    if not isinstance(xs, list):
++        raise KitError("xs must be a list")
++    counts = {}
++    try:
++        for item in xs:
++            counts[item] = counts.get(item, 0) + 1
++    except TypeError as exc:
++        raise KitError("items must be hashable") from exc
++    return counts
++
++
++def pairwise_diff(xs):
++    """Return differences between adjacent list items. [T28]"""
++    if not isinstance(xs, list):
++        raise KitError("xs must be a list")
++    try:
++        return [xs[index + 1] - xs[index] for index in range(len(xs) - 1)]
++    except Exception as exc:
++        raise KitError("adjacent items must support subtraction") from exc
++
++
++def transpose(rows):
++    """Transpose a rectangular list of lists. [T29]"""
++    if not isinstance(rows, list):
++        raise KitError("rows must be a list")
++    if any(not isinstance(row, list) for row in rows):
++        raise KitError("each row must be a list")
++    if not rows:
++        return []
++    width = len(rows[0])
++    if any(len(row) != width for row in rows):
++        raise KitError("rows must all have equal length")
++    return [[row[index] for row in rows] for index in range(width)]
++
++
++def group_by_len(words):
++    """Group strings by length with ascending length keys. [T30]"""
++    if not isinstance(words, list) or any(not isinstance(word, str) for word in words):
++        raise KitError("words must be a list of strings")
++    grouped = {}
++    for word in words:
++        grouped.setdefault(len(word), []).append(word)
++    return {length: grouped[length] for length in sorted(grouped)}
+diff --git a/kit/text.py b/kit/text.py
+index fea2412..d849794 100644
+--- a/kit/text.py
++++ b/kit/text.py
+@@ -8,3 +8,136 @@ def word_count(s):
+     if not isinstance(s, str):
+         raise KitError("s must be a str")
+     return len(s.split())
++
++
++def slugify(s):
++    """Turn text into a URL slug. [T1]"""
++    if not isinstance(s, str):
++        raise KitError("s must be a str")
++    out = []
++    separating = False
++    for char in s.lower():
++        if "a" <= char <= "z" or "0" <= char <= "9":
++            if separating and out:
++                out.append("-")
++            out.append(char)
++            separating = False
++        else:
++            separating = True
++    return "".join(out)
++
++
++def count_vowels(s):
++    """Count the ASCII vowels in text. [T2]"""
++    if not isinstance(s, str):
++        raise KitError("s must be a str")
++    return sum(char.lower() in "aeiou" for char in s)
++
++
++def is_palindrome(s):
++    """Check whether the alphanumeric text is a palindrome. [T3]"""
++    if not isinstance(s, str):
++        raise KitError("s must be a str")
++    cleaned = "".join(char for char in s.lower() if "a" <= char <= "z" or "0" <= char <= "9")
++    return cleaned == cleaned[::-1]
++
++
++def reverse_words(s):
++    """Reverse the whitespace-separated words in text. [T4]"""
++    if not isinstance(s, str):
++        raise KitError("s must be a str")
++    return " ".join(reversed(s.split()))
++
++
++def caesar(s, shift):
++    """Shift ASCII letters by an integer offset. [T5]"""
++    if not isinstance(s, str) or not isinstance(shift, int) or isinstance(shift, bool):
++        raise KitError("s must be a str and shift must be an int")
++    shift %= 26
++    result = []
++    for char in s:
++        if "a" <= char <= "z":
++            result.append(chr((ord(char) - ord("a") + shift) % 26 + ord("a")))
++        elif "A" <= char <= "Z":
++            result.append(chr((ord(char) - ord("A") + shift) % 26 + ord("A")))
++        else:
++            result.append(char)
++    return "".join(result)
++
++
++def wrap(s, width):
++    """Greedily wrap words to the requested width. [T6]"""
++    if not isinstance(s, str):
++        raise KitError("s must be a str")
++    if not isinstance(width, int) or isinstance(width, bool) or width < 1:
++        raise KitError("width must be a positive int")
++    lines = []
++    current = ""
++    for word in s.split():
++        candidate = word if not current else current + " " + word
++        if current and len(candidate) > width:
++            lines.append(current)
++            current = word
++        else:
++            current = candidate
++    if current:
++        lines.append(current)
++    return lines
++
++
++def initials(name):
++    """Return dotted uppercase initials for a name. [T7]"""
++    if not isinstance(name, str) or not name.split():
++        raise KitError("name must be a non-empty str")
++    return "".join(part[0].upper() + "." for part in name.split())
++
++
++def run_length_encode(s):
++    """Encode repeated characters as count-character pairs. [T8]"""
++    if not isinstance(s, str) or any(char.isdigit() for char in s):
++        raise KitError("s must be a str without digits")
++    if not s:
++        return ""
++    encoded = []
++    count = 1
++    for index in range(1, len(s) + 1):
++        if index < len(s) and s[index] == s[index - 1]:
++            count += 1
++        else:
++            encoded.extend((str(count), s[index - 1]))
++            count = 1
++    return "".join(encoded)
++
++
++def run_length_decode(s):
++    """Decode count-character pairs. [T9]"""
++    if not isinstance(s, str):
++        raise KitError("s must be a str")
++    decoded = []
++    index = 0
++    while index < len(s):
++        start = index
++        while index < len(s) and "0" <= s[index] <= "9":
++            index += 1
++        if start == index or index == len(s):
++            raise KitError("s must contain count-character pairs")
++        count = int(s[start:index])
++        if count == 0:
++            raise KitError("counts must be positive")
++        decoded.append(s[index] * count)
++        index += 1
++    return "".join(decoded)
++
++
++def camel_to_snake(s):
++    """Convert camel case boundaries to underscores. [T10]"""
++    if not isinstance(s, str):
++        raise KitError("s must be a str")
++    out = []
++    for index, char in enumerate(s):
++        if "A" <= char <= "Z" and index > 0:
++            prev = s[index - 1]
++            if "a" <= prev <= "z" or "0" <= prev <= "9":
++                out.append("_")
++        out.append(char)
++    return "".join(out).lower()

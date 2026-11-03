@@ -1,0 +1,168 @@
+{
+  "id": "invoicing",
+  "version": 3,
+  "spec": "SPEC.md",
+  "functions": [
+    {
+      "name": "line_net",
+      "file": "line_net.py",
+      "test": "tests/test_line_net.py",
+      "subgoal": "Net of one line, rounded to the currency minor unit (SPEC 2, 3.1)"
+    },
+    {
+      "name": "line_tax",
+      "file": "line_tax.py",
+      "test": "tests/test_line_tax.py",
+      "subgoal": "Tax of one line under the seller/buyer treatment (SPEC 4, 5.1)"
+    },
+    {
+      "name": "invoice_totals",
+      "file": "invoice_totals.py",
+      "test": "tests/test_invoice_totals.py",
+      "subgoal": "Invoice totals with the per-rate tax rule (SPEC 5.2, 8.3)"
+    },
+    {
+      "name": "convert",
+      "file": "convert.py",
+      "test": "tests/test_convert.py",
+      "subgoal": "Currency conversion via EUR rates (SPEC 2.3)"
+    },
+    {
+      "name": "due_date",
+      "file": "due_date.py",
+      "test": "tests/test_due_date.py",
+      "subgoal": "Due date from terms + seller business-day calendar (SPEC 6)"
+    },
+    {
+      "name": "credit_note",
+      "file": "credit_note.py",
+      "test": "tests/test_credit_note.py",
+      "subgoal": "Credit note reversing returned quantities (SPEC 8.6)"
+    },
+    {
+      "name": "late_fee",
+      "file": "late_fee.py",
+      "test": "tests/test_late_fee.py",
+      "subgoal": "Statutory late-payment fee (SPEC 7)"
+    }
+  ],
+  "traps": [
+    {
+      "id": "minor_units_line",
+      "function": "line_net",
+      "trap_test": "tests/test_line_net.py::test_yen_line",
+      "family": "minor_units",
+      "trap_helpers": [
+        "round_money"
+      ],
+      "code_patterns": [
+        "MINOR_UNITS\\.get\\(",
+        "\\bround_money\\("
+      ],
+      "description": "billing_common.round_money uses MINOR_UNITS.get(ccy, 2) and MINOR_UNITS lacks JPY, so yen amounts keep 2 decimals. SPEC 2.1: JPY has 0."
+    },
+    {
+      "id": "minor_units_convert",
+      "function": "convert",
+      "trap_test": "tests/test_convert.py::test_into_yen",
+      "family": "minor_units",
+      "trap_helpers": [
+        "round_money"
+      ],
+      "code_patterns": [
+        "MINOR_UNITS\\.get\\(",
+        "\\bround_money\\("
+      ],
+      "description": "billing_common.round_money uses MINOR_UNITS.get(ccy, 2) and MINOR_UNITS lacks JPY, so yen amounts keep 2 decimals. SPEC 2.1: JPY has 0."
+    },
+    {
+      "id": "minor_units_totals",
+      "function": "invoice_totals",
+      "trap_test": "tests/test_invoice_totals.py::test_yen_invoice",
+      "family": "minor_units",
+      "trap_helpers": [
+        "round_money"
+      ],
+      "code_patterns": [
+        "MINOR_UNITS\\.get\\(",
+        "\\bround_money\\("
+      ],
+      "description": "billing_common.round_money uses MINOR_UNITS.get(ccy, 2) and MINOR_UNITS lacks JPY, so yen amounts keep 2 decimals. SPEC 2.1: JPY has 0."
+    },
+    {
+      "id": "stale_reduced_rate_line",
+      "function": "line_tax",
+      "trap_test": "tests/test_line_tax.py::test_dutch_reduced_rate",
+      "family": "stale_reduced_rate",
+      "trap_helpers": [
+        "tax_rate",
+        "TAX_RATES"
+      ],
+      "code_patterns": [
+        "['\"]NL['\"].*['\"]6['\"]",
+        "\\bTAX_RATES\\b"
+      ],
+      "description": "billing_common.TAX_RATES has NL reduced '6' (pre-2019). SPEC 4.1: 9."
+    },
+    {
+      "id": "stale_reduced_rate_totals",
+      "function": "invoice_totals",
+      "trap_test": "tests/test_invoice_totals.py::test_dutch_grocery_invoice",
+      "family": "stale_reduced_rate",
+      "trap_helpers": [
+        "tax_rate",
+        "TAX_RATES"
+      ],
+      "code_patterns": [
+        "['\"]NL['\"].*['\"]6['\"]",
+        "\\bTAX_RATES\\b"
+      ],
+      "description": "billing_common.TAX_RATES has NL reduced '6' (pre-2019). SPEC 4.1: 9."
+    },
+    {
+      "id": "stale_reduced_rate_credit",
+      "function": "credit_note",
+      "trap_test": "tests/test_credit_note.py::test_dutch_credit",
+      "family": "stale_reduced_rate",
+      "trap_helpers": [
+        "tax_rate",
+        "TAX_RATES"
+      ],
+      "code_patterns": [
+        "['\"]NL['\"].*['\"]6['\"]",
+        "\\bTAX_RATES\\b"
+      ],
+      "description": "billing_common.TAX_RATES has NL reduced '6' (pre-2019). SPEC 4.1: 9."
+    },
+    {
+      "id": "business_day_roll_due",
+      "function": "due_date",
+      "trap_test": "tests/test_due_date.py::test_month_end_on_weekend",
+      "family": "business_day_roll",
+      "trap_helpers": [
+        "roll_to_business_day"
+      ],
+      "code_patterns": [
+        "-=\\s*timedelta\\(",
+        "month\\s*!=\\s*\\w+\\.month"
+      ],
+      "description": "billing_common.roll_to_business_day is modified-following (rolls back when rolling forward crosses month end). SPEC 6.3: always forward, even into the next month."
+    },
+    {
+      "id": "business_day_roll_fee",
+      "function": "late_fee",
+      "trap_test": "tests/test_late_fee.py::test_paid_after_month_end_weekend",
+      "family": "business_day_roll",
+      "trap_helpers": [
+        "roll_to_business_day"
+      ],
+      "code_patterns": [
+        "-=\\s*timedelta\\(",
+        "month\\s*!=\\s*\\w+\\.month"
+      ],
+      "description": "billing_common.roll_to_business_day is modified-following (rolls back when rolling forward crosses month end). SPEC 6.3: always forward, even into the next month."
+    }
+  ],
+  "shared_module": "billing_common.py",
+  "notes_file": "TEAM_NOTES.md"
+}

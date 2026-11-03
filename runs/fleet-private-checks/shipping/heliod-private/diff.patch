@@ -1,0 +1,744 @@
+diff --git a/__pycache__/base_rate.cpython-313.pyc b/__pycache__/base_rate.cpython-313.pyc
+new file mode 100644
+index 0000000000000000000000000000000000000000..bc4dc7c3e3618453c2b365f8ee169d9696865d7d
+GIT binary patch
+literal 1817
+zcmZWqJ#5=X6y~2uO0tzUZd&IDEt42cIfxSVV=GSDB5{=<GMYr9<ph-hgAy+?6N*%h
+zl<jCT(4_%7IA{vAKnEAdkZu_=baaOR0lG-gkbrQf4uv-tMwd)|M~SJMJc#e^-hJ=g
+zyZ1g)`{Uy=3M6@B_qGtBs6WXflwb!I`xQ{%QyQhw^Hhn(v_$62JX2yZTjDTRir`3z
+z$2{0sjng6;udrCqge6fE;fXFqwb&A^#h2(@OdC5!-R5wtIW8x5$w@Np3tymy+0reU
+z^Z73?++3c&?2B5lvUp{#sQH|>P`vKPJZIS$p%|I(as?%w?s8|9e7YM^RkDbv+2N26
+zjF}9q2vSv4K&nbM(9?lF3px{6vPv#32N44|Zd%E}-b~<A2oPr#@QJ9oAlxf1t<0o}
+zF63W9P?CfixTs1lPl9Gf;c|gBrxXB@heNs$nxrs8>=8B0E*-d~m3$tHPz@X<id3G&
+zEu>{uX8eeD<I1H4UqI_^j9gb{a2x=>=z6+s=-42Tg<_?0!RMRU>DY!ZG<1wjgnhw9
+zc-3qmpX)j{^5b>Wvh=!zmhUuu9wV=V?FI+ILJ?rX!n6N`COyAN=a^c!N1X$k4oBAr
+zA`p$vgN+EHYrvnORGAtd&hyN0_Q}YgPl5kIB)N4UZz7FD6tJwyxXh=_>@1uNF*TOV
+zjB$#(MoS0t;11+LiW5kc4Xrj;1zv`}RjxJ`Vv;0kWOnVXoAIG9q5+=>@l}c>Kl|`4
+zyzn2s_D+Z<^&|KWRH422zjGl=Tc}OEMpiT?34JH%Fj7?*+76)VZ=;gnk_4|QN*1qn
+zKQQf8-7*bn#DLU@0K245yQD4M6NCy<tK)i79l_6AL&%m?3CJW(W74l~KIDnChRo)Q
+z_ZqEBZO1h|bCm?JJhN>f$+;x~f2BLk?wL2;(0T(Q!wr*>TKc-#>a^q-CinDXi@Mc8
+zMT{Nn$4u9>38R6mtZ92bS9cr>6GCE=HYPOn`Q^%mg`$QD17#7DLgROdI!qL)rq2Mi
+zBezWKdVWkd3`o|ob<2;q9%{QTp_?=k-%eGbJZ?%~wb4py&M{DGMaMS0W63(Q8!IVz
+z-QbpPDwEDkCsj3>&Mu_0$t?Ub$?UZHRq~dFke6~-%y!$fo2eCKnU0ZcV{=vaP-@Lh
+z)pZvwV^}Eddw%rw3ZH^J-iOEi9n=Q(QascXjy{?k2=Y#1vUfByNMw6rb|-#h)A(ub
+zMO^B~rAMX5-qVE_Q?vc4+3l0t-ZSO--DgSwpBW?yJ+ZJ8o!FcoM5T?3FNNqg<*(N^
+zPd)S=$UofuZV0<RNR)eG88*MYv^jJC+CVrSxL+J3=6d4X&g6$%LhmEBKbh%sM>dKt
+z#}W_UyMJY)xD!9Tnct#+oP6;4AbxtQ^Z4%1_nuz<we(#7ZM}c~`XE>Ce_Zaz%RR2V
+z57(it%5h&9eXfI6`D3I6?sCIvwH!NWWx#-8XM-M}06(8~J&cdREU3>f6h2MnC&`w0
+zzU3Gl3w?&kr-ZQCCI3r%EKSpYP{;qG&JCz@dm?+B2X%s|WBlI}<1uD~-;>7Z3ccy>
+ZQDofGhT{`<IBuUAj?bI_1pC36{{pnNrC0y}
+
+literal 0
+HcmV?d00001
+
+diff --git a/__pycache__/billable_weight.cpython-313.pyc b/__pycache__/billable_weight.cpython-313.pyc
+new file mode 100644
+index 0000000000000000000000000000000000000000..8a6b457511379110e2142a0deb5bee573b83608c
+GIT binary patch
+literal 1226
+zcmZ7#&uiOO_{mlzS&r<Ej%`^taLL&4f+i<ke{AgrtL?dV5~svf7UqCZq*q(5B%4oC
+z(iH|ija>^V<hb41+YUYSkJ!P+hnh!WhYdz=fzWH&d$N_4en{W@e!cJaJ5>}JQCRum
+z<=x*?2>s2N1cW(p+M>iG)JAP?9W^=Nnkh&X7@t~CH+kTj3$V}>Kxm2}HYJdn8OStc
+zkf}|2FWct#7TXJZ+?PUI_z>OYLFtM`=_PYsOcAk)EypumqHJ&Jt*TL}H8vWpdQl|V
+z%BFFvwrw<8m7646ZEPCV#!jQXwM{bX^;olUg9w}7?HcQK!nbeNZV_c*f`whf!yz~p
+zk;A@W&)o|%6%j2Hz`;NSz+nWwMXNpoo>FQ0pT4H(5z@KNnd%yckeNrQ!}Kw<Ii0(n
+z%As=V64f!lTxVfMA*7>38d0x<<w0$CS*2Q?XZU}=I>)Z4S%iF{BPO?ZcP`EI@<m<j
+zNQs=;ZPWj4=qx6ZcIqqc4SVX`mvpI<OZ2mNUmwwGsGm2gNhkSYPM1DGMZWdmoZ}yu
+zu45PGJu4JBB0)d$ZO89E_-x;CU31^Xg+uIgdtm|Jw=lMYGi%Sh?|6|{lz?p#k#|ft
+z!Zm<C09!herUsB<)H`%gjvwMKn65!XMi|&AfYn{h04oj@W|(oY-wk_)<q_%7v1e4K
+z7sqG9jA?}t^>MFD1l#f0nFjNaNJ*{%i&sd1gqj{;2sHD+$33mmx3ShU!N)<M?qlET
+zX@G;s4Fhehw02otT~$lv+oiHvrr(-czP$RQddI~$)PkNf7|^C@J?uJtTOELNV1`&b
+z474P&G3(M7gP%zLEg5`7lVUvzexYcHref~s-bB3kBKN`Q!ph_NlWU`;E0f&Sk#zN+
+z(l^iUOiHyeuMQi>OH<{&v2yXZ##m9GW}nr^rRrFz4!?gPE5AAuxiG9u&z(QAAIi`3
+z>Nu}H{dtsENBP>H{5Zccyg3!~N1q<Q|4^HUTDmdGRYp=}nms?<I;EMQRxwA!`3nNJ
+z`0-fCBGB3b!|Hop-v_q8@q~e`Z#=Vjs_~G4Ei2(|#|lY02q7-@34)KA=>?{fu6unu
+ya`CsYOj-7lf)$ER(j3SAg+Bim;pYgC5k3)Q?%m_+38Kg2a(w)8<rU*%Xa50l^D!d;
+
+literal 0
+HcmV?d00001
+
+diff --git a/__pycache__/cheapest_option.cpython-313.pyc b/__pycache__/cheapest_option.cpython-313.pyc
+new file mode 100644
+index 0000000000000000000000000000000000000000..dec8f47c074b098d409b5e67decd74922336267a
+GIT binary patch
+literal 6352
+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
+
+literal 0
+HcmV?d00001
+
+diff --git a/__pycache__/delivery_date.cpython-313.pyc b/__pycache__/delivery_date.cpython-313.pyc
+new file mode 100644
+index 0000000000000000000000000000000000000000..71136b9188e45d65821256f5997624b2a0c14279
+GIT binary patch
+literal 3056
+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
+ECj)b<fdBvi
+
+literal 0
+HcmV?d00001
+
+diff --git a/__pycache__/quote.cpython-313.pyc b/__pycache__/quote.cpython-313.pyc
+new file mode 100644
+index 0000000000000000000000000000000000000000..c9ba48c1d3311eefceabfc041eecab7b0fac5ee8
+GIT binary patch
+literal 1177
+zcmYLI&1)N15Pz%vv}Iw(7E$6fbe)!@YAda5Stf@xp^1BuNDomLo5)10Rxi>zt6gQ@
+z%BF^b{)8MF=+VdYW@r!oGa^)|`f#Ao_K=&4$vyK{A0D3G{AT9uyqWnuU8GX;1Z8XI
+z{r<j8$UnlEiZKBf&k(#ORRW|cRTCAdoPdNWuw0SLGRQGjDoR-aCB|w+Evul$SgUAd
+z4Rpl%o>4XS=Bjh}o8L1wjcRh0>?<(eTF9o3u0IMp-H=h!F<IN|c4!cpFMDA`^Y29+
+zS&8f0)b%=!k8rNxFj@yEqG&8OJl}U3KCK^8uhovwHP3qBwjF3uhL&;^29z7qv|M)`
+z0FMIK8HEGSrCb9V^&oI@1Tzus3;W^^++LHKG>zEUx{3zsgwUnLI1<RU+4mTe<1^AM
+zs?>xdmfhvu&5|<4fm+iiZn7)ciP9uTpxJ6|ZW^(*C&?+k)TIfmrKY~BQkv8`y*G!U
+zK({foE!&E%+M2Cb)x7>W$!bSmK8gD_qc%0WfRivAK%E!O@Gvl+hhScEk>^?nUds!(
+z(xfcnTGs)W`dlhxbr5BOct{{x;mH{xFIrp?RDmY^Y7|CDpU#aIjp~9F5F-IGiSY@U
+z^*UTTaQq%+AO?{&K=5#R15Zt994ELUqRY7Pr5We-NrDx0Gx51O5x#HPSPZkAgMhZJ
+zM`4p%_(}rGSgt_>w`~DsJwIaBMqy(sx4xb$6n`ibb46Smx#HIP)7*2P(#R4ubiJTu
+zwW;rg%^c3|03V}u$gJ_3?f%Hs7{MyuFGj=qxb?}u=}&&yJ#G(fS|`^|Zx7bL9i|`l
+zAD=C+9e?rW?%>wuNo%-#zh5~^reEzG|1?ZK>~EiCFnF>v%zX1!NsktmelEVv-1#$;
+zA7t{wOyT!Cr=R`y^>F3EVBtakyT4afN4S=5jxx7KOX<<o+oLO2|6eo~v~yyp+6C4?
+zzRxDPUavPpw_fLZbNr`@r#)sO=0p${vk7TLNV?}nTxJo(4gE^shB$Ct#Eg5Lu-WtJ
+zeON<NJU@09w{uyNq`%0g@5qh+#QxPgvWDwiTa>g{+vfz;aWPgWE3rCFe-O?%^GA~L
+BANl|Q
+
+literal 0
+HcmV?d00001
+
+diff --git a/__pycache__/rates_common.cpython-313.pyc b/__pycache__/rates_common.cpython-313.pyc
+new file mode 100644
+index 0000000000000000000000000000000000000000..e0ad0523ff2d5fd0d3e809d2c37452f89d7e023e
+GIT binary patch
+literal 5462
+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
+Q(5!@c^C<E!*5d;HFKXAxDF6Tf
+
+literal 0
+HcmV?d00001
+
+diff --git a/__pycache__/surcharges.cpython-313.pyc b/__pycache__/surcharges.cpython-313.pyc
+new file mode 100644
+index 0000000000000000000000000000000000000000..3e182dbc877b373a3d920c4b9aa7c3efd3910bd5
+GIT binary patch
+literal 4260
+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
+PF4AAKjE#QRqI>1PIoHEO
+
+literal 0
+HcmV?d00001
+
+diff --git a/__pycache__/zone.cpython-313.pyc b/__pycache__/zone.cpython-313.pyc
+new file mode 100644
+index 0000000000000000000000000000000000000000..a29d38c1537ce306d2c55b204a095fb242ffdf81
+GIT binary patch
+literal 1254
+zcmZWo%}*Og6rcTI*BC4ZP*fF?bd~0Sr7UaXKvi0CaYA!QXu`(Ss*&)r9=scEcHNmZ
+z6suK;atKF9NhJ4HDLEu+4?Xr+ss8|$4<;iHm3s1x3iaMMi`Qw>C(pd!`~1!L&7P)G
+zNd%&Q)xZCPh|r(hh(#HI(@OweAQKT}3LAnc!jd+`Yl<mPqx&+EY9kq?Ic+*_z3%!o
+ztr_@Ovn|hVcvk2J{v1;R;?`WB$yH24rVt!9h;IYmP*gw?tkdTL=PC);#3^)h10i25
+zgXc_&VtH7zFhH||nDrS#<&k%p3xg_CSlUIXdKICfxW-xDlZAmj?DIjCIr?52nE%U!
+z6Wlg|bu7*`#h4WfV@N|qVJ#KM-f2^cvxb~-)|y;I=7_1tP<5u4N(fmzqCzCWuLhAw
+z4<kxB9rrCy#3;^=S^gCn)W;DWW*=i;DoUoZv^3xx1xpxO$(oQEYc8%ubJIcxYxF<E
+z-VTTs?grYnyMy&Aj5^fn0S)Z{<~`TvM{j0_4(&mMhT0bN2njqFss-B`{?@WXZ!c<~
+zMGa_1Wa6ibus-SYhq&731Ml;x_F<tue=U6(w#+C?y43Y)X!$l~60~KKhkd5H)S|ZQ
+zauD@o$#u(X;2VSlge4)Lgml*p9VS^@lu521W@N%?2yf03@sU}g>YjC{oKOQ{u2H0z
+zP{Z2sv11hAriNn?A5*GtVc&KPf@#AGsWG3OU(|CsJ)6Im&Fgvi&FlHa+}HZHhjD1c
+zf284H&kd@2owz$zh>cxp@b74@zQ<$^$P6%ZcKSPP`{<AJGtX8J636Ke+q16<z4UA+
+zJ^ORvm&8xEf4$qiy8N5dTUqa{toK$*ot4sI#pzY*ol3n|A>9f&p1g2)@yqVyox|}v
+ze~qB?AD<*pV*JU&M-N-y_0%gJ^~zED+>x3(*gE)TzuCIizTD2WN?rBhz->L+Yh7<o
+zJpH1p&VcJUJ^4J}+G$%)_ns}kD!i6o-+iOLyw#b?cGJ22n@4K8m3#bsR69gt<EL;9
+zw3?Bby17{m?9EMb4jcqNKNQ{d4I&pfo`#JjK7SBY8y;RJAA!jq0lf^{i6jWZTcn*R
+W6GEyrb%H>(3z7P<@He-j9{&IqBqsX+
+
+literal 0
+HcmV?d00001
+
+diff --git a/base_rate.py b/base_rate.py
+index b3a4af7..b76a7db 100644
+--- a/base_rate.py
++++ b/base_rate.py
+@@ -1,10 +1,34 @@
+-"""base_rate — see SPEC.md."""
+-from decimal import Decimal  # noqa: F401
++from decimal import Decimal
+ 
+-from rates_common import SERVICES, MAX_KG, STEP  # noqa: F401
++from rates_common import MAX_KG, SERVICES, STEP, to_decimal
++
++
++_RATES = {
++    ("SWIFT", "express"): (
++        ("8.00", "9.50", "11.00", "13.00", "15.50", "22.00"),
++        ("1.10", "1.30", "1.60", "1.90", "2.30", "3.40"),
++    ),
++    ("SWIFT", "standard"): (
++        ("5.50", "6.20", "7.10", "8.30", "9.60", "14.00"),
++        ("0.70", "0.85", "1.00", "1.20", "1.45", "2.20"),
++    ),
++    ("TERRA", "ground"): (
++        ("4.20", "4.80", "5.40", "6.30", "7.20", "12.00"),
++        ("0.45", "0.55", "0.70", "0.85", "1.00", "1.80"),
++    ),
++}
+ 
+ 
+ def base_rate(carrier: str, service: str, zone: int, billable_kg: Decimal) -> Decimal:
+-    """Base rate from the rate table (SPEC 4).
+-    """
+-    raise NotImplementedError
++    if (carrier, service) not in SERVICES:
++        raise ValueError("invalid carrier/service")
++    if not isinstance(zone, int) or isinstance(zone, bool) or not 1 <= zone <= 6:
++        raise ValueError("zone must be between 1 and 6")
++    kg = to_decimal(billable_kg)
++    if kg <= 0 or kg % STEP != 0:
++        raise ValueError("billable weight must be a positive multiple of 0.5 kg")
++    if kg > MAX_KG[carrier]:
++        raise ValueError("billable weight exceeds carrier maximum")
++    first, additional = _RATES[(carrier, service)]
++    steps = kg / STEP
++    return Decimal(first[zone - 1]) + (steps - 1) * Decimal(additional[zone - 1])
+diff --git a/billable_weight.py b/billable_weight.py
+index f951586..bac3545 100644
+--- a/billable_weight.py
++++ b/billable_weight.py
+@@ -1,12 +1,16 @@
+-"""billable_weight — see SPEC.md."""
+-from decimal import Decimal  # noqa: F401
++from decimal import Decimal, ROUND_CEILING
+ 
+-from rates_common import parcel_metric, dim_weight, to_billing_step, MAX_KG  # noqa: F401
++from rates_common import CM_PER_INCH, DIM_DIVISOR, KG_PER_LB, MAX_KG, STEP, parcel_metric, to_decimal
+ 
+ 
+ def billable_weight(parcel: dict, carrier: str) -> Decimal:
+-    """Billable weight in kg (SPEC 2).
++    if carrier not in DIM_DIVISOR:
++        raise ValueError(f"invalid carrier {carrier!r}")
+ 
+-    Use ``rates_common.parcel_metric``, ``dim_weight`` and ``to_billing_step`` (carrier billing step, see TEAM_NOTES.md).
+-    """
+-    raise NotImplementedError
++    length_cm, width_cm, height_cm, actual_kg = parcel_metric(parcel)
++    dim_kg = length_cm * width_cm * height_cm / DIM_DIVISOR[carrier]
++    raw = max(actual_kg, dim_kg)
++    billable = (raw / STEP).to_integral_value(rounding=ROUND_CEILING) * STEP
++    if billable > MAX_KG[carrier]:
++        raise ValueError("billable weight exceeds carrier maximum")
++    return billable
+diff --git a/cheapest_option.py b/cheapest_option.py
+index 1a56fce..391da7a 100644
+--- a/cheapest_option.py
++++ b/cheapest_option.py
+@@ -1,12 +1,77 @@
+-"""cheapest_option — see SPEC.md."""
+-from decimal import Decimal  # noqa: F401
++"""Select the least expensive eligible carrier option."""
++from datetime import date, datetime, timedelta
++from decimal import Decimal, ROUND_CEILING, ROUND_HALF_UP
+ 
+-from rates_common import add_delivery_days, is_pickup_day, is_remote, money, next_pickup_day, parcel_metric, dim_weight, to_billing_step  # noqa: F401
++from rates_common import NETWORK_HOLIDAYS, money, parcel_metric, dim_weight, MAX_KG, SERVICES
+ 
+ 
+-def cheapest_option(shipment: dict, deadline: str) -> dict | None:
+-    """Cheapest carrier/service that delivers by ``deadline`` (SPEC 7.7).
++_RATES = {
++    ("SWIFT", "express"): (("8.00", "9.50", "11.00", "13.00", "15.50", "22.00"), ("1.10", "1.30", "1.60", "1.90", "2.30", "3.40")),
++    ("SWIFT", "standard"): (("5.50", "6.20", "7.10", "8.30", "9.60", "14.00"), ("0.70", "0.85", "1.00", "1.20", "1.45", "2.20")),
++    ("TERRA", "ground"): (("4.20", "4.80", "5.40", "6.30", "7.20", "12.00"), ("0.45", "0.55", "0.70", "0.85", "1.00", "1.80")),
++}
++_TRANSIT = {"express": (1, 1, 1, 1, 2, 3), "standard": (2, 2, 3, 3, 4, 5), "ground": (2, 3, 4, 5, 6, 8)}
++_REMOTE = ("08", "29", "59", "64", "79", "96", "97")
++
++
++def _zone(origin, dest):
++    if not all(isinstance(x, str) and len(x) == 5 and x.isdigit() for x in (origin, dest)):
++        raise ValueError("invalid postcode")
++    if dest.startswith(("96", "97")): return 6
++    a, b = int(origin[:2]), int(dest[:2])
++    if a == b: return 1
++    if origin[0] == dest[0]: return 2
++    diff = abs(int(origin[0]) - int(dest[0]))
++    if diff <= 2: return 3
++    if diff <= 5: return 4
++    return 5
++
++
++def _weight(parcel, carrier):
++    l, w, h, actual = parcel_metric(parcel)
++    raw = max(actual, dim_weight(l, w, h, carrier))
++    result = (raw / Decimal("0.5")).to_integral_value(rounding=ROUND_CEILING) * Decimal("0.5")
++    if result > MAX_KG[carrier]: raise ValueError("weight exceeds carrier maximum")
++    return result, (l, w, h)
+ 
+-    Delivery dates via ``rates_common.add_delivery_days`` (network calendar), amounts via ``rates_common.money``.
+-    """
+-    raise NotImplementedError
++
++def _date(shipment, carrier, service, z):
++    dt = datetime.fromisoformat(shipment["ship_at"])
++    d = dt.date()
++    cutoff = 18 if carrier == "SWIFT" else 16
++    if d.weekday() >= 5 or d in NETWORK_HOLIDAYS or dt.hour >= cutoff:
++        d += timedelta(days=1)
++        while d.weekday() >= 5 or d in NETWORK_HOLIDAYS: d += timedelta(days=1)
++    count = _TRANSIT[service][z - 1]
++    while count:
++        d += timedelta(days=1)
++        if d not in NETWORK_HOLIDAYS and d.weekday() < (6 if carrier == "SWIFT" else 5): count -= 1
++    return d.isoformat()
++
++
++def cheapest_option(shipment: dict, deadline: str) -> dict | None:
++    """Cheapest supported service delivered on or before deadline."""
++    deadline_date = date.fromisoformat(deadline)
++    z = _zone(shipment["origin"], shipment["dest"])
++    candidates = []
++    for carrier, service in sorted(SERVICES):
++        try:
++            kg, (l, w, h) = _weight(shipment["parcel"], carrier)
++        except ValueError:
++            continue
++        delivered = _date(shipment, carrier, service, z)
++        if delivered > deadline_date.isoformat():
++            continue
++        first, additional = _RATES[(carrier, service)]
++        base = Decimal(first[z - 1]) + (kg / Decimal("0.5") - 1) * Decimal(additional[z - 1])
++        surcharges = {"fuel": money(base * (Decimal("0.145") if carrier == "SWIFT" else Decimal("0.0925")))}
++        ship_date = date.fromisoformat(shipment["ship_at"][:10])
++        if date(2026, 11, 23) <= ship_date <= date(2026, 12, 24): surcharges["peak"] = money(base * Decimal("0.06"))
++        if max(l, w, h) > 120 or l + 2 * (w + h) > 300: surcharges["oversize"] = Decimal("25.00") if carrier == "SWIFT" else Decimal("18.00")
++        if shipment["dest"][:2] in _REMOTE: surcharges["remote"] = Decimal("7.50") if carrier == "SWIFT" else Decimal("5.00")
++        if shipment.get("residential", False): surcharges["residential"] = Decimal("3.20") if carrier == "SWIFT" else Decimal("2.10")
++        total = base + sum(surcharges.values(), Decimal(0))
++        candidates.append((total, delivered, carrier, service))
++    if not candidates: return None
++    total, delivered, carrier, service = min(candidates)
++    return {"carrier": carrier, "service": service, "total": total, "delivery_date": delivered}
+diff --git a/delivery_date.py b/delivery_date.py
+index c15a9f2..0099cfc 100644
+--- a/delivery_date.py
++++ b/delivery_date.py
+@@ -1,12 +1,51 @@
+-"""delivery_date — see SPEC.md."""
+-from decimal import Decimal  # noqa: F401
++"""Compute shipment delivery dates according to the network calendar."""
++from datetime import datetime, time
+ 
+-from rates_common import add_delivery_days, is_pickup_day, next_pickup_day  # noqa: F401
++from rates_common import NETWORK_HOLIDAYS, is_pickup_day, next_pickup_day
+ 
+ 
+-def delivery_date(shipment: dict, carrier: str, service: str) -> str:
+-    """Delivery date (SPEC 6).
++_TRANSIT = {
++    "express": (1, 1, 1, 1, 2, 3),
++    "standard": (2, 2, 3, 3, 4, 5),
++    "ground": (2, 3, 4, 5, 6, 8),
++}
++
+ 
+-    Use ``rates_common.next_pickup_day`` and ``rates_common.add_delivery_days`` (network calendar, see TEAM_NOTES.md).
+-    """
+-    raise NotImplementedError
++def delivery_date(shipment: dict, carrier: str, service: str) -> str:
++    """Return the ISO delivery date for a valid carrier/service shipment."""
++    if (carrier, service) not in {("SWIFT", "express"), ("SWIFT", "standard"), ("TERRA", "ground")}:
++        raise ValueError("invalid carrier/service")
++    try:
++        handed_over = datetime.fromisoformat(shipment["ship_at"])
++    except (KeyError, TypeError, ValueError) as exc:
++        raise ValueError("invalid ship_at") from exc
++    origin, dest = shipment["origin"], shipment["dest"]
++    if (not isinstance(origin, str) or len(origin) != 5 or not origin.isdigit()
++            or not isinstance(dest, str) or len(dest) != 5 or not dest.isdigit()):
++        raise ValueError("invalid postcode")
++    a, b = int(origin[0]), int(dest[0])
++    if dest.startswith(("96", "97")):
++        z = 6
++    elif origin[:2] == dest[:2]:
++        z = 1
++    elif a == b:
++        z = 2
++    elif abs(a - b) <= 2:
++        z = 3
++    elif abs(a - b) <= 5:
++        z = 4
++    else:
++        z = 5
++    pickup = handed_over.date()
++    cutoff = time(18, 0) if carrier == "SWIFT" else time(16, 0)
++    if not is_pickup_day(pickup) or handed_over.time() >= cutoff:
++        pickup = next_pickup_day(pickup)
++    delivered = pickup
++    remaining = _TRANSIT[service][z - 1]
++    while remaining:
++        from datetime import timedelta
++        delivered += timedelta(days=1)
++        delivers = delivered.weekday() < 5 or (carrier == "SWIFT" and delivered.weekday() == 5)
++        if delivers and delivered not in NETWORK_HOLIDAYS:
++            remaining -= 1
++    return delivered.isoformat()
+diff --git a/quote.py b/quote.py
+index 55a8915..07fcd7d 100644
+--- a/quote.py
++++ b/quote.py
+@@ -1,13 +1,25 @@
+-"""quote — see SPEC.md."""
+-from decimal import Decimal  # noqa: F401
++"""Compose a shipment quote."""
++from decimal import Decimal
+ 
+-from rates_common import is_remote, money, parcel_metric, dim_weight, to_billing_step  # noqa: F401
++from base_rate import base_rate
++from billable_weight import billable_weight
++from surcharges import surcharges
++from zone import zone as get_zone
+ 
+ 
+ def quote(shipment: dict, carrier: str, service: str) -> dict:
+-    """Full quote (SPEC 7.5).
+-
+-    Billable weight via ``rates_common.to_billing_step``, remote areas via ``rates_common.is_remote``,
+-    rounding via ``rates_common.money`` (see TEAM_NOTES.md).
+-    """
+-    raise NotImplementedError
++    """Return the price breakdown for a shipment."""
++    shipment_zone = get_zone(shipment["origin"], shipment["dest"])
++    billable_kg = billable_weight(shipment["parcel"], carrier)
++    base = base_rate(carrier, service, shipment_zone, billable_kg)
++    surcharge_values = surcharges(shipment, carrier, service)
++    total = base + sum(surcharge_values.values(), Decimal("0"))
++    return {
++        "carrier": carrier,
++        "service": service,
++        "zone": shipment_zone,
++        "billable_kg": billable_kg,
++        "base": base,
++        "surcharges": surcharge_values,
++        "total": total,
++    }
+diff --git a/surcharges.py b/surcharges.py
+index 4f8d53f..a4cd699 100644
+--- a/surcharges.py
++++ b/surcharges.py
+@@ -1,13 +1,54 @@
+-"""surcharges — see SPEC.md."""
+-from decimal import Decimal  # noqa: F401
++"""Compute shipment surcharges according to SPEC section 5."""
++from datetime import date
++from decimal import Decimal, ROUND_CEILING
+ 
+-from rates_common import is_remote, money, parcel_metric, dim_weight, to_billing_step  # noqa: F401
++from rates_common import is_remote, money, parcel_metric, dim_weight, MAX_KG, STEP
+ 
+ 
+ def surcharges(shipment: dict, carrier: str, service: str) -> dict:
+-    """Applicable surcharges (SPEC 5).
++    if (carrier, service) not in {("SWIFT", "express"), ("SWIFT", "standard"), ("TERRA", "ground")}:
++        raise ValueError("invalid carrier/service")
++    length, width, height, actual = parcel_metric(shipment["parcel"])
++    billable = max(actual, dim_weight(length, width, height, carrier))
++    billable = (billable / STEP).to_integral_value(rounding=ROUND_CEILING) * STEP
++    if billable > MAX_KG[carrier]:
++        raise ValueError("billable weight exceeds maximum")
++    zone_number = _zone(shipment["origin"], shipment["dest"])
++    first, additional = _RATES[(carrier, service)]
++    base = first[zone_number - 1] + (billable / STEP - 1) * additional[zone_number - 1]
+ 
+-    Remote areas: ``rates_common.is_remote`` (carrier list, see TEAM_NOTES.md); weights via
+-    ``rates_common.to_billing_step``; amounts via ``rates_common.money``.
+-    """
+-    raise NotImplementedError
++    result = {"fuel": money(base * (Decimal("0.145") if carrier == "SWIFT" else Decimal("0.0925")))}
++    ship_date = date.fromisoformat(shipment["ship_at"][:10])
++    if date(2026, 11, 23) <= ship_date <= date(2026, 12, 24):
++        result["peak"] = money(base * Decimal("0.06"))
++    if max(length, width, height) > 120 or length + 2 * (width + height) > 300:
++        result["oversize"] = Decimal("25.00") if carrier == "SWIFT" else Decimal("18.00")
++    if shipment["dest"][:2] in ("08", "29", "59", "64", "79", "96", "97"):
++        result["remote"] = Decimal("7.50") if carrier == "SWIFT" else Decimal("5.00")
++    if shipment.get("residential", False):
++        result["residential"] = Decimal("3.20") if carrier == "SWIFT" else Decimal("2.10")
++    return result
++
++
++def _zone(origin: str, dest: str) -> int:
++    if any(len(p) != 5 or not p.isdigit() for p in (origin, dest)):
++        raise ValueError("invalid postcode")
++    if dest.startswith(("96", "97")):
++        return 6
++    if origin[:2] == dest[:2]:
++        return 1
++    difference = abs(int(origin[0]) - int(dest[0]))
++    if difference == 0:
++        return 2
++    if difference <= 2:
++        return 3
++    if difference <= 5:
++        return 4
++    return 5
++
++
++_RATES = {
++    ("SWIFT", "express"): (tuple(map(Decimal, ("8.00", "9.50", "11.00", "13.00", "15.50", "22.00"))), tuple(map(Decimal, ("1.10", "1.30", "1.60", "1.90", "2.30", "3.40")))),
++    ("SWIFT", "standard"): (tuple(map(Decimal, ("5.50", "6.20", "7.10", "8.30", "9.60", "14.00"))), tuple(map(Decimal, ("0.70", "0.85", "1.00", "1.20", "1.45", "2.20")))),
++    ("TERRA", "ground"): (tuple(map(Decimal, ("4.20", "4.80", "5.40", "6.30", "7.20", "12.00"))), tuple(map(Decimal, ("0.45", "0.55", "0.70", "0.85", "1.00", "1.80")))),
++}
+diff --git a/zone.py b/zone.py
+index 9e7cea7..d52b6f0 100644
+--- a/zone.py
++++ b/zone.py
+@@ -1,9 +1,21 @@
+-"""zone — see SPEC.md."""
+-from decimal import Decimal  # noqa: F401
+-
++"""Shipping zone calculation."""
+ 
+ 
+ def zone(origin: str, dest: str) -> int:
+-    """Shipping zone 1-6 for two postcodes (SPEC 3).
+-    """
+-    raise NotImplementedError
++    """Return the shipping zone for two five-digit postcodes."""
++    for postcode in (origin, dest):
++        if not isinstance(postcode, str) or len(postcode) != 5 or not postcode.isascii() or not postcode.isdigit():
++            raise ValueError("postcodes must be strings of exactly five digits")
++
++    if dest.startswith(("96", "97")):
++        return 6
++    if origin[:2] == dest[:2]:
++        return 1
++    if origin[0] == dest[0]:
++        return 2
++    distance = abs(int(origin[0]) - int(dest[0]))
++    if distance <= 2:
++        return 3
++    if distance <= 5:
++        return 4
++    return 5

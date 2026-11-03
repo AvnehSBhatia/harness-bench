@@ -1,0 +1,15 @@
+{
+  "works": true,
+  "passed": 38,
+  "failed": 0,
+  "errors": 0,
+  "total": 38,
+  "expected_passed": 38,
+  "build": "ok",
+  "rules": [],
+  "detail": {
+    "failing": [],
+    "tail": "......................................                                   [100%]\n- generated xml file: /var/folders/dv/w0qjghzn47q3by1r00jm1v780000gn/T/hb-grade-0mji7dc7/ws/.junit.xml -\n38 passed in 0.04s\n",
+    "protected_files_edited": []
+  }
+}

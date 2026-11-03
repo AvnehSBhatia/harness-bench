@@ -1,0 +1,41 @@
+diff --git a/beer_song.py b/beer_song.py
+index 9a5e67f..41d7c44 100644
+--- a/beer_song.py
++++ b/beer_song.py
+@@ -1,2 +1,35 @@
+ def recite(start, take=1):
+-    pass
++    verses = []
++
++    for verse_number in range(take):
++        bottles = (start - verse_number) % 100
++        if bottles == 0:
++            verses.extend(
++                [
++                    "No more bottles of beer on the wall, no more bottles of beer.",
++                    "Go to the store and buy some more, 99 bottles of beer on the wall.",
++                ]
++            )
++        else:
++            bottle_word = "bottle" if bottles == 1 else "bottles"
++            verses.append(
++                f"{bottles} {bottle_word} of beer on the wall, "
++                f"{bottles} {bottle_word} of beer."
++            )
++
++            if bottles == 1:
++                verses.append(
++                    "Take it down and pass it around, no more bottles of beer on the wall."
++                )
++            else:
++                remaining = bottles - 1
++                remaining_word = "bottle" if remaining == 1 else "bottles"
++                verses.append(
++                    f"Take one down and pass it around, {remaining} "
++                    f"{remaining_word} of beer on the wall."
++                )
++
++        if verse_number < take - 1:
++            verses.append("")
++
++    return verses

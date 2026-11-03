@@ -1,0 +1,42 @@
+{
+ "run": "2026-11-03T01-41-13-984Z-fleet",
+ "manifest": {
+  "started": "2026-11-03T01:41:15.653Z",
+  "port_bench_commit": "HEAD",
+  "port_bench_dirty": false,
+  "files": {
+   "sections/fleet/tasks.json": "904ab5511ca8a2e4",
+   "models.json": "fd0cae76e085ff8a",
+   "sections/fleet/grade.py": "df32f515b00dc0f4",
+   "sections/fleet/prepare.py": "46191c22400255b4",
+   "proxy.mjs": "c7eb61491fef000f",
+   "run.mjs": "90a621f9272d5cc7"
+  },
+  "harnesses": {
+   "codex": "codex-cli 0.157.1",
+   "heliod": "heliod 0.1.14"
+  },
+  "tools": {
+   "node": "v26.13.0",
+   "python": "Python 3.13.2",
+   "rustc": "rustc 1.98.1 (48a229cea 2026-09-01)",
+   "cargo": "cargo 1.98.1 (797e8a9bc 2026-08-05)"
+  },
+  "os": "darwin 25.6.0 arm64",
+  "reasoning": "medium",
+  "trials": 1,
+  "arms": [
+   "codex",
+   "heliod"
+  ],
+  "prompt": "Do the task described in TASK.md in this repository.",
+  "section": "fleet",
+  "section_budget_usd": 1,
+  "finished": "2026-11-03T02:03:26.311Z"
+ },
+ "versions": {
+  "codex": "codex-cli 0.157.1",
+  "heliod": "heliod 0.1.14",
+  "codex-solo": "codex-cli 0.157.1"
+ }
+}

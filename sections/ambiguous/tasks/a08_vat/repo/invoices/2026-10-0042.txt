@@ -1,0 +1,7 @@
+INVOICE 2026-10-0042                                  Northwind Supplies BV
+
+Line  Country  Net (EUR)   VAT rate   VAT (EUR)
+1     NL            0.50      21%          0.11
+2     IE            1.50      23%          0.35
+3     DE           12.50      19%          2.38
+4     FR           40.00      20%          8.00

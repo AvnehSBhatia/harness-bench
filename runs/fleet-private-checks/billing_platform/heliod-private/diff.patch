@@ -1,0 +1,1478 @@
+diff --git a/__pycache__/aggregate_usage.cpython-313.pyc b/__pycache__/aggregate_usage.cpython-313.pyc
+new file mode 100644
+index 0000000000000000000000000000000000000000..7ec7dfaf5c8203e0a91939153497a6b86ff1d917
+GIT binary patch
+literal 3457
+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
+
+literal 0
+HcmV?d00001
+
+diff --git a/__pycache__/aging_report.cpython-313.pyc b/__pycache__/aging_report.cpython-313.pyc
+new file mode 100644
+index 0000000000000000000000000000000000000000..6c093a8e39b21ec518b0a751e754068e24a91201
+GIT binary patch
+literal 6517
+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
+
+literal 0
+HcmV?d00001
+
+diff --git a/__pycache__/apply_credits.cpython-313.pyc b/__pycache__/apply_credits.cpython-313.pyc
+new file mode 100644
+index 0000000000000000000000000000000000000000..b7c9732fc4d38abab2539e3066063cadb4b7e153
+GIT binary patch
+literal 3764
+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
+OiOTpi`48*cvg6<6kUBm9
+
+literal 0
+HcmV?d00001
+
+diff --git a/__pycache__/build_invoice.cpython-313.pyc b/__pycache__/build_invoice.cpython-313.pyc
+new file mode 100644
+index 0000000000000000000000000000000000000000..b747b1cf567ff4b582288304b764118ad6e11d0b
+GIT binary patch
+literal 9260
+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
+ap=&XwT$he2*T-Jv$_Fp}mrNip{r>^OJac>i
+
+literal 0
+HcmV?d00001
+
+diff --git a/__pycache__/convert.cpython-313.pyc b/__pycache__/convert.cpython-313.pyc
+new file mode 100644
+index 0000000000000000000000000000000000000000..4311ca1918f908653b2ffebc513749d47f6f0b71
+GIT binary patch
+literal 1320
+zcmah|&uiOO9DkDa%T}VW)a{z4UOl=U+*MWlBOS{|X-TuL>1sn%1ycu%BEKe1<)`dP
+za%d<lu*=3SJ#3J}4u$pL-g_8qhwVR*(V^i{*kFZ`TOjPd_hfrzA?-d$`o8!5e%|-z
+z)8Y7d22i}eyuXo70q`f=jGzn`hgaz0dtd^Sy9E|G%q{Ym&$B&$E43(KVNt{)-KSP0
+zQ=qT7BAe0*S5Zv)4A>B`vZfT$`^;H^C-QaZv^%y-CYEYe^?LKOYoCAGTv%SHQk#1F
+zX0^7|w5m7nm?RT;&DM~c^07lwEk7V4wgc!B3Bw@7$PtDqG9lBKmH-YPb1YqpYcOqs
+zkEzDi0BA6K0+X{i4V3v=YGHt!#s3eV|1ZBG4o(7Kfsq#^)F<caG!~6x2}rCh*H0W1
+zn?D-6e*Re2k%*SiU^OOaq(`fIi6t`1U?g>_JeFNNmaPJS#8-SXHS)7WEl2UHPZrO-
+zUHCUTk}Pp){3xIHLTb?N4`2!(@$Z3xSlyls(S77?p}Z4f43YC-F26m7ygVCm{+@^P
+z`)oJ`jwsj*QLByC3JPWcNoLu0L%4vkhp|Kzn9Y@>`~VZlcWf7~66K4~MnQWUVs=Lg
+zGLh^K^%7v#Ld>o<W-TOQm$@Qo$3tC+1K1*Rax(1rjF}&R1cv29>>G9$!F6NaYe8e(
+z#t8bpzDiSHH!$==H}H+pOzE;-Eb24mJ2PdyOrMfozFfSk-*X`hjMcX5(n6Y>t{u=4
+zJH|S6+g?lG#O*FE+t~7rVJ4S09}s!C#&6S9SfPGQKRaMg&V2VlEazTmr=w}T=k%;-
+zsvK*TNU6NR^m6Rfqi#I*&dvfQeYL%po%$yIhpNTu^oz-}yAONwz1b*Nj3-OcSZVKd
+z`s~yXH=fM*#HX1bYw_7iKU;aW^^5=O>~C{Fe;I#R>t}0Ur(bF(AKBk-JlD?kwR2CV
+zduIRLVw5k&T50FTo|=8G=K5-GckS6kq~;>^Y9w4eq-B9>Ax-4rFP}^_86BAz^{VN3
+zosNf+D=--Q1U*HBR@(`Z4m}0<G}Yi!Os#y<@miq^uizZrvYX@=>E|HDaoq3V;$NVA
+cAic$1<91IR045)o2eKCo<WKV7i9T`p59`Mz>Hq)$
+
+literal 0
+HcmV?d00001
+
+diff --git a/__pycache__/due_date.cpython-313.pyc b/__pycache__/due_date.cpython-313.pyc
+new file mode 100644
+index 0000000000000000000000000000000000000000..969229389d65642a63b0e3ca32669ef27d81200d
+GIT binary patch
+literal 1617
+zcma)6&u`mQ9Dk0TI6s;&5*pU1EM1jKO~G}V&`Ax53Q$qBt=&}5)w+}hCwXnsIZpNL
+ztjmNt5C_^5Jus<<9V&#hBJm%<p~oKW87Yw$i3416i&SyvJvUAVh-pu@-{*bb_vhz*
+zpU;9pKfq&ZrMuN}0q_S|IK$HiXK4(c009Wp4S>k(x<OrcA=h;p(PKcM*BF7puX~Mo
+z-y?WpV2eTSO)ANDiG!u2%VNrs1}&dft-&&sHOcZ+RkZ=jmRp0Urdl2ZwFXj3ID^6P
+zVnpNjY!^$P0Fe@?>|Fq)djRAIO3N=>^rhoK1hdrnLUHB$2msNw%nS?%085=Z2Qq*w
+z%;o^#u;l;tIcz1+L_?rwNuGEpv`FWD=a|R^W{%=8zY23}Hy?21B9$L<@N7T-$-Y3s
+zrR77;?(!uEUCiS^aEsJ`?B=mu#L>cBc?7@=SP<B37Bh#FeSPLG>Uf1;QXdYA>kH+F
+zo#=vBq(UI$a?Su!BD4IqvwJbm_Mzaj&vg`Y&0Itk{5E?*;vL(MT-Z6tu}@&TSNadw
+z{xRqO@PB?fujM~Ev}Dl>w-&qP+`6Qpk`(FbruyiurG-0_^V!sw`5A8R^Lz?_rjlLK
+z58a3O^C(c1%42quXUDp3A|@x^B`uc>BBEynH&DG+RqGpdRFgD|X+jBE?pj^ZDu^_!
+z<*%w$Mb#vw1T9+CkmW-7GHo<u8S9rS7F|^|%fBMY4Y+_%9a-!Sg!gfJmT%xT=|&_v
+zB7v>I`Ryy%x6-e`hg!i7XR%1yDU=&fCAwo|SPfoOAyRqifdVW1r}Z-AD-u$ms&YlB
+zlqx)eYD3mkKAlQm<7Q^KROU`9!)5T3<}%l2?r|G3gc@J0%5qiNENsh?Mk?hiP_EX?
+z+%~E{z&{6mN9A!~JEiIErsZ`O=qgTyq@yM=@n3;9J9OawX15cKwW5>Hqm#!`Gn(29
+zbcRO`-)+UFjM&ui{nqrnF+G2hHl`Ph*k`AKR&LeEt?Fy*Ms8h~ibk%em!UblvFC4x
+zN1ry2B_p0P!l`|><BJ?DJk7Lxal;q?@snpaf4Hg7<W47AiQ7iv_HW`{eRW+ge4!U4
+zeYI$cC4F<t6t_CzXe*p}9!?ysnBn(+ZvI+2nK-3RT_?$36oX$h!i)RtpP|c#9~?D~
+zHuaHdGsNp&zRiZdef;%flf8WSvB|#E_P+7`+|gAdk}$l9J+|ioLy=Zs)Ci24fh#(5
+zrRN6zH@}PT$4y`CP%?e-e;Kp`;g{9VFk>L;LFC?HGBLyC=W92d-Bc)wH*9Wy0%)Az
+yF<bM)TD{zm;YVl!FG;7X1oUW%qFw;s?;z3h1gZFe&;xinirCX}<S(+a-TVzf;8&sm
+
+literal 0
+HcmV?d00001
+
+diff --git a/__pycache__/line_tax.cpython-313.pyc b/__pycache__/line_tax.cpython-313.pyc
+new file mode 100644
+index 0000000000000000000000000000000000000000..bcdba0fc0d27a62cd7359fc98a35f70847ba1ef2
+GIT binary patch
+literal 1412
+zcmZux-A^M`6u<M)nQ04cP*-*(+M+yI!#FK<VJU<J0kz$=Bprq&+fACGz0k7L8N4&I
+zALs**OE8g#HQ~|3eW;0lfRFwOt$mQ(khqDP7~V*T@18rQNLWrf_v?2)e&?QZdp0;2
+zK_DNmo^0J05c->K`l6gK&OV35k4Q&4cNY~n!WDSJC)u9AD-=W`7D6Ockcb3l!b4dX
+z;S0ehJ>))9boo8BB@$&*Nrg|C!xT^DMO<w(O^e1$%SLgr^40vkFDgr`OU0BxqhIHX
+z%cY7@%&+J)yfVL5Db24e=``XwmD;(PQuPVJcJ&#RtB!Ab<QY|}riV8jSV;tXKC!Ff
+zIeRvR;DhYY+4mgF#Nf*8G>{oMF=Ggo86Jqv8C(oy`P+an!JNUDFT7o&&l~&|eL)wl
+z(Gv~f4ZToq4dM?#e7P45AzkW6w#DUyA?Wf9K;|ImT(B^BmXfZp5wr&0K*Bww9PWEH
+zP~WQ|ssLV!7wIEv6ugBlA>lq!0_3Xve}@LgqJ44^!Iq3r3HV+WLn^~f_e76Q^J6GA
+zP~3UTw;$Qg6Fb?jYA(4mbaB?JZ!Vb%QN{I4yJnIam1~X7h6fE4T6dgBE)_Q%r$#0G
+z6gRiMOAgO_B9|mX5S4Q26i*m0!e|g4h7(p~DrC~>6h{>T(P|BQGo=ug5sj>xmXDVR
+zaR`x^32PF<Dn%u?YFc=mD&P2~?KO5VVZ}+wRIsr}*wZ2G?g@KdR3yNJ3ZD6t%7MP$
+zbeWfAPpGdME+(#KKDKdPTX1SvtDD5euB)y?pVu{lUElItZ6ZA}sb(^2I=hn2s#*9=
+zsM*QP19ii~*wfY<mId@H+m`8VIHal7vDI*D>NaUS1_s&_R|6bZfXJuY@M!uQ@&S-x
+z3A%s4u#1l5_=|75@`uN<o9z*`Rc}3L-@4O{O}CZlBRTe>(UlVcG~T-3%C~P#c4Jd*
+zWeTj?!}+e9zsBs996z|zl}C=_?;g1O-|dM<;i2}8@osqhIDYeRxDy}!X|xj`+Y?`3
+z-aZ#!N8UNm_qD^tP9*tqs&)J4xlSaryKo%4abWIm{TWMiVu_a{t+meRWIM@t?0$I^
+zjr}mYH+v}msy&}=M{{j4cLrIZVk!)c)B6kQ6_Qnq#`~95sXEQ3V+WP*RXZrO;Cdvu
+zpI;D3fB|`*St+wkr{-IDj*P*UHIb{qa4K*d_ZJ%f2hDZR+^ICg%^WVABA8kq1=DYD
+N2h;Dv|FXlt;eQSJN9zCp
+
+literal 0
+HcmV?d00001
+
+diff --git a/__pycache__/parse_amount.cpython-313.pyc b/__pycache__/parse_amount.cpython-313.pyc
+new file mode 100644
+index 0000000000000000000000000000000000000000..7cfc7ea8f89f9968e9255e03dd52d1cacda8b7dd
+GIT binary patch
+literal 1991
+zcmZ`(&2JM&6rc6S?mGThLInBXBUVI9mU!bNE(i=wL`eb!niMaK5Kf6U_9Qm7ciq`_
+zLL4Hw>Ln?M<N&G<J@}a3d+4!$f~`H+nxYn|m8#s3qMqBCjn{zyPhP)y^M3DR-n=*a
+z!C(g<boRmClOH_*{6z(a*w$kI3$l0#WFRwl0HWM=hnaC9*Nhvv!&G+P@yvLUcZNkQ
+zkv;RA>?I#N@A{0Dxjyj3gZO1e<oBq<S<!{LNtnv!)f^TQbIR=G!maCfrx&IkOi`Wx
+z%iFVai3Mf$_I(+1-xgKPEatJtgilS(r-}$cEwzSO1kEDSQm$5xlzGYLCg1*VWcMXd
+zm?Yh`=_&(&8Ui3m^)|_j!h}G~b&+T&K}G=y>fs1oY{{BSc4_XUQxlNjj{u1{03MEA
+zY-OZ*6i@2ih;9WOiRelA-}fSWoSZbT;$1ujz{7j-Rgyo!zLme%L6OWq?1yy_8mq90
+z;0Gdc4&rlWu%%9S0uTlt!SfDY<356DdvyG%q+$vy`{WJ}(Ac?CAF*qDZrhQ&u<Zb~
+zBUZu(^7qSucD*Tv<bIUopp&y4qSveO$u0+@w4)w&io#G-{Kb3q792m2NuFqXIIOWx
+z;o7;AE>nCLfaX(tiEamb$dkR!T45Zo$v$UKK6b@*4v3wzrQ=2I8%<x;!cN=A!=>fH
+ziTL2eSJzT{8jdHgOOL)@k8Oxyae{7Y#rz^f;}Q|#^XZ{y^Xc``NNj^h5waw>A(3i^
+ziB6n&Ha|%Cq3*(=YF-pefkibPR`YsMGvi_Gq47$cP9oua*2t@7DudaBn3x&FjI>9G
+zY41Nmn2BJ3nc+P;4y8_0*TZ>LTMMTT2Hy}F%p>AEoz<4b5TZ559S_u85l$hbBkVOy
+zlr3Nvg4nlI%;gS(d6$Vz0e2XticDiQYi2NqU?Hcb2&_Q%vSwD-usa7eL?<2d_WO}7
+zK|}`^krxh#9f+fA-qzb;3NVeif@+!&Y1nIrLUb@uz{Y5BSv9jO5c5k&P1zB=D>PMu
+zzMbJV;kBq@Kx9PK6%A&hH%P^z85L>JFr-EDYGtAb8pWJxM8`(PE=i-K(n#$7NKA^6
+z-<TA;H2O$d%0XyG7qht>smlU6n7O2*d^7`dSv@TkP<BN%VRY4qlEWHs;oy3P3u`#=
+z_69mn@}h?{X2^w<L6Z|+tXtf`t58qvl(d`KeN^kcY=y4W_$#l4uI<uR>G`wrt!C(H
+z`R1!YX#4IDcPrgiV5mIR<O1Jq5Ua|yT~BqT);ny4qBTDH+J9{O>ekhr70Z9NJlW*@
+zb*{TIX`PPH0KE|_B-ME7b@2Fhaw}Qsv4R8T>85a^A%yEfxY}h2pEQJt-IEP5UKiuP
+z#w>Ay1m}VcuBXoRRJt16nL2l-+1XuTDg!&Gx7emnX!!c-zP?JV;p?ya`VVxjoxV-B
+z8SL7Ay!E(pqk7y5o@>SFuM7QEw<Vmb-m44e%eP)}9h;ZG-*~ZJy<G2(Sll~#{vGJr
+znSMT3p8A6mnw=+i*iCPfoNs(<{HOEPL91`*7kzWQ=AW*4ruRunf#^d$gki4L%66mK
+zorMMG!WL3`KCf$bTicz7-K5d%Yxx-<`b?ltsSo~IUQZWua2!cQq{CxG$ln_`!!W-C
+f-=84z4;XpFo@Q<`JH{J8c{O#wcbEUQW!u~T>I}Z8
+
+literal 0
+HcmV?d00001
+
+diff --git a/__pycache__/parse_usage.cpython-313.pyc b/__pycache__/parse_usage.cpython-313.pyc
+new file mode 100644
+index 0000000000000000000000000000000000000000..0e865a85d3de2e022c52d4e78976ea0a17b966c5
+GIT binary patch
+literal 2097
+zcma)6O>7fK6rSDndTqycf<pL7P*@Tg;YPNT7$+p90UAO{C=sw(h+>en>`sz}^{$y+
+zhs2~(L=UCyfgC`J)T*Z*j8v)Z3GVHomr723Xqo0vwN<O!f<o1wQ)ld~V?(9($(}be
+z?|bv!zW2>+g+c*9<k01f8{c>U_?a$TA?vbi^%M0FNB{wek=Sz#Vu<F>vEv-##y!Y0
+z&Lds~lIN;d;;#xvJ(9N--0&dZEE^GW2Z(c4K{ib1Y-JXTKP^8HZ3so_!stjWqs2C8
+zjEM+`L$Y-0&C&Gv(aB3=BNFz{SSX`7X~)LCia(io4Bdp-i=dN3rpi#)ZSfM#k^j~N
+zOOutsrCRGYNMe%PyC##O=(5PwU5OpK4S>=BK#F&*66g9rM)I@*nP~>eZDWq0vYpvc
+z(<`$_w)YeP0GV@FTK!r4&RMc2MRP98Ya}ZrTo=_Vd%_^W?%-2C7k#PRGIv$c9Y7Lf
+zz6KMlx6_s68|2jbC;^#&Axfj`Cwo&(?mS6qO2z#u<rR|af92CaPT0ZxzkGtSw?3bC
+zkZP{PCJ|fQne27z;%ZZv>LeB2TSZhWEeld8#vcZUK*}XF5P(9yO|0$m3y~#1WM{zZ
+z+(9tIM8f%j3zWg4B33vI=b`C{im8bvC8?q3p{P5y=;#?}J4z-iI+iF;j>Istv_YAa
+zZ@aE&A|>yT2p6(Yb)Y6D#TgwMnq9|Z%E|=!Z=EDVC&`g=xfz_@4S==l-#G1ZaUMJ*
+zm+<@^02+wbEEwQO=FCKd!MyDtJsV*$8|%S*B_?gCDB^{<Y(r$nm3b4+#YZd+#^)4d
+zLfejBho(9gN6^k0jvepo>Fba7_C|XWlRb%Og8cfTiT>W{=!^lO6Thw-<l|=3SwnH?
+zy^YU7L$|bO7U}bf1LL>tc+DFS%PwO7@mXk+QlMenUTZpTSgK;!!?CKJGRNLWh7GU`
+zipi;OFJAeYe|+<cn~yV}XUO6&oA&kYfp#X}Qd8wj)>*6+INy{rZ<^L^Q_Mh833W)!
+zds98p!E4>LI5UPaYft3E)b&<QF&*7mB!~-T#GRvWM=O)QoynxTGxXBr$cdrprBrwH
+z+Dn#5zL7?#GGs`M@R-##EGVjK<xB^AE7@V6n+0YaI}#-A%Nn|aIRlzFa9J^Oa1<d6
+zA<7iYB1m4!oMDisQk}#6DQRSE3<q>uHwh6<6=IHbAJGaSN<_@*rW5fY`t)FLg$vkM
+z=5t!t5MdcW^qL{UBY^$Yba9}{bj_x>THF>y9}L`3(?UcZ2Xezm(|XCXwhVp@?Yckx
+z-t;Q>L3;Vjx)8Y6|IVEir6lZK5AQ4P?=OW1ioSuT$*HxAS4w2`^evxVnJ?`BwW0ar
+zfik406z(nhdcPM!53ZGj4!YOYT{u%XR@{HI6iya>$#ud1?$X_*m9f=@Ptj)!j~3R1
+zV{5`mf?ORg94WL`fxiUztSo-g`CYJUE!ef*xa<DX`%A?GR`FK;IRGQ<DEkLh=h$ae
+z)$|r!G)=PfuoH#BLU%RiO_t-|VAfmOKUygGO9%T(Es1-9O&@4(d(ySOuWj}0hoQps
+zGmZ%kZUTlM{PVd0f_t{elsMHN_GGf?JGIGC%ilKT`<Gq2PY1wPf!5Q9xriSN>9l64
+z=`?Di#cp(OSz5I+8Otm)VW-9DAO(3eU3JQ>cm%e{2B<X3cRXWhIRg%(Zn8)E1MI_O
+kAh8+dDd_kC_<sY#YhZZOyO$YUQ8ximtJ?2Wp;rm;AFw#)p8x;=
+
+literal 0
+HcmV?d00001
+
+diff --git a/__pycache__/platform_common.cpython-313.pyc b/__pycache__/platform_common.cpython-313.pyc
+new file mode 100644
+index 0000000000000000000000000000000000000000..8d155a37b7365a6cbb9b0d1e609428a8122a1eb6
+GIT binary patch
+literal 6017
+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
+bU&mX7fXYmFZo#(jNQ{w3a_k>?MkMiHW5P0I
+
+literal 0
+HcmV?d00001
+
+diff --git a/__pycache__/prorate.cpython-313.pyc b/__pycache__/prorate.cpython-313.pyc
+new file mode 100644
+index 0000000000000000000000000000000000000000..c2e37d787365f85d691c038e5a44506690d0f458
+GIT binary patch
+literal 1510
+zcmah}&2Jk;6rc6S?q<E&l%TeRgw$=28kcUJ#E_DZSgP94CILsX>tMwZ*2bR14)(5@
+z-F1~viAcSGIM4$~mbh@}A(eXI58%L|hjPNs9vqE=Ku`(g7AfM+o3+;l2`NuI^WK~H
+z_I>R8&7Su6O9&{kdc1wjkI<h?@yNA+a+-kcTa-d6ZW%3cgbOp-x9nT;6aP|x1YF&}
+z99-fFza$U=^uW593c})H39!U<|Jzck?{%~tAbnd>By`NOL^v8KXcmt6sBj18OBJn5
+z2a+r4#GTx|TOYiiTUcF4fGzalVqztkOD7iZr>JBZxkATR%-e)uJ-<WcDkdePkTWff
+zSXAn0ST9gMU)1z1OnHJWo9Ou<OWYwQL)Yl^4~})1=CYmzy$2_nf>4&(T}p9jPC+r>
+zJ78gixon^<A(Z4jsmHINbk|o8p6ToN;_CdFzJac<kXfDm5h@M+r_yd-%w_D^L4*p>
+zX{Po+p53g_O`lhL8hP=v5VuX4Efw&Pls&!2Jzo`a{L3Go=?}4WvG+!*+f{O)7u}P3
+zlSy-IY}dLq>V0W3`HJV)<LSOEbl#>^aK`s0itvfuL0kVsHy-F=4?45qT^U!Z)=sz$
+zn%(nlz=RFkGD`*AIX-4n2fT{Ju=PSo--<|t4V_A>TG_@6gcyV{tkC{VVpK||v1yQs
+zW)T6-2m=a(`i@C?Gq08L1{FWGHQg%hV#3;qNR-zq5ZWRldx6b@unS1o1Zc30Yd-_D
+z(5|mQgEf|!3T_~~Vlww|m#7s@o0ynUt)}B*^tMsJ(V|9lY?|r@+?isOVAC#JW^`&|
+zYFeF~R3~EhCt_+0o+&jpJ-McCmNB-X8>Mm?`ps3#n#FpG7I7J_np!2L8r<FJ12bBM
+z=0Uts-JwE9CL>S{>)reXwmozx41DvMBV0LBUTX}i`^EjW#?ZTtGSd)eUdrcM^5}s)
+zT7T%s*Y_5VB&8*d97rSeHAfoXyM3e#wv_OJ68`>zqm1v}{auhBJ%l**QBWJ=_@SUY
+z`n-PiyBjR_(1fE*HpI!7@`cAWM;?80aewTo+KS9KBlFJXcvFr)zxZP8=eJsm+2&%_
+zxwYPu*CC~H{;~Gec1yX`R4zRk-p@2IPdCETj&gJF?qTTM*YPjo^{dZTzKAzMbB(~<
+zDYS$VFf)<;y{u9Nw?{8@eoXGX-MP{M@3ZCdMx|otE@)g(P`_yr_cJ|3<P8W&hGC=P
+zT*WBZWgI7Cpfc2%H(@*Ra~$_88u|@g{|m)V_yKOdo<Bjret6YoKaIKUh3T@!M<4&q
+IjBen60GH%cGynhq
+
+literal 0
+HcmV?d00001
+
+diff --git a/__pycache__/rated_usage.cpython-313.pyc b/__pycache__/rated_usage.cpython-313.pyc
+new file mode 100644
+index 0000000000000000000000000000000000000000..d1ad80526e97cc3e1f6e437cee83077c84b56560
+GIT binary patch
+literal 1870
+zcma)7&2JM|5P!DU-nG{svEzggzBb^BSYSIJfB?0qg_wr$krJ~ZY9g&R-iN)&-c8@`
+zrX-@0rCuD-3ReZmNIh_*QV%`!*h8iE53uD!%r;U{i&Sw-74_bE8!unt(2>1w-^{$<
+z%=^uZy%ULq5Xj;A7q`FiBlH*DxDx2S?3{y_hp2!EDtHRs%bpo8@y_^&PoR6>WoE`t
+z{4)U(fIYLs7W_+GA+Y2<5h$?3=r%)wB`zJb_5%o!O{_?kA(yc5XYGMtU@R0q$zRA;
+zmFx=|E$y}0DO^;ma>b6#&5GBir0I{YT$J+j`D@hnnI&tcRkcH=E-5`f&QYr7n$4_K
+zWX%o`Y+6JsdMRK}=v931-65cTh!#DrK}3r${Z97YMteqOA9~Z1aZkPNDFeO;WSmVP
+zB=c~Jbv+B-lf78jBLZ2#G19z?LDw$6v}-;GVF3_^0Rd2UrNFoda}ihfY88F1H3b=H
+zOu?i1-*r|CKy<$oofX-BG<^f|;6x~tqYEy^TujihROjMqAu(74?nFl8XQPX8*KgsH
+z=+8j&xLjzw$O8ipApZgI4!p`j<XtQ=lmX}r+(Qd2T+Zx)l>v0%T|l!@F{t@PxWQTA
+zKmpxV$Px5j9-fY#V!z2Q=OP2Ufp_z>2sPQ2Lhy{2@-PSay)A{1i=>6c@Nx<&@QRVJ
+zYx`dj!V49r58wu37~%y|D9x{bIOlYwV3x5^BC=x9Q4n@Vp;(ql2_F}TZfOc=P2F*$
+z-7FL>La<g`%hJw8>)~Zt5neVt=UQ#gnC&-JObpv^tw^SBGnS^B>w~VVfbSGBRt&*$
+zN_%Y138rc#o2{yvTD7Wa-VUjTsu`xN6|v1M>w3lZshVkr=H-fo^MvSx(AFSyl<eNz
+ztz$x`%k}{bp%Y^JO4v+C2%Q1K(Fg5iJ4_Rj+yM>}T$Ld%#OGEBUR8C=umih95ZdQ9
+zLo+2&dY)DS?gi%!Li^944#MkV-^qyv+&(9-YPg)cper~Bq-xkOGRr_;IY+QzRZJr{
+zF*b23Gd`Xfo4heLnVE#oL}v2T_@|j$6^zZ?vRbJ?QW9`)-qJ}mSH=}pS28O^U4@F}
+zJ~wi&{fK2()@=T@JrN)=dT--8OnnVKXXB00@1{1{kv2Q>!|;#OKNmOC=iBM?zm!|o
+z=YFkhMTeRPJJHb=H~K8r-<WB~4%Mc&`iGmRJN>EJl`b1=jDPvXR&20g+`GFOOSNOE
+z$4i~qM2nkv);CnU)Q$Cle<ax`+*_($?1uXqdp54t^1t^D)R}HyvT^g9NZr2`+uKYv
+zS05ek#EycR@7wsGn>?_Qf1cda3_dyCJ~G)!o~Y-+&=|jWrW;N?C^hl7+GDdlc&r^h
+zRtMaHcKBfZl5_NFINt3as&idF+4OvU4z~XsK=HwC0da9B+2~Mf?|3Kb<QVC{FKtN8
+zrJrW&QY$hADMl0b%Nym!S|>VE`?$+S+wAaGVt?~yC-L59BHK=6pWOXTZzZy=#C)CY
+z^6?J8uRE|Ga^T~&t2@9fx|R;vtRyLVQIc%7_b1?V<Zk!H+|o%!y;{|^-HxR#N|Nxf
+z8AUCcPNBX>WQ3{@Q8o8|RadMEK1Yti7OIB~`aiJk^LRW@(cwSP@xM`SJ8;yKXdc-{
+QuspuuEKf@R(w&3!AIq4#4FCWD
+
+literal 0
+HcmV?d00001
+
+diff --git a/__pycache__/reconcile.cpython-313.pyc b/__pycache__/reconcile.cpython-313.pyc
+new file mode 100644
+index 0000000000000000000000000000000000000000..15c2a12d5e4f29ee04c4883fc95d9355f294c47f
+GIT binary patch
+literal 5223
+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
+Qu#BmEm3IFPw-j;z1browVE_OC
+
+literal 0
+HcmV?d00001
+
+diff --git a/aggregate_usage.py b/aggregate_usage.py
+index 7238689..10d189c 100644
+--- a/aggregate_usage.py
++++ b/aggregate_usage.py
+@@ -1,12 +1,55 @@
+-"""aggregate_usage — see SPEC.md."""
+-from decimal import Decimal  # noqa: F401
++from datetime import datetime, timezone
++import re
+ 
+-from platform_common import USAGE_METRICS, format_ts, in_period, parse_ts  # noqa: F401
++
++def _parse_ts(value):
++    """Parse and normalize a section-4 timestamp, preserving its prescribed error."""
++    pattern = r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:Z|[+-]\d{2}:\d{2})"
++    if not isinstance(value, str) or not re.fullmatch(pattern, value):
++        raise ValueError(f"bad timestamp: {value}")
++    try:
++        parsed = datetime.fromisoformat(value[:-1] + "+00:00" if value.endswith("Z") else value)
++        if parsed.utcoffset() is None:
++            raise ValueError
++        return parsed.astimezone(timezone.utc)
++    except (ValueError, OverflowError):
++        raise ValueError(f"bad timestamp: {value}") from None
++
++
++def _parse_line(line):
++    fields = line.split("|")
++    if len(fields) != 5:
++        raise ValueError("bad line: expected 5 fields")
++    event_id, account, metric, quantity, timestamp = (field.strip() for field in fields)
++    if not event_id or not account:
++        raise ValueError("bad line: empty field")
++    if metric not in ("api_calls", "gb_hours", "seats"):
++        raise ValueError(f"unknown metric: {metric}")
++    if not re.fullmatch(r"[0-9]+", quantity):
++        raise ValueError(f"bad quantity: {quantity}")
++    parsed = _parse_ts(timestamp)
++    return {"id": event_id, "account": account, "metric": metric,
++            "quantity": int(quantity), "ts": parsed}
+ 
+ 
+ def aggregate_usage(lines: list, start: str, end: str) -> dict:
+-    """Usage totals in a billing window (SPEC 5).
++    start_dt = _parse_ts(start)
++    end_dt = _parse_ts(end)
++    if start_dt >= end_dt:
++        raise ValueError("empty period")
+ 
+-    Use the platform_common helpers (``in_period``, ``parse_ts``), see TEAM_NOTES.md.
+-    """
+-    raise NotImplementedError
++    result = {}
++    seen = set()
++    for line in lines:
++        stripped = line.strip()
++        if not stripped or stripped.startswith("#"):
++            continue
++        event = _parse_line(stripped)
++        if event["id"] in seen:
++            continue
++        seen.add(event["id"])
++        if start_dt <= event["ts"] < end_dt:
++            account_totals = result.setdefault(event["account"], {})
++            metric = event["metric"]
++            account_totals[metric] = account_totals.get(metric, 0) + event["quantity"]
++    return result
+diff --git a/aging_report.py b/aging_report.py
+index 78eefbf..89b8a29 100644
+--- a/aging_report.py
++++ b/aging_report.py
+@@ -1,12 +1,99 @@
+-"""aging_report — see SPEC.md."""
+-from decimal import Decimal  # noqa: F401
++from datetime import date
++from decimal import Decimal
+ 
+-from platform_common import MINOR_UNITS, payment_due, quantum, to_decimal  # noqa: F401
++from platform_common import MINOR_UNITS, payment_due
++
++
++def _parse_amount(text: str, currency: str) -> Decimal:
++    if currency not in MINOR_UNITS:
++        raise ValueError(f"unknown currency: {currency}")
++    if not isinstance(text, str):
++        raise ValueError(f"bad amount: {text}")
++    value = text.strip()
++    if " " in value:
++        code, number = value.split(" ", 1)
++        if len(code) == 3 and code.isascii() and code.isupper():
++            if code != currency:
++                raise ValueError("currency mismatch")
++            value = number
++    negative = value.startswith("(") and value.endswith(")")
++    if negative:
++        value = value[1:-1]
++    elif value.startswith("-"):
++        value = value[1:]
++        negative = True
++    import re
++    if not re.fullmatch(r"(?:\d+|\d{1,3}(?:,\d{3})+)(?:\.\d+)?", value):
++        raise ValueError(f"bad amount: {text}")
++    decimals = len(value.partition(".")[2])
++    if decimals > MINOR_UNITS[currency]:
++        raise ValueError("too many decimals")
++    amount = Decimal(value.replace(",", ""))
++    if negative:
++        amount = -amount
++    return amount.quantize(Decimal(1).scaleb(-MINOR_UNITS[currency]))
+ 
+ 
+ def aging_report(invoices: list, payments: list, as_of: str) -> dict:
+-    """Receivables aging (SPEC 14).
++    """Summarize invoice balances by currency and days past due."""
++    as_of_date = date.fromisoformat(as_of)
++    eligible_invoices = [invoice for invoice in invoices
++                         if date.fromisoformat(invoice["issued"]) <= as_of_date]
++    eligible_payments = [payment for payment in payments
++                         if date.fromisoformat(payment["date"]) <= as_of_date]
++
++    open_balances = {invoice["id"]: _parse_amount(invoice["total"], invoice["currency"])
++                     for invoice in eligible_invoices}
++    invoice_by_id = {invoice["id"]: invoice for invoice in eligible_invoices}
++    payment_left = {payment["id"]: _parse_amount(payment["amount"], payment["currency"])
++                    for payment in sorted(eligible_payments,
++                                          key=lambda p: (p["date"], p["id"]))}
++
++    # Apply explicit references first, across the complete payment set.
++    for payment in sorted(eligible_payments, key=lambda p: (p["date"], p["id"])):
++        reference = payment.get("reference")
++        if reference is None:
++            continue
++        target = reference.strip().casefold()
++        invoice = next((inv for inv in eligible_invoices
++                        if inv["currency"] == payment["currency"]
++                        and inv["id"].casefold() == target), None)
++        if invoice is None:
++            continue
++        amount = min(payment_left[payment["id"]], open_balances[invoice["id"]])
++        payment_left[payment["id"]] -= amount
++        open_balances[invoice["id"]] -= amount
++
++    # Then allocate every leftover payment FIFO within its currency.
++    ordered_invoices = sorted(eligible_invoices, key=lambda inv: (inv["issued"], inv["id"]))
++    for payment in sorted(eligible_payments, key=lambda p: (p["date"], p["id"])):
++        pid = payment["id"]
++        for invoice in ordered_invoices:
++            if payment_left[pid] <= 0:
++                break
++            if invoice["currency"] != payment["currency"]:
++                continue
++            amount = min(payment_left[pid], open_balances[invoice["id"]])
++            payment_left[pid] -= amount
++            open_balances[invoice["id"]] -= amount
+ 
+-    Use the platform_common helpers (``payment_due``), see TEAM_NOTES.md.
+-    """
+-    raise NotImplementedError
++    buckets = ("current", "1-30", "31-60", "61-90", "90+")
++    result = {}
++    for invoice in eligible_invoices:
++        balance = open_balances[invoice["id"]]
++        if balance <= 0:
++            continue
++        currency = invoice["currency"]
++        if currency not in MINOR_UNITS:
++            raise ValueError(f"unknown currency: {currency}")
++        due = date.fromisoformat(payment_due(invoice["issued"], invoice["terms"]))
++        while due.weekday() >= 5:
++            due = due.fromordinal(due.toordinal() + 1)
++        days = (as_of_date - due).days
++        bucket = ("current" if days <= 0 else "1-30" if days <= 30 else
++                  "31-60" if days <= 60 else "61-90" if days <= 90 else "90+")
++        if currency not in result:
++            result[currency] = {name: Decimal("0").quantize(Decimal(1).scaleb(-MINOR_UNITS[currency]))
++                                for name in buckets}
++        result[currency][bucket] += balance
++    return result
+diff --git a/apply_credits.py b/apply_credits.py
+index 7eaa78c..b94480a 100644
+--- a/apply_credits.py
++++ b/apply_credits.py
+@@ -1,12 +1,67 @@
+ """apply_credits — see SPEC.md."""
+-from decimal import Decimal  # noqa: F401
++from datetime import date
++from decimal import Decimal, ROUND_HALF_EVEN
+ 
+-from platform_common import MINOR_UNITS, quantum, round_money, to_decimal  # noqa: F401
++from platform_common import MINOR_UNITS, quantum, to_decimal
++
++
++def _round_money(amount, currency: str) -> Decimal:
++    if currency not in MINOR_UNITS:
++        raise ValueError(f"unknown currency: {currency}")
++    return to_decimal(amount).quantize(quantum(currency), rounding=ROUND_HALF_EVEN)
++
++
++def _parse_amount(text, currency: str) -> Decimal:
++    # Credit amounts use the section 3 textual format.
++    if currency not in MINOR_UNITS:
++        raise ValueError(f"unknown currency: {currency}")
++    import re
++    raw = text.strip()
++    match = re.fullmatch(r"(?:(?P<code>[A-Z]{3}) )?(?P<num>-?(?:[0-9]+|[0-9]{1,3}(?:,[0-9]{3})+)(?:\.[0-9]+)?|\([0-9]+(?:,[0-9]{3})*(?:\.[0-9]+)?\))", raw)
++    if not match:
++        raise ValueError(f"bad amount: {text}")
++    code = match.group("code")
++    if code and code != currency:
++        raise ValueError("currency mismatch")
++    number = match.group("num")
++    paren = number.startswith("(")
++    if paren:
++        number = number[1:-1]
++    number = number.replace(",", "")
++    fraction = number.partition(".")[2]
++    if len(fraction) > MINOR_UNITS[currency]:
++        raise ValueError("too many decimals")
++    value = Decimal(number)
++    if paren:
++        value = -value
++    return value.quantize(quantum(currency), rounding=ROUND_HALF_EVEN)
+ 
+ 
+ def apply_credits(total, currency: str, credits: list, today: str) -> dict:
+-    """Customer credits against an invoice total (SPEC 12).
++    if currency not in MINOR_UNITS:
++        raise ValueError(f"unknown currency: {currency}")
++    due = _round_money(total, currency)
++    if due < 0:
++        raise ValueError("negative total")
++
++    today_date = date.fromisoformat(today)
++    usable = []
++    for credit in credits:
++        if credit["currency"] != currency:
++            continue
++        expires = credit.get("expires")
++        if expires is not None and date.fromisoformat(expires) < today_date:
++            continue
++        balance = _parse_amount(credit["amount"], currency)
++        usable.append((expires, credit["id"], balance))
+ 
+-    Use the platform_common helpers (``round_money``), see TEAM_NOTES.md.
+-    """
+-    raise NotImplementedError
++    usable.sort(key=lambda item: (item[0] is None, item[0] or "", item[1]))
++    applied = []
++    remaining = {}
++    for credit_id_expiry, credit_id, balance in usable:
++        take = min(balance, due)
++        remaining[credit_id] = balance - take
++        if take > 0:
++            applied.append({"id": credit_id, "amount": take})
++            due -= take
++    return {"applied": applied, "due": due, "remaining": remaining}
+diff --git a/build_invoice.py b/build_invoice.py
+index b751b18..b65350b 100644
+--- a/build_invoice.py
++++ b/build_invoice.py
+@@ -1,12 +1,168 @@
+-"""build_invoice — see SPEC.md."""
+-from decimal import Decimal  # noqa: F401
++from datetime import date, datetime, timezone
++from decimal import Decimal, ROUND_HALF_EVEN
++import re
+ 
+-from platform_common import TAX_RATES, USAGE_METRICS, in_period, parse_ts, period_days, quantum, remaining_fraction, round_money, to_decimal  # noqa: F401
++MINOR_UNITS = {"USD": 2, "EUR": 2, "GBP": 2, "JPY": 0, "KWD": 3}
++TAX_RATES = {
++    "DE": (Decimal("19"), Decimal("7")),
++    "FR": (Decimal("20"), Decimal("5.5")),
++    "GB": (Decimal("20"), Decimal("0")),
++    "JP": (Decimal("10"), Decimal("8")),
++    "US": (Decimal("0"), Decimal("0")),
++}
+ 
+ 
+-def build_invoice(account: dict, usage_lines: list, period: dict, rates: dict) -> dict:
+-    """One invoice (SPEC 11).
++def _currency(code):
++    if code not in MINOR_UNITS:
++        raise ValueError(f"unknown currency: {code}")
++
++
++def _decimal(value):
++    if isinstance(value, float):
++        raise TypeError("float not allowed")
++    return value if isinstance(value, Decimal) else Decimal(str(value))
++
++
++def _round(value, currency):
++    return _decimal(value).quantize(Decimal(1).scaleb(-MINOR_UNITS[currency]), rounding=ROUND_HALF_EVEN)
++
++
++def _timestamp(ts):
++    if not isinstance(ts, str) or len(ts) < 20 or ts[10] != "T":
++        raise ValueError(f"bad timestamp: {ts}")
++    if not re.fullmatch(r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:Z|[+-]\d{2}:\d{2})", ts):
++        raise ValueError(f"bad timestamp: {ts}")
++    try:
++        raw = ts[:-1] + "+00:00" if ts.endswith("Z") else ts
++        return datetime.fromisoformat(raw).astimezone(timezone.utc)
++    except ValueError:
++        raise ValueError(f"bad timestamp: {ts}") from None
++
++
++def _usage(lines, start, end):
++    begin, finish = _timestamp(start), _timestamp(end)
++    if begin >= finish:
++        raise ValueError("empty period")
++    totals, seen = {}, set()
++    for line in lines:
++        text = line.strip()
++        if not text or text.startswith("#"):
++            continue
++        fields = text.split("|")
++        if len(fields) != 5:
++            raise ValueError("bad line: expected 5 fields")
++        event_id, account, metric, quantity, timestamp = (field.strip() for field in fields)
++        if not event_id or not account:
++            raise ValueError("bad line: empty field")
++        if metric not in ("api_calls", "gb_hours", "seats"):
++            raise ValueError(f"unknown metric: {metric}")
++        if not re.fullmatch(r"[0-9]+", quantity):
++            raise ValueError(f"bad quantity: {quantity}")
++        ts = _timestamp(timestamp)
++        if event_id in seen:
++            continue
++        seen.add(event_id)
++        if begin <= ts < finish:
++            account_totals = totals.setdefault(account, {})
++            account_totals[metric] = account_totals.get(metric, 0) + int(quantity)
++    return totals
++
+ 
+-    Use the platform_common helpers (``round_money``, ``remaining_fraction``, ``in_period``), see TEAM_NOTES.md.
+-    """
+-    raise NotImplementedError
++def _rated(quantity, plan):
++    currency = plan["currency"]
++    _currency(currency)
++    if not isinstance(quantity, int) or isinstance(quantity, bool) or quantity < 0:
++        raise ValueError("bad quantity")
++    tiers = plan["tiers"]
++    left, previous, charge = quantity, 0, Decimal(0)
++    for tier in tiers:
++        upto = tier["up_to"]
++        if upto is None:
++            count = left
++        else:
++            count = min(left, max(0, upto - previous))
++        charge += Decimal(count) * _decimal(tier["unit"])
++        left -= count
++        if upto is None:
++            break
++        previous = upto
++        if left == 0:
++            break
++    if left:
++        raise ValueError("quantity exceeds tiers")
++    charge = _round(charge, currency)
++    minimum = plan.get("minimum")
++    if quantity > 0 and minimum is not None:
++        minimum = _round(minimum, currency)
++        if charge < minimum:
++            charge = minimum
++    return charge
++
++
++def _convert(amount, src, dst, rates):
++    _currency(src)
++    _currency(dst)
++    value = _decimal(amount)
++    if src == dst:
++        return _round(value, dst)
++    if src not in rates:
++        raise ValueError(f"no rate for {src}")
++    if dst not in rates:
++        raise ValueError(f"no rate for {dst}")
++    return _round(value * _decimal(rates[dst]) / _decimal(rates[src]), dst)
++
++
++def _prorate(amount, currency, start, end, change):
++    _currency(currency)
++    first, last, changed = date.fromisoformat(start), date.fromisoformat(end), date.fromisoformat(change)
++    if first >= last:
++        raise ValueError("empty period")
++    if changed < first or changed >= last:
++        raise ValueError("change outside period")
++    return _round(_decimal(amount) * Decimal((last - changed).days) / Decimal((last - first).days), currency)
++
++
++def _tax(net, currency, country):
++    _currency(currency)
++    if country not in TAX_RATES:
++        raise ValueError(f"unknown country: {country}")
++    rate = TAX_RATES[country][0]
++    return _round(_decimal(net) * rate / Decimal(100), currency)
++
++
++def build_invoice(account: dict, usage_lines: list, period: dict, rates: dict) -> dict:
++    currency = account["currency"]
++    _currency(currency)
++    plan = account["plan"]
++    plan_currency = plan["currency"]
++    _currency(plan_currency)
++    start, end = period["start"], period["end"]
++    change = account.get("change")
++    lines = []
++    if change is None:
++        subscription = _convert(_decimal(plan["price"]), plan_currency, currency, rates)
++        lines.append({"kind": "subscription", "net": subscription})
++    else:
++        changed = change["date"]
++        old_price = _round(plan["price"], plan_currency)
++        old_remaining = _prorate(plan["price"], plan_currency, start, end, changed)
++        new_remaining = _prorate(change["price"], plan_currency, start, end, changed)
++        lines.append({"kind": "subscription", "net": _convert(old_price - old_remaining, plan_currency, currency, rates)})
++        lines.append({"kind": "subscription_change", "net": _convert(new_remaining, plan_currency, currency, rates)})
++    usage = _usage(usage_lines, start + "T00:00:00Z", end + "T00:00:00Z")
++    account_usage = usage.get(account["id"], {})
++    for metric in sorted(account.get("usage_plans", {})):
++        quantity = account_usage.get(metric, 0)
++        if quantity == 0:
++            continue
++        usage_plan = account["usage_plans"][metric]
++        net = _convert(_rated(quantity, usage_plan), usage_plan["currency"], currency, rates)
++        lines.append({"kind": "usage", "metric": metric, "quantity": quantity, "net": net})
++    total_net, total_tax = Decimal(0), Decimal(0)
++    for line in lines:
++        tax = _tax(line["net"], currency, account["country"])
++        line["tax"] = tax
++        total_net += line["net"]
++        total_tax += tax
++    return {"account": account["id"], "currency": currency, "lines": lines,
++            "net": total_net, "tax": total_tax, "total": total_net + total_tax}
+diff --git a/convert.py b/convert.py
+index 4b5a32d..2fca98a 100644
+--- a/convert.py
++++ b/convert.py
+@@ -1,12 +1,23 @@
+-"""convert — see SPEC.md."""
+-from decimal import Decimal  # noqa: F401
++from decimal import Decimal, ROUND_HALF_EVEN
+ 
+-from platform_common import quantum, round_money, to_decimal  # noqa: F401
++from platform_common import MINOR_UNITS, to_decimal
+ 
+ 
+ def convert(amount, src: str, dst: str, rates: dict) -> Decimal:
+-    """FX conversion (SPEC 7).
++    if src not in MINOR_UNITS:
++        raise ValueError(f"unknown currency: {src}")
++    if dst not in MINOR_UNITS:
++        raise ValueError(f"unknown currency: {dst}")
+ 
+-    Use the platform_common helpers (``round_money``), see TEAM_NOTES.md.
+-    """
+-    raise NotImplementedError
++    value = to_decimal(amount)
++    if src == dst:
++        converted = value
++    else:
++        if src not in rates:
++            raise ValueError(f"no rate for {src}")
++        if dst not in rates:
++            raise ValueError(f"no rate for {dst}")
++        converted = value * Decimal(str(rates[dst])) / Decimal(str(rates[src]))
++
++    quantum = Decimal(1).scaleb(-MINOR_UNITS[dst])
++    return converted.quantize(quantum, rounding=ROUND_HALF_EVEN)
+diff --git a/due_date.py b/due_date.py
+index 238c59a..46c1531 100644
+--- a/due_date.py
++++ b/due_date.py
+@@ -1,12 +1,18 @@
+-"""due_date — see SPEC.md."""
+-from decimal import Decimal  # noqa: F401
+-
+-from platform_common import payment_due  # noqa: F401
++import re
++from datetime import date, timedelta
+ 
+ 
+ def due_date(issued: str, terms: str) -> str:
+-    """Due date under payment terms (SPEC 10).
+-
+-    Use the platform_common helpers (``payment_due``), see TEAM_NOTES.md.
+-    """
+-    raise NotImplementedError
++    if terms == "EOM":
++        issued_date = date.fromisoformat(issued)
++        next_month = date(issued_date.year + (issued_date.month == 12), issued_date.month % 12 + 1, 1)
++        raw_due = next_month - timedelta(days=1)
++    elif isinstance(terms, str) and re.fullmatch(r"NET(?:0|[1-9][0-9]*)", terms) and int(terms[3:]) <= 120:
++        raw_due = date.fromisoformat(issued) + timedelta(days=int(terms[3:]))
++    else:
++        raise ValueError(f"bad terms: {terms}")
++    if raw_due.weekday() == 5:
++        raw_due += timedelta(days=2)
++    elif raw_due.weekday() == 6:
++        raw_due += timedelta(days=1)
++    return raw_due.isoformat()
+diff --git a/line_tax.py b/line_tax.py
+index de6cf6b..fa358e0 100644
+--- a/line_tax.py
++++ b/line_tax.py
+@@ -1,12 +1,23 @@
+-"""line_tax — see SPEC.md."""
+-from decimal import Decimal  # noqa: F401
++from decimal import Decimal, ROUND_HALF_EVEN
+ 
+-from platform_common import TAX_RATES, quantum, round_money, to_decimal  # noqa: F401
++from platform_common import MINOR_UNITS, TAX_RATES, to_decimal
+ 
+ 
+ def line_tax(net, currency: str, country: str, category: str) -> Decimal:
+-    """Tax of one line (SPEC 8).
++    if currency not in MINOR_UNITS:
++        raise ValueError(f"unknown currency: {currency}")
++    if country not in TAX_RATES:
++        raise ValueError(f"unknown country: {country}")
++    if category not in ("standard", "digital", "books", "food", "exempt"):
++        raise ValueError(f"unknown category: {category}")
+ 
+-    Use the platform_common helpers (``round_money``, ``TAX_RATES``), see TEAM_NOTES.md.
+-    """
+-    raise NotImplementedError
++    if category == "exempt":
++        rate = Decimal("0")
++    elif category in ("standard", "digital"):
++        rate = TAX_RATES[country][0]
++    else:
++        rate = TAX_RATES[country][1]
++
++    tax = to_decimal(net) * rate / Decimal("100")
++    quantum = Decimal(1).scaleb(-MINOR_UNITS[currency])
++    return tax.quantize(quantum, rounding=ROUND_HALF_EVEN)
+diff --git a/parse_amount.py b/parse_amount.py
+index 040a6da..bfd5312 100644
+--- a/parse_amount.py
++++ b/parse_amount.py
+@@ -1,12 +1,35 @@
+-"""parse_amount — see SPEC.md."""
+-from decimal import Decimal  # noqa: F401
++import re
++from decimal import Decimal, ROUND_HALF_EVEN
+ 
+-from platform_common import MINOR_UNITS, quantum, to_decimal  # noqa: F401
++from platform_common import MINOR_UNITS, quantum
+ 
+ 
+ def parse_amount(text: str, currency: str) -> Decimal:
+-    """Amount text (SPEC 3).
++    if currency not in MINOR_UNITS:
++        raise ValueError(f"unknown currency: {currency}")
+ 
+-    Use the platform_common helpers (``quantum``, ``MINOR_UNITS``), see TEAM_NOTES.md.
+-    """
+-    raise NotImplementedError
++    stripped = text.strip()
++    pattern = r"(?:(?P<code>[A-Z]{3}) )?(?P<number>-?(?:\d+|\d{1,3}(?:,\d{3})+)(?:\.\d+)?|\(\d+(?:,\d{3})*(?:\.\d+)?\))"
++    match = re.fullmatch(pattern, stripped)
++    if match is None:
++        raise ValueError(f"bad amount: {text}")
++
++    code = match.group("code")
++    if code is not None and code != currency:
++        raise ValueError("currency mismatch")
++
++    number = match.group("number")
++    negative = number.startswith("(") or number.startswith("-")
++    if number.startswith("("):
++        number = number[1:-1]
++    elif number.startswith("-"):
++        number = number[1:]
++    number = number.replace(",", "")
++    fraction = number.partition(".")[2]
++    if len(fraction) > MINOR_UNITS[currency]:
++        raise ValueError("too many decimals")
++
++    value = Decimal(number)
++    if negative:
++        value = -value
++    return value.quantize(quantum(currency), rounding=ROUND_HALF_EVEN)
+diff --git a/parse_usage.py b/parse_usage.py
+index 7188796..1889ce8 100644
+--- a/parse_usage.py
++++ b/parse_usage.py
+@@ -1,12 +1,30 @@
+ """parse_usage — see SPEC.md."""
+-from decimal import Decimal  # noqa: F401
++import re
+ 
+-from platform_common import USAGE_METRICS, format_ts, parse_ts  # noqa: F401
++from platform_common import USAGE_METRICS, format_ts, parse_ts
+ 
+ 
+ def parse_usage(line: str) -> dict:
+-    """One usage event line (SPEC 4).
++    """Parse a usage event and normalize its timestamp to UTC."""
++    fields = line.split("|")
++    if len(fields) != 5:
++        raise ValueError("bad line: expected 5 fields")
++    event_id, account, metric, quantity, timestamp = (field.strip() for field in fields)
+ 
+-    Use the platform_common helpers (``parse_ts``, ``format_ts``), see TEAM_NOTES.md.
+-    """
+-    raise NotImplementedError
++    if not event_id or not account:
++        raise ValueError("bad line: empty field")
++    if metric not in USAGE_METRICS:
++        raise ValueError(f"unknown metric: {metric}")
++    if re.fullmatch(r"[0-9]+", quantity, flags=re.ASCII) is None:
++        raise ValueError(f"bad quantity: {quantity}")
++
++    if (not isinstance(timestamp, str)
++            or re.fullmatch(r"[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(?:Z|[+-][0-9]{2}:[0-9]{2})", timestamp, flags=re.ASCII) is None):
++        raise ValueError(f"bad timestamp: {timestamp}")
++    try:
++        normalized = format_ts(parse_ts(timestamp))
++    except ValueError:
++        raise ValueError(f"bad timestamp: {timestamp}") from None
++
++    return {"id": event_id, "account": account, "metric": metric,
++            "quantity": int(quantity), "ts": normalized}
+diff --git a/prorate.py b/prorate.py
+index 0a245a9..b51750a 100644
+--- a/prorate.py
++++ b/prorate.py
+@@ -1,12 +1,22 @@
+-"""prorate — see SPEC.md."""
+-from decimal import Decimal  # noqa: F401
++from datetime import date
++from decimal import Decimal, ROUND_HALF_EVEN
+ 
+-from platform_common import period_days, quantum, remaining_fraction, round_money, to_decimal  # noqa: F401
++from platform_common import MINOR_UNITS, to_decimal
+ 
+ 
+ def prorate(amount, currency: str, period_start: str, period_end: str, change: str) -> Decimal:
+-    """Proration of a mid-period plan change (SPEC 9).
++    if currency not in MINOR_UNITS:
++        raise ValueError(f"unknown currency: {currency}")
+ 
+-    Use the platform_common helpers (``remaining_fraction``, ``round_money``), see TEAM_NOTES.md.
+-    """
+-    raise NotImplementedError
++    start = date.fromisoformat(period_start)
++    end = date.fromisoformat(period_end)
++    changed = date.fromisoformat(change)
++
++    if start >= end:
++        raise ValueError("empty period")
++    if changed < start or changed >= end:
++        raise ValueError("change outside period")
++
++    value = to_decimal(amount) * Decimal((end - changed).days) / Decimal((end - start).days)
++    quantum = Decimal(1).scaleb(-MINOR_UNITS[currency])
++    return value.quantize(quantum, rounding=ROUND_HALF_EVEN)
+diff --git a/rated_usage.py b/rated_usage.py
+index f3605fc..983030b 100644
+--- a/rated_usage.py
++++ b/rated_usage.py
+@@ -1,12 +1,46 @@
+ """rated_usage — see SPEC.md."""
+-from decimal import Decimal  # noqa: F401
++from decimal import Decimal, ROUND_HALF_EVEN
+ 
+-from platform_common import quantum, round_money, to_decimal  # noqa: F401
++from platform_common import quantum, to_decimal
+ 
+ 
+ def rated_usage(quantity: int, plan: dict) -> Decimal:
+-    """Graduated usage charge (SPEC 6).
++    """Return the graduated usage charge, rounded to the plan currency."""
++    if isinstance(quantity, bool) or not isinstance(quantity, int) or quantity < 0:
++        raise ValueError("bad quantity")
+ 
+-    Use the platform_common helpers (``round_money``), see TEAM_NOTES.md.
+-    """
+-    raise NotImplementedError
++    currency = plan["currency"]
++    unit_quantum = quantum(currency)
++    if quantity == 0:
++        return Decimal("0").quantize(unit_quantum)
++
++    remaining = quantity
++    previous = 0
++    charge = Decimal("0")
++    tiers = plan["tiers"]
++    for tier in tiers:
++        up_to = tier["up_to"]
++        unit = to_decimal(tier["unit"])
++        if up_to is None:
++            units = remaining
++        else:
++            units = min(remaining, up_to - previous)
++        if units > 0:
++            charge += Decimal(units) * unit
++            remaining -= units
++        if up_to is None:
++            break
++        previous = up_to
++        if remaining == 0:
++            break
++
++    if remaining > 0:
++        raise ValueError("quantity exceeds tiers")
++
++    charge = charge.quantize(unit_quantum, rounding=ROUND_HALF_EVEN)
++    minimum = plan.get("minimum")
++    if minimum is not None:
++        minimum = to_decimal(minimum).quantize(unit_quantum, rounding=ROUND_HALF_EVEN)
++        if charge < minimum:
++            charge = minimum
++    return charge
+diff --git a/reconcile.py b/reconcile.py
+index ae54a5f..84ccc5b 100644
+--- a/reconcile.py
++++ b/reconcile.py
+@@ -1,12 +1,89 @@
+-"""reconcile — see SPEC.md."""
+-from decimal import Decimal  # noqa: F401
++from decimal import Decimal, ROUND_HALF_EVEN
+ 
+-from platform_common import MINOR_UNITS, quantum, to_decimal  # noqa: F401
++
++def _amount(value, currency):
++    if currency not in {"USD": 2, "EUR": 2, "GBP": 2, "JPY": 0, "KWD": 3}:
++        raise ValueError(f"unknown currency: {currency}")
++    if isinstance(value, float):
++        raise TypeError("float not allowed")
++    units = {"USD": 2, "EUR": 2, "GBP": 2, "JPY": 0, "KWD": 3}[currency]
++    return Decimal(str(value)).quantize(Decimal(1).scaleb(-units), rounding=ROUND_HALF_EVEN)
++
++
++def _record_amount(value, currency):
++    if currency not in {"USD": 2, "EUR": 2, "GBP": 2, "JPY": 0, "KWD": 3}:
++        raise ValueError(f"unknown currency: {currency}")
++    import re
++
++    text = value.strip()
++    match = re.fullmatch(r"(?:(?P<code>[A-Z]{3}) )?(?P<number>-?(?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?|\((?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?\))", text)
++    if match is None:
++        raise ValueError(f"bad amount: {value}")
++    if match.group("code") is not None and match.group("code") != currency:
++        raise ValueError("currency mismatch")
++    number = match.group("number")
++    negative = number.startswith("(")
++    if negative:
++        number = "-" + number[1:-1]
++    number = number.replace(",", "")
++    decimals = len(number.partition(".")[2])
++    units = {"USD": 2, "EUR": 2, "GBP": 2, "JPY": 0, "KWD": 3}[currency]
++    if decimals > units:
++        raise ValueError("too many decimals")
++    return _amount(number, currency)
+ 
+ 
+ def reconcile(invoices: list, payments: list) -> dict:
+-    """Payment reconciliation (SPEC 13).
++    invoice_state = {}
++    by_reference = {}
++    for invoice in invoices:
++        currency = invoice["currency"]
++        balance = _record_amount(invoice["total"], currency)
++        invoice_state[invoice["id"]] = {"currency": currency, "balance": balance}
++        by_reference.setdefault((currency, str(invoice["id"]).strip().casefold()), []).append(invoice["id"])
++
++    ordered = sorted(payments, key=lambda payment: (payment["date"], payment["id"]))
++    payment_state = []
++    allocations = []
++    for payment in ordered:
++        currency = payment["currency"]
++        remaining = _record_amount(payment["amount"], currency)
++        reference = payment.get("reference")
++        if reference is not None:
++            matches = by_reference.get((currency, str(reference).strip().casefold()), [])
++            if matches:
++                invoice_id = matches[0]
++                balance = invoice_state[invoice_id]["balance"]
++                applied = min(max(balance, Decimal(0)), max(remaining, Decimal(0)))
++                if applied > 0:
++                    invoice_state[invoice_id]["balance"] -= applied
++                    remaining -= applied
++                    allocations.append({"payment": payment["id"], "invoice": invoice_id, "amount": applied})
++        payment_state.append((payment, remaining))
++
++    invoice_order = sorted(invoices, key=lambda invoice: (invoice["issued"], invoice["id"]))
++    for payment, remaining in payment_state:
++        if remaining <= 0:
++            continue
++        for invoice in invoice_order:
++            state = invoice_state[invoice["id"]]
++            if state["currency"] != payment["currency"] or state["balance"] <= 0:
++                continue
++            applied = min(remaining, state["balance"])
++            if applied > 0:
++                state["balance"] -= applied
++                remaining -= applied
++                allocations.append({"payment": payment["id"], "invoice": invoice["id"], "amount": applied})
++            if remaining <= 0:
++                break
++        # Store the resulting leftover for the final report.
++        for index, (saved_payment, _) in enumerate(payment_state):
++            if saved_payment is payment:
++                payment_state[index] = (payment, remaining)
++                break
+ 
+-    Use the platform_common helpers (``quantum``, ``to_decimal``), see TEAM_NOTES.md.
+-    """
+-    raise NotImplementedError
++    return {
++        "allocations": allocations,
++        "open": {invoice_id: state["balance"] for invoice_id, state in invoice_state.items() if state["balance"] > 0},
++        "unapplied": {payment["id"]: remaining for payment, remaining in payment_state if remaining > 0},
++    }

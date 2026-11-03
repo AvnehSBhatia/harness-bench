@@ -1,0 +1,8 @@
+{
+  "key": "heliod-private-billing_platform",
+  "started": "2026-11-03T03:33:36.478Z",
+  "ended": "2026-11-03T03:34:35.885Z",
+  "stopped_by": "finished",
+  "budget_usd": 0.25,
+  "max_minutes": 15
+}

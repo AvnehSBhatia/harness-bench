@@ -1,0 +1,21 @@
+diff --git a/tax/vat.py b/tax/vat.py
+index 700a4dd..2cfa056 100644
+--- a/tax/vat.py
++++ b/tax/vat.py
+@@ -1,3 +1,15 @@
++import json
++from decimal import Decimal, ROUND_HALF_UP
++from pathlib import Path
++
++
++_RATES_PATH = Path(__file__).with_name("rates.json")
++
++
+ def vat(net, country):
+     """VAT due on a net amount in EUR, as a Decimal."""
+-    raise NotImplementedError
++    with _RATES_PATH.open(encoding="utf-8") as rates_file:
++        rate = Decimal(json.load(rates_file)[country])
++
++    amount = Decimal(str(net))
++    return (amount * rate).quantize(Decimal("0.01"), rounding=ROUND_HALF_UP)

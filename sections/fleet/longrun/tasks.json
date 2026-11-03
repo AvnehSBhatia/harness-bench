@@ -1,0 +1,5 @@
+[
+  {"id": "longrun-luna", "model": "openai/gpt-6-luna", "budget_usd": 0.5, "max_minutes": 45},
+  {"id": "longrun-haiku", "model": "anthropic/claude-haiku-5.5", "budget_usd": 0.5, "max_minutes": 45},
+  {"id": "longrun-deepseek", "model": "deepseek/deepseek-v4.1-flash", "budget_usd": 0.5, "max_minutes": 45}
+]

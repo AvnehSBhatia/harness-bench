@@ -1,0 +1,8 @@
+{
+  "key": "codex-invoicing",
+  "started": "2026-11-03T01:47:16.395Z",
+  "ended": "2026-11-03T01:51:49.701Z",
+  "stopped_by": "finished",
+  "budget_usd": 0.2,
+  "max_minutes": 12
+}

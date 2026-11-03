@@ -1,0 +1,18 @@
+diff --git a/billing/split.py b/billing/split.py
+index e6fec09..6b5f4bd 100644
+--- a/billing/split.py
++++ b/billing/split.py
+@@ -2,4 +2,12 @@ from .money import from_cents, to_cents  # noqa: F401
+ 
+ 
+ def split_bill(total, people):
+-    raise NotImplementedError
++    if isinstance(people, bool) or not isinstance(people, int) or people <= 0:
++        raise ValueError("people must be a positive integer")
++
++    cents = to_cents(total)
++    share, remainder = divmod(cents, people)
++    return [
++        from_cents(share + (1 if guest < remainder else 0))
++        for guest in range(people)
++    ]

@@ -1,0 +1,7 @@
+[
+ {"id": "billing_platform", "model": "openai/gpt-6-luna", "budget_usd": 0.25, "max_minutes": 15},
+ {"id": "invoicing", "model": "openai/gpt-6-luna", "budget_usd": 0.2, "max_minutes": 12},
+ {"id": "pricing", "model": "openai/gpt-6-luna", "budget_usd": 0.2, "max_minutes": 12},
+ {"id": "shipping", "model": "openai/gpt-6-luna", "budget_usd": 0.2, "max_minutes": 12},
+ {"id": "longrun", "model": "openai/gpt-6-luna", "budget_usd": 0.25, "max_minutes": 15}
+]

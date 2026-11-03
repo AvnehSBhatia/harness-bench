@@ -1,0 +1,8 @@
+{
+  "key": "codex-a07_backoff",
+  "started": "2026-11-03T02:09:30.918Z",
+  "ended": "2026-11-03T02:09:49.387Z",
+  "stopped_by": "finished",
+  "budget_usd": 0.1,
+  "max_minutes": 8
+}

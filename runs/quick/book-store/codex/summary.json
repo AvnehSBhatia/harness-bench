@@ -1,0 +1,31 @@
+{
+ "task": "book-store",
+ "arm": "codex",
+ "trial": 1,
+ "model": "openai/gpt-6-luna",
+ "provider": "openai",
+ "version": "codex-cli 0.157.1",
+ "works": true,
+ "tests": "20/20",
+ "tests_passed": 20,
+ "tests_expected": 20,
+ "rules": [],
+ "build": "ok",
+ "minutes": 0.5,
+ "billed_usd": 0.0049,
+ "calls": 10,
+ "input_tokens": 176106,
+ "cached_tokens": 156684,
+ "output_tokens": 1815,
+ "cache_hit": 0.89,
+ "refused_calls": 0,
+ "stopped_by": "finished",
+ "traced_calls": 10,
+ "agent_threads": 1,
+ "tool_uses": {
+  "command_execution": 8,
+  "file_change": 1
+ },
+ "session_files": 1,
+ "subagent_threads": 0
+}

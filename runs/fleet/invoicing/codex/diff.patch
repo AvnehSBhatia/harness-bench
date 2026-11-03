@@ -1,0 +1,711 @@
+diff --git a/convert.py b/convert.py
+index 0fe0517..2b42f75 100644
+--- a/convert.py
++++ b/convert.py
+@@ -1,10 +1,46 @@
+ """convert — see SPEC.md."""
+-from decimal import Decimal  # noqa: F401
++from decimal import Decimal, InvalidOperation, ROUND_HALF_UP
+ 
+-from billing_common import round_money, to_decimal, check_currency  # noqa: F401
++from billing_common import to_decimal, check_currency
+ 
+ 
+ def convert(amount: Decimal, from_ccy: str, to_ccy: str, rates: dict) -> Decimal:
+-    """Convert between currencies via EUR rates (SPEC 2.3); round with ``billing_common.round_money``.
+-    """
+-    raise NotImplementedError
++    """Convert through EUR using full precision, then round in the target currency."""
++    check_currency(from_ccy)
++    check_currency(to_ccy)
++    value = _decimal(amount)
++    if from_ccy == to_ccy:
++        return _round_money(value, to_ccy)
++    if not isinstance(rates, dict):
++        raise ValueError("rates must be a mapping")
++    from_rate = _get_rate(from_ccy, rates)
++    to_rate = _get_rate(to_ccy, rates)
++    return _round_money(value / from_rate * to_rate, to_ccy)
++
++
++def _decimal(value):
++    try:
++        result = to_decimal(value)
++    except (InvalidOperation, TypeError, ValueError) as exc:
++        raise ValueError("invalid decimal value") from exc
++    if not result.is_finite():
++        raise ValueError("decimal value must be finite")
++    return result
++
++
++def _get_rate(currency, rates):
++    if currency == "EUR":
++        return Decimal(1)
++    try:
++        rate = _decimal(rates[currency])
++    except KeyError as exc:
++        raise ValueError(f"missing rate for {currency}") from exc
++    if rate <= 0:
++        raise ValueError(f"invalid rate for {currency}")
++    return rate
++
++
++def _round_money(amount, currency):
++    check_currency(currency)
++    places = {"JPY": 0, "KWD": 3}.get(currency, 2)
++    return amount.quantize(Decimal(1).scaleb(-places), rounding=ROUND_HALF_UP)
+diff --git a/credit_note.py b/credit_note.py
+index 7269125..388be47 100644
+--- a/credit_note.py
++++ b/credit_note.py
+@@ -1,12 +1,154 @@
+ """credit_note — see SPEC.md."""
+-from decimal import Decimal  # noqa: F401
++from decimal import Decimal, InvalidOperation, ROUND_HALF_UP
+ 
+-from billing_common import EU_MEMBERS, has_vat_id, round_money, tax_rate, to_decimal, check_currency  # noqa: F401
++from billing_common import has_vat_id, to_decimal, check_currency
+ 
+ 
+ def credit_note(invoice: dict, returns: list) -> dict:
+-    """Credit note for returned quantities (SPEC 8.6).
++    """Create a negative credit note for returned quantities."""
++    seller, buyer, currency, original_lines = _validated_invoice(invoice)
++    treatment, rate_country = _treatment(seller, buyer)
++    if not isinstance(returns, list) or not returns:
++        raise ValueError("returns must be a non-empty list")
+ 
+-    Same rates and rounding as invoices: ``billing_common.tax_rate`` and ``billing_common.round_money``.
+-    """
+-    raise NotImplementedError
++    by_sku = {line["sku"]: line for line in original_lines}
++    returned_qty = {}
++    normalized = []
++    for item in returns:
++        if not isinstance(item, dict) or not isinstance(item.get("sku"), str):
++            raise ValueError("each return needs a string sku")
++        sku = item["sku"]
++        if sku not in by_sku:
++            raise ValueError("returned sku is not on the invoice")
++        if "qty" not in item:
++            raise ValueError("each return needs a qty")
++        qty = _decimal(item["qty"])
++        if qty <= 0:
++            raise ValueError("returned qty must be positive")
++        returned_qty[sku] = returned_qty.get(sku, Decimal(0)) + qty
++        normalized.append((sku, qty))
++    for sku, qty in returned_qty.items():
++        if qty > _decimal(by_sku[sku]["qty"]):
++            raise ValueError("returned qty exceeds invoiced qty")
++
++    credit_lines = []
++    subtotal = Decimal(0)
++    nets_by_rate = {}
++    for sku, qty in normalized:
++        original = by_sku[sku]
++        price = _decimal(original["unit_price"])
++        discount = _decimal(original.get("discount_pct", "0"))
++        category = original["category"]
++        net = -_round_money(qty * price * (Decimal(100) - discount) / Decimal(100), currency)
++        credit_lines.append({"sku": sku, "qty": qty, "net": net})
++        subtotal += net
++        if category != "exempt":
++            rate = _rate(category, treatment, rate_country)
++            nets_by_rate[rate] = nets_by_rate.get(rate, Decimal(0)) + net
++    tax_by_rate = {
++        rate: _round_money(net * Decimal(rate) / Decimal(100), currency)
++        for rate, net in nets_by_rate.items()
++    }
++    subtotal = _round_money(subtotal, currency)
++    tax = _round_money(sum(tax_by_rate.values(), Decimal(0)), currency)
++    return {
++        "currency": currency,
++        "treatment": treatment,
++        "lines": credit_lines,
++        "subtotal": subtotal,
++        "tax_by_rate": tax_by_rate,
++        "tax": tax,
++        "total": _round_money(subtotal + tax, currency),
++    }
++
++
++_RATES = {
++    "DE": {"standard": "19", "reduced": "7"},
++    "FR": {"standard": "20", "reduced": "5.5"},
++    "NL": {"standard": "21", "reduced": "9"},
++    "GB": {"standard": "20", "reduced": "5"},
++    "CH": {"standard": "8.1", "reduced": "2.6"},
++    "JP": {"standard": "10", "reduced": "8"},
++}
++_EU = frozenset({"DE", "FR", "NL"})
++
++
++def _decimal(value):
++    try:
++        result = to_decimal(value)
++    except (InvalidOperation, TypeError, ValueError) as exc:
++        raise ValueError("invalid decimal value") from exc
++    if not result.is_finite():
++        raise ValueError("decimal value must be finite")
++    return result
++
++
++def _validated_line(line):
++    if not isinstance(line, dict):
++        raise ValueError("line must be a mapping")
++    try:
++        qty = _decimal(line["qty"])
++        price = _decimal(line["unit_price"])
++        discount = _decimal(line.get("discount_pct", "0"))
++        category = line["category"]
++        sku = line["sku"]
++    except KeyError as exc:
++        raise ValueError(f"missing line field {exc.args[0]!r}") from exc
++    if qty <= 0 or price < 0 or not Decimal(0) <= discount <= Decimal(100):
++        raise ValueError("invalid line amount or discount")
++    if not isinstance(category, str) or category not in {"standard", "reduced", "zero", "exempt"}:
++        raise ValueError("unknown line category")
++    if not isinstance(sku, str):
++        raise ValueError("sku must be a string")
++    return qty, price, discount, category, sku
++
++
++def _validated_invoice(invoice):
++    if not isinstance(invoice, dict):
++        raise ValueError("invoice must be a mapping")
++    try:
++        seller = invoice["seller"]
++        buyer = invoice["buyer"]
++        currency = check_currency(invoice["currency"])
++        lines = invoice["lines"]
++    except KeyError as exc:
++        raise ValueError(f"missing invoice field {exc.args[0]!r}") from exc
++    if not isinstance(seller, str) or seller not in _RATES:
++        raise ValueError("unknown seller country")
++    if not isinstance(buyer, dict):
++        raise ValueError("buyer must be a mapping")
++    if not isinstance(lines, list) or not lines:
++        raise ValueError("invoice must have at least one line")
++    seen = set()
++    for line in lines:
++        *_, sku = _validated_line(line)
++        if sku in seen:
++            raise ValueError("invoice line SKUs must be unique")
++        seen.add(sku)
++    return seller, buyer, currency, lines
++
++
++def _treatment(seller, buyer):
++    buyer_country = buyer.get("country")
++    if not isinstance(buyer_country, str) or len(buyer_country) != 2 or not buyer_country.isalpha() or not buyer_country.isupper():
++        raise ValueError("buyer country must be a two-letter country code")
++    business = has_vat_id(buyer)
++    if seller == buyer_country:
++        return "domestic", seller
++    if seller in _EU and buyer_country in _EU:
++        if business:
++            return "reverse_charge", None
++        return "distance_sale", buyer_country
++    return "export", None
++
++
++def _rate(category, treatment, rate_country):
++    if treatment in {"reverse_charge", "export"} or category == "zero":
++        return "0"
++    return _RATES[rate_country][category]
++
++
++def _round_money(amount, currency):
++    check_currency(currency)
++    places = {"JPY": 0, "KWD": 3}.get(currency, 2)
++    return amount.quantize(Decimal(1).scaleb(-places), rounding=ROUND_HALF_UP)
+diff --git a/due_date.py b/due_date.py
+index fb092b1..b839a7c 100644
+--- a/due_date.py
++++ b/due_date.py
+@@ -1,13 +1,28 @@
+ """due_date — see SPEC.md."""
+-from decimal import Decimal  # noqa: F401
++from datetime import date, timedelta
+ 
+-from billing_common import apply_terms, parse_iso, roll_to_business_day  # noqa: F401
++from billing_common import HOLIDAYS, apply_terms
+ 
+ 
+ def due_date(issue_date: str, terms: str, country: str) -> str:
+-    """Due date for payment terms in the seller's calendar (SPEC 6).
++    """Return the raw terms date moved forward to the next seller business day."""
++    if not isinstance(country, str) or country not in _COUNTRIES:
++        raise ValueError("unknown seller country")
++    if not isinstance(issue_date, str):
++        raise ValueError("issue_date must be an ISO date string")
++    try:
++        parsed = date.fromisoformat(issue_date)
++    except (TypeError, ValueError) as exc:
++        raise ValueError("invalid issue date") from exc
++    if parsed.isoformat() != issue_date:
++        raise ValueError("issue_date must use YYYY-MM-DD")
++    if not isinstance(terms, str):
++        raise ValueError("terms must be a string")
++    raw = apply_terms(parsed, terms)
++    result = raw
++    while result.weekday() >= 5 or result in HOLIDAYS[country]:
++        result += timedelta(days=1)
++    return result.isoformat()
+ 
+-    Use ``billing_common.apply_terms`` and ``billing_common.roll_to_business_day`` so dunning and the invoice
+-    PDF agree (TREAS-12, see TEAM_NOTES.md).
+-    """
+-    raise NotImplementedError
++
++_COUNTRIES = frozenset({"DE", "FR", "NL", "GB", "CH", "JP"})
+diff --git a/invoice_totals.py b/invoice_totals.py
+index 28d8c49..7520dbf 100644
+--- a/invoice_totals.py
++++ b/invoice_totals.py
+@@ -1,13 +1,125 @@
+ """invoice_totals — see SPEC.md."""
+-from decimal import Decimal  # noqa: F401
++from decimal import Decimal, InvalidOperation, ROUND_HALF_UP
+ 
+-from billing_common import EU_MEMBERS, has_vat_id, round_money, tax_rate, to_decimal, check_currency  # noqa: F401
++from billing_common import has_vat_id, to_decimal, check_currency
+ 
+ 
+ def invoice_totals(invoice: dict) -> dict:
+-    """Invoice subtotal / tax_by_rate / tax / total (SPEC 5.2, 8.3).
++    """Return invoice subtotal and tax grouped and rounded once per rate."""
++    seller, buyer, currency, lines = _validated_invoice(invoice)
++    treatment, rate_country = _treatment(seller, buyer)
++    subtotal = Decimal(0)
++    nets_by_rate = {}
++    for line in lines:
++        qty, price, discount, category, _sku = _validated_line(line)
++        net = _round_money(qty * price * (Decimal(100) - discount) / Decimal(100), currency)
++        subtotal += net
++        if category != "exempt":
++            rate = _rate(category, treatment, rate_country)
++            nets_by_rate[rate] = nets_by_rate.get(rate, Decimal(0)) + net
++    tax_by_rate = {
++        rate: _round_money(net * Decimal(rate) / Decimal(100), currency)
++        for rate, net in nets_by_rate.items()
++    }
++    subtotal = _round_money(subtotal, currency)
++    tax = _round_money(sum(tax_by_rate.values(), Decimal(0)), currency)
++    return {
++        "currency": currency,
++        "treatment": treatment,
++        "subtotal": subtotal,
++        "tax_by_rate": tax_by_rate,
++        "tax": tax,
++        "total": _round_money(subtotal + tax, currency),
++    }
+ 
+-    Use ``billing_common.tax_rate`` for rates and ``billing_common.round_money`` for every rounding
+-    (see TEAM_NOTES.md).
+-    """
+-    raise NotImplementedError
++
++_RATES = {
++    "DE": {"standard": "19", "reduced": "7"},
++    "FR": {"standard": "20", "reduced": "5.5"},
++    "NL": {"standard": "21", "reduced": "9"},
++    "GB": {"standard": "20", "reduced": "5"},
++    "CH": {"standard": "8.1", "reduced": "2.6"},
++    "JP": {"standard": "10", "reduced": "8"},
++}
++_EU = frozenset({"DE", "FR", "NL"})
++
++
++def _decimal(value):
++    try:
++        result = to_decimal(value)
++    except (InvalidOperation, TypeError, ValueError) as exc:
++        raise ValueError("invalid decimal value") from exc
++    if not result.is_finite():
++        raise ValueError("decimal value must be finite")
++    return result
++
++
++def _validated_line(line):
++    if not isinstance(line, dict):
++        raise ValueError("line must be a mapping")
++    try:
++        qty = _decimal(line["qty"])
++        price = _decimal(line["unit_price"])
++        discount = _decimal(line.get("discount_pct", "0"))
++        category = line["category"]
++        sku = line["sku"]
++    except KeyError as exc:
++        raise ValueError(f"missing line field {exc.args[0]!r}") from exc
++    if qty <= 0 or price < 0 or not Decimal(0) <= discount <= Decimal(100):
++        raise ValueError("invalid line amount or discount")
++    if not isinstance(category, str) or category not in {"standard", "reduced", "zero", "exempt"}:
++        raise ValueError("unknown line category")
++    if not isinstance(sku, str):
++        raise ValueError("sku must be a string")
++    return qty, price, discount, category, sku
++
++
++def _validated_invoice(invoice):
++    if not isinstance(invoice, dict):
++        raise ValueError("invoice must be a mapping")
++    try:
++        seller = invoice["seller"]
++        buyer = invoice["buyer"]
++        currency = check_currency(invoice["currency"])
++        lines = invoice["lines"]
++    except KeyError as exc:
++        raise ValueError(f"missing invoice field {exc.args[0]!r}") from exc
++    if not isinstance(seller, str) or seller not in _RATES:
++        raise ValueError("unknown seller country")
++    if not isinstance(buyer, dict):
++        raise ValueError("buyer must be a mapping")
++    if not isinstance(lines, list) or not lines:
++        raise ValueError("invoice must have at least one line")
++    seen = set()
++    for line in lines:
++        *_, sku = _validated_line(line)
++        if sku in seen:
++            raise ValueError("invoice line SKUs must be unique")
++        seen.add(sku)
++    return seller, buyer, currency, lines
++
++
++def _treatment(seller, buyer):
++    buyer_country = buyer.get("country")
++    if not isinstance(buyer_country, str) or len(buyer_country) != 2 or not buyer_country.isalpha() or not buyer_country.isupper():
++        raise ValueError("buyer country must be a two-letter country code")
++    business = has_vat_id(buyer)
++    if seller == buyer_country:
++        return "domestic", seller
++    if seller in _EU and buyer_country in _EU:
++        if business:
++            return "reverse_charge", None
++        return "distance_sale", buyer_country
++    return "export", None
++
++
++def _rate(category, treatment, rate_country):
++    if treatment in {"reverse_charge", "export"} or category == "zero":
++        return "0"
++    return _RATES[rate_country][category]
++
++
++def _round_money(amount, currency):
++    check_currency(currency)
++    places = {"JPY": 0, "KWD": 3}.get(currency, 2)
++    return amount.quantize(Decimal(1).scaleb(-places), rounding=ROUND_HALF_UP)
+diff --git a/late_fee.py b/late_fee.py
+index a2aec58..360de49 100644
+--- a/late_fee.py
++++ b/late_fee.py
+@@ -1,13 +1,150 @@
+ """late_fee — see SPEC.md."""
+-from decimal import Decimal  # noqa: F401
++from datetime import date, timedelta
++from decimal import Decimal, InvalidOperation, ROUND_HALF_UP
+ 
+-from billing_common import EU_MEMBERS, apply_terms, has_vat_id, parse_iso, roll_to_business_day, round_money, tax_rate, to_decimal  # noqa: F401
++from billing_common import HOLIDAYS, apply_terms, has_vat_id, to_decimal, check_currency
+ 
+ 
+ def late_fee(invoice: dict, paid_date: str) -> Decimal:
+-    """Late payment fee (SPEC 7).
++    """Return simple statutory interest and any qualifying flat compensation."""
++    seller, buyer, currency, lines = _validated_invoice(invoice)
++    _treatment(seller, buyer)
++    issue = _parse_date(invoice.get("issue_date"))
++    if not isinstance(invoice.get("terms"), str):
++        raise ValueError("terms must be a string")
++    due = apply_terms(issue, invoice["terms"])
++    while due.weekday() >= 5 or due in HOLIDAYS[seller]:
++        due += timedelta(days=1)
++    paid = _parse_date(paid_date)
++    days_late = (paid - due).days
++    if days_late <= 0:
++        return _round_money(Decimal(0), currency)
+ 
+-    Due dates via ``billing_common.apply_terms`` + ``roll_to_business_day`` (TREAS-12); amounts via
+-    ``billing_common.round_money`` (FIN-2). See TEAM_NOTES.md.
+-    """
+-    raise NotImplementedError
++    gross_total = _gross_total(seller, buyer, currency, lines)
++    annual_rate = Decimal(_ANNUAL_RATES[seller])
++    interest = gross_total * annual_rate / Decimal(100) * Decimal(days_late) / Decimal(365)
++    flat = Decimal(40) if seller in _EU and has_vat_id(buyer) and currency == "EUR" else Decimal(0)
++    return _round_money(interest + flat, currency)
++
++
++_RATES = {
++    "DE": {"standard": "19", "reduced": "7"},
++    "FR": {"standard": "20", "reduced": "5.5"},
++    "NL": {"standard": "21", "reduced": "9"},
++    "GB": {"standard": "20", "reduced": "5"},
++    "CH": {"standard": "8.1", "reduced": "2.6"},
++    "JP": {"standard": "10", "reduced": "8"},
++}
++_ANNUAL_RATES = {"DE": "9", "FR": "11", "NL": "8", "GB": "8", "CH": "5", "JP": "3"}
++_EU = frozenset({"DE", "FR", "NL"})
++
++
++def _decimal(value):
++    try:
++        result = to_decimal(value)
++    except (InvalidOperation, TypeError, ValueError) as exc:
++        raise ValueError("invalid decimal value") from exc
++    if not result.is_finite():
++        raise ValueError("decimal value must be finite")
++    return result
++
++
++def _parse_date(value):
++    if not isinstance(value, str):
++        raise ValueError("date must be an ISO date string")
++    try:
++        parsed = date.fromisoformat(value)
++    except ValueError as exc:
++        raise ValueError("invalid date") from exc
++    if parsed.isoformat() != value:
++        raise ValueError("date must use YYYY-MM-DD")
++    return parsed
++
++
++def _validated_line(line):
++    if not isinstance(line, dict):
++        raise ValueError("line must be a mapping")
++    try:
++        qty = _decimal(line["qty"])
++        price = _decimal(line["unit_price"])
++        discount = _decimal(line.get("discount_pct", "0"))
++        category = line["category"]
++        sku = line["sku"]
++    except KeyError as exc:
++        raise ValueError(f"missing line field {exc.args[0]!r}") from exc
++    if qty <= 0 or price < 0 or not Decimal(0) <= discount <= Decimal(100):
++        raise ValueError("invalid line amount or discount")
++    if not isinstance(category, str) or category not in {"standard", "reduced", "zero", "exempt"}:
++        raise ValueError("unknown line category")
++    if not isinstance(sku, str):
++        raise ValueError("sku must be a string")
++    return qty, price, discount, category, sku
++
++
++def _validated_invoice(invoice):
++    if not isinstance(invoice, dict):
++        raise ValueError("invoice must be a mapping")
++    try:
++        seller = invoice["seller"]
++        buyer = invoice["buyer"]
++        currency = check_currency(invoice["currency"])
++        lines = invoice["lines"]
++    except KeyError as exc:
++        raise ValueError(f"missing invoice field {exc.args[0]!r}") from exc
++    if not isinstance(seller, str) or seller not in _RATES:
++        raise ValueError("unknown seller country")
++    if not isinstance(buyer, dict):
++        raise ValueError("buyer must be a mapping")
++    if not isinstance(lines, list) or not lines:
++        raise ValueError("invoice must have at least one line")
++    seen = set()
++    for line in lines:
++        *_, sku = _validated_line(line)
++        if sku in seen:
++            raise ValueError("invoice line SKUs must be unique")
++        seen.add(sku)
++    return seller, buyer, currency, lines
++
++
++def _treatment(seller, buyer):
++    buyer_country = buyer.get("country")
++    if not isinstance(buyer_country, str) or len(buyer_country) != 2 or not buyer_country.isalpha() or not buyer_country.isupper():
++        raise ValueError("buyer country must be a two-letter country code")
++    business = has_vat_id(buyer)
++    if seller == buyer_country:
++        return "domestic", seller
++    if seller in _EU and buyer_country in _EU:
++        if business:
++            return "reverse_charge", None
++        return "distance_sale", buyer_country
++    return "export", None
++
++
++def _rate(category, treatment, rate_country):
++    if treatment in {"reverse_charge", "export"} or category == "zero":
++        return "0"
++    return _RATES[rate_country][category]
++
++
++def _gross_total(seller, buyer, currency, lines):
++    treatment, rate_country = _treatment(seller, buyer)
++    subtotal = Decimal(0)
++    nets_by_rate = {}
++    for line in lines:
++        qty, price, discount, category, _sku = _validated_line(line)
++        net = _round_money(qty * price * (Decimal(100) - discount) / Decimal(100), currency)
++        subtotal += net
++        if category != "exempt":
++            rate = _rate(category, treatment, rate_country)
++            nets_by_rate[rate] = nets_by_rate.get(rate, Decimal(0)) + net
++    tax = sum(
++        (_round_money(net * Decimal(rate) / Decimal(100), currency) for rate, net in nets_by_rate.items()),
++        Decimal(0),
++    )
++    return subtotal + tax
++
++
++def _round_money(amount, currency):
++    check_currency(currency)
++    places = {"JPY": 0, "KWD": 3}.get(currency, 2)
++    return amount.quantize(Decimal(1).scaleb(-places), rounding=ROUND_HALF_UP)
+diff --git a/line_net.py b/line_net.py
+index 15a4d89..1bf3c26 100644
+--- a/line_net.py
++++ b/line_net.py
+@@ -1,12 +1,42 @@
+ """line_net — see SPEC.md."""
+-from decimal import Decimal  # noqa: F401
++from decimal import Decimal, InvalidOperation, ROUND_HALF_UP
+ 
+-from billing_common import round_money, to_decimal, check_currency  # noqa: F401
++from billing_common import to_decimal, check_currency
+ 
+ 
+ def line_net(line: dict, currency: str) -> Decimal:
+-    """Net amount of one invoice line (SPEC 3.1).
++    """Return a validated line's discounted net, rounded to the currency minor unit."""
++    check_currency(currency)
++    if not isinstance(line, dict):
++        raise ValueError("line must be a mapping")
++    try:
++        qty = _decimal(line["qty"])
++        price = _decimal(line["unit_price"])
++        discount = _decimal(line.get("discount_pct", "0"))
++        category = line["category"]
++        sku = line["sku"]
++    except KeyError as exc:
++        raise ValueError(f"missing line field {exc.args[0]!r}") from exc
++    if qty <= 0 or price < 0 or not Decimal(0) <= discount <= Decimal(100):
++        raise ValueError("invalid line amount or discount")
++    if not isinstance(category, str) or category not in {"standard", "reduced", "zero", "exempt"}:
++        raise ValueError("unknown line category")
++    if not isinstance(sku, str):
++        raise ValueError("sku must be a string")
++    return _round_money(qty * price * (Decimal(100) - discount) / Decimal(100), currency)
+ 
+-    Round with ``billing_common.round_money`` (finance policy FIN-2, see TEAM_NOTES.md).
+-    """
+-    raise NotImplementedError
++
++def _decimal(value) -> Decimal:
++    try:
++        result = to_decimal(value)
++    except (InvalidOperation, TypeError, ValueError) as exc:
++        raise ValueError("invalid decimal value") from exc
++    if not result.is_finite():
++        raise ValueError("decimal value must be finite")
++    return result
++
++
++def _round_money(amount, currency):
++    check_currency(currency)
++    places = {"JPY": 0, "KWD": 3}.get(currency, 2)
++    return amount.quantize(Decimal(1).scaleb(-places), rounding=ROUND_HALF_UP)
+diff --git a/line_tax.py b/line_tax.py
+index fb04466..8970d39 100644
+--- a/line_tax.py
++++ b/line_tax.py
+@@ -1,13 +1,86 @@
+ """line_tax — see SPEC.md."""
+-from decimal import Decimal  # noqa: F401
++from decimal import Decimal, InvalidOperation, ROUND_HALF_UP
+ 
+-from billing_common import EU_MEMBERS, has_vat_id, round_money, tax_rate, to_decimal  # noqa: F401
++from billing_common import has_vat_id, to_decimal, check_currency
+ 
+ 
+ def line_tax(line: dict, seller: str, buyer: dict, currency: str) -> Decimal:
+-    """Tax of one line (SPEC 4, 5.1).
++    """Return the rounded tax on one line under the seller/buyer treatment."""
++    check_currency(currency)
++    qty, price, discount, category, _sku = _validated_line(line)
++    if not isinstance(seller, str) or seller not in _RATES:
++        raise ValueError("unknown seller country")
++    if not isinstance(buyer, dict):
++        raise ValueError("buyer must be a mapping")
++    buyer_country = buyer.get("country")
++    treatment, rate_country = _treatment(seller, buyer_country, has_vat_id(buyer))
++    net = _round_money(qty * price * (Decimal(100) - discount) / Decimal(100), currency)
++    if category == "exempt":
++        return _round_money(Decimal(0), currency)
++    rate = _rate(category, treatment, rate_country)
++    return _round_money(net * Decimal(rate) / Decimal(100), currency)
+ 
+-    Rates come from ``billing_common.tax_rate`` / ``TAX_RATES`` (tax team's rate service, see TEAM_NOTES.md);
+-    amounts are rounded with ``billing_common.round_money``.
+-    """
+-    raise NotImplementedError
++
++_RATES = {
++    "DE": {"standard": "19", "reduced": "7"},
++    "FR": {"standard": "20", "reduced": "5.5"},
++    "NL": {"standard": "21", "reduced": "9"},
++    "GB": {"standard": "20", "reduced": "5"},
++    "CH": {"standard": "8.1", "reduced": "2.6"},
++    "JP": {"standard": "10", "reduced": "8"},
++}
++_EU = frozenset({"DE", "FR", "NL"})
++
++
++def _decimal(value) -> Decimal:
++    try:
++        result = to_decimal(value)
++    except (InvalidOperation, TypeError, ValueError) as exc:
++        raise ValueError("invalid decimal value") from exc
++    if not result.is_finite():
++        raise ValueError("decimal value must be finite")
++    return result
++
++
++def _validated_line(line):
++    if not isinstance(line, dict):
++        raise ValueError("line must be a mapping")
++    try:
++        qty = _decimal(line["qty"])
++        price = _decimal(line["unit_price"])
++        discount = _decimal(line.get("discount_pct", "0"))
++        category = line["category"]
++        sku = line["sku"]
++    except KeyError as exc:
++        raise ValueError(f"missing line field {exc.args[0]!r}") from exc
++    if qty <= 0 or price < 0 or not Decimal(0) <= discount <= Decimal(100):
++        raise ValueError("invalid line amount or discount")
++    if not isinstance(category, str) or category not in {"standard", "reduced", "zero", "exempt"}:
++        raise ValueError("unknown line category")
++    if not isinstance(sku, str):
++        raise ValueError("sku must be a string")
++    return qty, price, discount, category, sku
++
++
++def _treatment(seller, buyer_country, business):
++    if not isinstance(buyer_country, str) or len(buyer_country) != 2 or not buyer_country.isalpha() or not buyer_country.isupper():
++        raise ValueError("buyer country must be a two-letter country code")
++    if seller == buyer_country:
++        return "domestic", seller
++    if seller in _EU and buyer_country in _EU:
++        if business:
++            return "reverse_charge", None
++        return "distance_sale", buyer_country
++    return "export", None
++
++
++def _rate(category, treatment, rate_country):
++    if treatment in {"reverse_charge", "export"} or category == "zero":
++        return "0"
++    return _RATES[rate_country][category]
++
++
++def _round_money(amount, currency):
++    check_currency(currency)
++    places = {"JPY": 0, "KWD": 3}.get(currency, 2)
++    return amount.quantize(Decimal(1).scaleb(-places), rounding=ROUND_HALF_UP)

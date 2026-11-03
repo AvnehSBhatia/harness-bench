@@ -1,0 +1,8 @@
+{
+  "key": "heliod-invoicing",
+  "started": "2026-11-03T01:46:30.006Z",
+  "ended": "2026-11-03T01:47:15.842Z",
+  "stopped_by": "finished",
+  "budget_usd": 0.2,
+  "max_minutes": 12
+}

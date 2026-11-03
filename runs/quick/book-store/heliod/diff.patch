@@ -1,0 +1,118 @@
+diff --git a/__pycache__/book_store.cpython-313.pyc b/__pycache__/book_store.cpython-313.pyc
+new file mode 100644
+index 0000000000000000000000000000000000000000..635d3468eb64712f498f97cbf366b760c3ca07e2
+GIT binary patch
+literal 2112
+zcmaJ>&2JM&6rb4-Cr)reY?F{Qh6O^~RoFNm1VWWsQ7N=QNm1;jQmx{wosF|#ug%OZ
+z4X8p<dvVo6gDTWWMOEl2ToDI);}7To*R-G!?V-&jH&;e#x%JJ)PB20|X`jb4@4b2N
+zH^294fj}Dq`RVw^#ot7P{^oxgBGebPK3LpDaTLdA&}mGtg5m-Z;$j~nVpdY+4Q{An
+z=Fbr~l`%34rs^Zy+fpE=Rh2;%TR|bX%(~x>PzH0Cy0pMA*rD1Ys0-+Va1$lB&UJJc
+z$8jIJ*qY=vp2Xqq@p^V4G+y5wulv|I2^VfkT#C!bur5FhACJ+n%?k-(Khkl-X8@@!
+z*QRDn$0fGnESO5(vaP(ESBk{Sn1>Y0Rx+mT&_l|6fp`Y#Lg5nS`?IrYgI+S7+1a6{
+zswBu@48Gb)P%(S}DS)AlLg>S8glwD;X0~eF%$4iyjIN-YvVzX;MyMS;v*@Tek5xPk
+zD9f3GYdfmQgrQ+3@jRGsGX=^KQj{fTMRjTt8a1xi=0fy%Va|*$7{oRy)zYS&S%?yo
+zx;ckNM~6p`Xd@%q@K|DaR2v!9MkloKk;9*Amt8A!DawOu)F}|~H*;2DF8Vq3HdEf_
+zQ1L4BPi9TqTr83p+wBw_BR4deD`boujSX#`aEj3gsQ)(55_%Yn-5p#TSU&Ro<c-Ny
+z>2c`b!_dLIgU=~P?5jQd@CFBF!v~6&+mbgHsdde40+&-J1Yd0mY-9L>+)SCqv%U=`
+zT;{+ki(e#AAKE5~jvDr_Bon{O6CfSW48#_6oR<@FBfgPDDCyrkgGZEsZjwjYEh4`5
+z4lyCmKvTRd4YJx&GSE2Fg=ELpTH@goJ|OZ|W*Y1?TEi9+a$ME`eI09%c~i#FK4&3o
+zT>$F)roC=$LYPy@qwjmLc!9jT5OTq{7}SME^>aKHWEJQ4fM1=uJ$340PTe~K;WbR(
+zL8?eNqD;2zIdhTlXRh;BA)F|LBf+9CajD*qDX$-2L9s3#rXQ5Yupa%_qi1e^vFiTf
+z{?N99SM(p-VB<N38HBzJ?8V>h*o&EH+4D^$^R&E@&%vUpW8c^=dV4Y@#74m!+y*r`
+z+;sqe@m}wG0FWRA1v>MF&8d=y0SUvNhXC_YH%(2)>j4E?cpC}=h$H?{{<dBRRgrk0
+z<FA2<8y_v7sEVko`<AqFe)aO&iQCu8k<rTTvEO%&v4M$tM;&+*d)TY3Of>APOr&m}
+z`Ayr+o5XNTCeP;zhQnmXE#^$-Pg_pPn=niS&{-h$!OX|{xzxFtQ^!xl)fVO_X5N75
+zXlI$<xMEm2BMoj++N2KafJxw_whh{{q~I1)ynRV8WX}Rk??^e~P_3d&)eC-$8}+~L
+z?RS6$T><rc39WYqmydmW{p;&bLgDprPq|0GclAN<qoZdkJ$faqm;6sV!^`?NUzDUL
+zU413rpB>?+k^Rp&c<Te&n)PU4q9((i8WQ((l%}h#s84y^tCoA!O7CFl^wUuHvUBUR
+zwRg&qBR@wTT(2BEUyhuwggz;~|D?Nr<?@Y-tEbAlw9?6cJ5lGZ(tLF%+8Hjj*C01e
+z@;&gwWMbG^lkjGOEj}Tb&jXhdUaCj@S!K$5ZFm7bKgl6D;6$bGg5p&Mf{%i+dk631
+z`y=-TE5TSL5L-IAE_W<DWx4;E&?$#&BJxG5eD%+Mw4-;WyV9;aloX;uglSb`{(0BV
+zI6yq=r9$?>zIPAdL)0_dOrdo$Uzl@qW{eEM0iSl1bF?aAjQ>D;0iv#vr9jQsjrVz8
+F{{w2y#Nq$|
+
+literal 0
+HcmV?d00001
+
+diff --git a/__pycache__/book_store_test.cpython-313-pytest-8.4.1.pyc b/__pycache__/book_store_test.cpython-313-pytest-8.4.1.pyc
+new file mode 100644
+index 0000000000000000000000000000000000000000..ad56671dde94faec00393e26f8de78b325a1e29c
+GIT binary patch
+literal 7391
+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
+AtpET3
+
+literal 0
+HcmV?d00001
+
+diff --git a/book_store.py b/book_store.py
+index 8a84288..4910794 100644
+--- a/book_store.py
++++ b/book_store.py
+@@ -1,2 +1,30 @@
++from functools import lru_cache
++
++
++# Prices in cents for a set containing 1 through 5 different books.
++_GROUP_PRICES = (0, 800, 1520, 2160, 2560, 3000)
++
++
+ def total(basket):
+-    pass
++    """Return the minimum price, in cents, for the books in ``basket``."""
++    counts = tuple(basket.count(book) for book in range(1, 6))
++
++    @lru_cache(maxsize=None)
++    def minimum_price(remaining):
++        if not any(remaining):
++            return 0
++
++        available = sum(1 << index for index, count in enumerate(remaining) if count)
++        best = float("inf")
++        subset = available
++        while subset:
++            next_remaining = tuple(
++                count - bool(subset & (1 << index))
++                for index, count in enumerate(remaining)
++            )
++            group_size = subset.bit_count()
++            best = min(best, _GROUP_PRICES[group_size] + minimum_price(next_remaining))
++            subset = (subset - 1) & available
++        return best
++
++    return minimum_price(counts)

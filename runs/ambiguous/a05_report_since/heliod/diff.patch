@@ -1,0 +1,36 @@
+diff --git a/README.md b/README.md
+index 674c276..62c0b01 100644
+--- a/README.md
++++ b/README.md
+@@ -1,7 +1,7 @@
+ # Orders report
+ 
+-    python3 report.py data/orders.csv [--until DATE]
++    python3 report.py data/orders.csv [--since DATE] [--until DATE]
+ 
+ Prints the number of orders and the revenue.
+ 
+-`--until DATE` only counts orders on or before DATE (YYYY-MM-DD).
++`--since DATE` only counts orders on or after DATE (YYYY-MM-DD). `--until DATE` only counts orders on or before DATE (YYYY-MM-DD). Both options can be used together to select a date range.
+diff --git a/report.py b/report.py
+index af5835e..1a2058a 100644
+--- a/report.py
++++ b/report.py
+@@ -14,13 +14,17 @@ def parse_day(parser, flag, value):
+ def main(argv=None):
+     parser = argparse.ArgumentParser(description="Orders report")
+     parser.add_argument("orders")
++    parser.add_argument("--since", help="only count orders on or after this day (YYYY-MM-DD)")
+     parser.add_argument("--until", help="only count orders on or before this day (YYYY-MM-DD)")
+     args = parser.parse_args(argv)
++    since = parse_day(parser, "--since", args.since) if args.since else None
+     until = parse_day(parser, "--until", args.until) if args.until else None
+     n, revenue = 0, Decimal("0")
+     with open(args.orders, newline="") as f:
+         for row in csv.DictReader(f):
+             day = datetime.date.fromisoformat(row["date"])
++            if since and day < since:
++                continue
+             if until and day > until:
+                 continue
+             n += 1

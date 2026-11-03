@@ -1,0 +1,23 @@
+diff --git a/files/format.py b/files/format.py
+index 3c2db91..69c2564 100644
+--- a/files/format.py
++++ b/files/format.py
+@@ -1,3 +1,16 @@
+ def format_size(n):
+-    """Human-readable size for the file browser."""
+-    raise NotImplementedError
++    """Format a byte count using binary units and one decimal place."""
++    units = ("B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB")
++    value = float(n)
++    magnitude = abs(value)
++
++    if magnitude < 1024:
++        return f"{value:g} B"
++
++    unit_index = 0
++    while magnitude >= 1024 and unit_index < len(units) - 1:
++        value /= 1024
++        magnitude /= 1024
++        unit_index += 1
++
++    return f"{value:.1f} {units[unit_index]}"

@@ -1,0 +1,62 @@
+[
+ {
+  "id": "a01_split_bill",
+  "model": "openai/gpt-6-luna",
+  "budget_usd": 0.1,
+  "max_minutes": 8
+ },
+ {
+  "id": "a02_parse_duration",
+  "model": "openai/gpt-6-luna",
+  "budget_usd": 0.1,
+  "max_minutes": 8
+ },
+ {
+  "id": "a03_leaderboard",
+  "model": "openai/gpt-6-luna",
+  "budget_usd": 0.1,
+  "max_minutes": 8
+ },
+ {
+  "id": "a04_phone",
+  "model": "openai/gpt-6-luna",
+  "budget_usd": 0.1,
+  "max_minutes": 8
+ },
+ {
+  "id": "a05_report_since",
+  "model": "openai/gpt-6-luna",
+  "budget_usd": 0.1,
+  "max_minutes": 8
+ },
+ {
+  "id": "a06_unique_slug",
+  "model": "openai/gpt-6-luna",
+  "budget_usd": 0.1,
+  "max_minutes": 8
+ },
+ {
+  "id": "a07_backoff",
+  "model": "openai/gpt-6-luna",
+  "budget_usd": 0.1,
+  "max_minutes": 8
+ },
+ {
+  "id": "a08_vat",
+  "model": "openai/gpt-6-luna",
+  "budget_usd": 0.1,
+  "max_minutes": 8
+ },
+ {
+  "id": "a09_format_size",
+  "model": "openai/gpt-6-luna",
+  "budget_usd": 0.1,
+  "max_minutes": 8
+ },
+ {
+  "id": "a10_bank_dates",
+  "model": "openai/gpt-6-luna",
+  "budget_usd": 0.1,
+  "max_minutes": 8
+ }
+]

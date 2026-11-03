@@ -1,0 +1,8 @@
+{
+  "key": "heliod-a05_report_since",
+  "started": "2026-11-03T02:08:41.429Z",
+  "ended": "2026-11-03T02:08:55.090Z",
+  "stopped_by": "finished",
+  "budget_usd": 0.1,
+  "max_minutes": 8
+}

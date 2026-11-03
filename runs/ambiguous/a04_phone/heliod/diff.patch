@@ -1,0 +1,66 @@
+diff --git a/contacts/phone.py b/contacts/phone.py
+index 7a80abf..2469d5a 100644
+--- a/contacts/phone.py
++++ b/contacts/phone.py
+@@ -1,3 +1,59 @@
+ def normalize_phone(raw, country):
+-    """Return the number in E.164 form."""
+-    raise NotImplementedError
++    """Return a supported US or GB phone number in E.164 form, or ``None``.
++
++    National US and GB numbers may be formatted with spaces, parentheses,
++    hyphens, and periods. An international number must use the calling code
++    matching ``country``.
++    """
++    if not isinstance(raw, str) or not isinstance(country, str):
++        return None
++
++    country = country.strip().upper()
++    if country not in ("US", "GB"):
++        return None
++
++    # Accept ordinary visual separators only; rejecting everything else avoids
++    # silently turning extensions or arbitrary text into a different number.
++    digits = []
++    plus_seen = False
++    for char in raw:
++        if "0" <= char <= "9":
++            digits.append(char)
++        elif char == "+":
++            if plus_seen or digits:
++                return None
++            plus_seen = True
++        elif char.isspace() or char in "().-":
++            continue
++        else:
++            return None
++
++    number = "".join(digits)
++    if country == "US":
++        if plus_seen:
++            if not number.startswith("1"):
++                return None
++            number = number[1:]
++        elif len(number) == 11 and number.startswith("1"):
++            number = number[1:]
++
++        # North American national numbers have ten digits and both the area
++        # code and exchange begin with digits 2 through 9.
++        if len(number) != 10 or number[0] not in "23456789" or number[3] not in "23456789":
++            return None
++        return "+1" + number
++
++    # A UK national number has a trunk zero, while an international number
++    # carries country code 44 and omits that trunk prefix.
++    if plus_seen:
++        if not number.startswith("44"):
++            return None
++        number = number[2:]
++    elif number.startswith("44") and len(number) == 12:
++        number = number[2:]
++    elif number.startswith("0"):
++        number = number[1:]
++
++    if len(number) != 10 or number[0] == "0":
++        return None
++    return "+44" + number

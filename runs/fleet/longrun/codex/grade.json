@@ -1,0 +1,323 @@
+{
+  "works": true,
+  "passed": 40,
+  "failed": 0,
+  "errors": 0,
+  "total": 40,
+  "expected_passed": 40,
+  "build": "ok",
+  "rules": [],
+  "detail": {
+    "blocks": {
+      "T1-10": {
+        "done": 10,
+        "behavior": 10,
+        "rules_kept": 1
+      },
+      "T11-20": {
+        "done": 10,
+        "behavior": 10,
+        "rules_kept": 1
+      },
+      "T21-30": {
+        "done": 10,
+        "behavior": 10,
+        "rules_kept": 1
+      },
+      "T31-40": {
+        "done": 10,
+        "behavior": 10,
+        "rules_kept": 1
+      }
+    },
+    "checks": {
+      "behavior": 40,
+      "errors": 40,
+      "docstring": 40,
+      "exported": 40,
+      "changelog": 40
+    },
+    "per_ticket": {
+      "1": {
+        "behavior": true,
+        "errors": true,
+        "docstring": true,
+        "exported": true,
+        "changelog": true
+      },
+      "2": {
+        "behavior": true,
+        "errors": true,
+        "docstring": true,
+        "exported": true,
+        "changelog": true
+      },
+      "3": {
+        "behavior": true,
+        "errors": true,
+        "docstring": true,
+        "exported": true,
+        "changelog": true
+      },
+      "4": {
+        "behavior": true,
+        "errors": true,
+        "docstring": true,
+        "exported": true,
+        "changelog": true
+      },
+      "5": {
+        "behavior": true,
+        "errors": true,
+        "docstring": true,
+        "exported": true,
+        "changelog": true
+      },
+      "6": {
+        "behavior": true,
+        "errors": true,
+        "docstring": true,
+        "exported": true,
+        "changelog": true
+      },
+      "7": {
+        "behavior": true,
+        "errors": true,
+        "docstring": true,
+        "exported": true,
+        "changelog": true
+      },
+      "8": {
+        "behavior": true,
+        "errors": true,
+        "docstring": true,
+        "exported": true,
+        "changelog": true
+      },
+      "9": {
+        "behavior": true,
+        "errors": true,
+        "docstring": true,
+        "exported": true,
+        "changelog": true
+      },
+      "10": {
+        "behavior": true,
+        "errors": true,
+        "docstring": true,
+        "exported": true,
+        "changelog": true
+      },
+      "11": {
+        "behavior": true,
+        "errors": true,
+        "docstring": true,
+        "exported": true,
+        "changelog": true
+      },
+      "12": {
+        "behavior": true,
+        "errors": true,
+        "docstring": true,
+        "exported": true,
+        "changelog": true
+      },
+      "13": {
+        "behavior": true,
+        "errors": true,
+        "docstring": true,
+        "exported": true,
+        "changelog": true
+      },
+      "14": {
+        "behavior": true,
+        "errors": true,
+        "docstring": true,
+        "exported": true,
+        "changelog": true
+      },
+      "15": {
+        "behavior": true,
+        "errors": true,
+        "docstring": true,
+        "exported": true,
+        "changelog": true
+      },
+      "16": {
+        "behavior": true,
+        "errors": true,
+        "docstring": true,
+        "exported": true,
+        "changelog": true
+      },
+      "17": {
+        "behavior": true,
+        "errors": true,
+        "docstring": true,
+        "exported": true,
+        "changelog": true
+      },
+      "18": {
+        "behavior": true,
+        "errors": true,
+        "docstring": true,
+        "exported": true,
+        "changelog": true
+      },
+      "19": {
+        "behavior": true,
+        "errors": true,
+        "docstring": true,
+        "exported": true,
+        "changelog": true
+      },
+      "20": {
+        "behavior": true,
+        "errors": true,
+        "docstring": true,
+        "exported": true,
+        "changelog": true
+      },
+      "21": {
+        "behavior": true,
+        "errors": true,
+        "docstring": true,
+        "exported": true,
+        "changelog": true
+      },
+      "22": {
+        "behavior": true,
+        "errors": true,
+        "docstring": true,
+        "exported": true,
+        "changelog": true
+      },
+      "23": {
+        "behavior": true,
+        "errors": true,
+        "docstring": true,
+        "exported": true,
+        "changelog": true
+      },
+      "24": {
+        "behavior": true,
+        "errors": true,
+        "docstring": true,
+        "exported": true,
+        "changelog": true
+      },
+      "25": {
+        "behavior": true,
+        "errors": true,
+        "docstring": true,
+        "exported": true,
+        "changelog": true
+      },
+      "26": {
+        "behavior": true,
+        "errors": true,
+        "docstring": true,
+        "exported": true,
+        "changelog": true
+      },
+      "27": {
+        "behavior": true,
+        "errors": true,
+        "docstring": true,
+        "exported": true,
+        "changelog": true
+      },
+      "28": {
+        "behavior": true,
+        "errors": true,
+        "docstring": true,
+        "exported": true,
+        "changelog": true
+      },
+      "29": {
+        "behavior": true,
+        "errors": true,
+        "docstring": true,
+        "exported": true,
+        "changelog": true
+      },
+      "30": {
+        "behavior": true,
+        "errors": true,
+        "docstring": true,
+        "exported": true,
+        "changelog": true
+      },
+      "31": {
+        "behavior": true,
+        "errors": true,
+        "docstring": true,
+        "exported": true,
+        "changelog": true
+      },
+      "32": {
+        "behavior": true,
+        "errors": true,
+        "docstring": true,
+        "exported": true,
+        "changelog": true
+      },
+      "33": {
+        "behavior": true,
+        "errors": true,
+        "docstring": true,
+        "exported": true,
+        "changelog": true
+      },
+      "34": {
+        "behavior": true,
+        "errors": true,
+        "docstring": true,
+        "exported": true,
+        "changelog": true
+      },
+      "35": {
+        "behavior": true,
+        "errors": true,
+        "docstring": true,
+        "exported": true,
+        "changelog": true
+      },
+      "36": {
+        "behavior": true,
+        "errors": true,
+        "docstring": true,
+        "exported": true,
+        "changelog": true
+      },
+      "37": {
+        "behavior": true,
+        "errors": true,
+        "docstring": true,
+        "exported": true,
+        "changelog": true
+      },
+      "38": {
+        "behavior": true,
+        "errors": true,
+        "docstring": true,
+        "exported": true,
+        "changelog": true
+      },
+      "39": {
+        "behavior": true,
+        "errors": true,
+        "docstring": true,
+        "exported": true,
+        "changelog": true
+      },
+      "40": {
+        "behavior": true,
+        "errors": true,
+        "docstring": true,
+        "exported": true,
+        "changelog": true
+      }
+    }
+  }
+}

@@ -1,0 +1,181 @@
+{
+  "source": "production checkout 2026-10",
+  "catalog": {
+    "products": {
+      "PEN": {
+        "price": "1.20",
+        "category": "office"
+      },
+      "LAMP": {
+        "price": "40.00",
+        "category": "home",
+        "tiers": [
+          [
+            5,
+            "36.00"
+          ],
+          [
+            20,
+            "32.00"
+          ]
+        ]
+      },
+      "MAT": {
+        "price": "20.00",
+        "category": "home"
+      },
+      "BOOK": {
+        "price": "12.50",
+        "category": "books"
+      },
+      "CABLE": {
+        "price": "4.99",
+        "category": "electronics",
+        "tiers": [
+          [
+            10,
+            "4.50"
+          ]
+        ]
+      }
+    },
+    "bundles": [
+      {
+        "id": "DESK",
+        "items": {
+          "LAMP": 1,
+          "MAT": 1
+        },
+        "pct": "15"
+      },
+      {
+        "id": "CABLES",
+        "items": {
+          "CABLE": 3
+        },
+        "pct": "10"
+      }
+    ]
+  },
+  "coupons": [
+    {
+      "code": "TEN",
+      "kind": "percent",
+      "value": "10",
+      "min_spend": "0",
+      "starts": "2026-03-01",
+      "ends": "2026-03-31",
+      "exclusive": false
+    },
+    {
+      "code": "FIVER",
+      "kind": "fixed",
+      "value": "5",
+      "min_spend": "0",
+      "starts": "2026-03-01",
+      "ends": "2026-03-31",
+      "exclusive": false
+    },
+    {
+      "code": "BIG",
+      "kind": "percent",
+      "value": "20",
+      "min_spend": "0",
+      "starts": "2026-03-01",
+      "ends": "2026-03-31",
+      "exclusive": true
+    }
+  ],
+  "baskets": [
+    {
+      "cart": {
+        "lines": [
+          {
+            "sku": "LAMP",
+            "qty": 7
+          }
+        ]
+      },
+      "coupons": [],
+      "customer": {
+        "tier": "basic",
+        "points": 0,
+        "redeem": false
+      },
+      "checkout": {
+        "subtotal": "252.00",
+        "bundle_discount": "0",
+        "coupons": [],
+        "coupon_discount": "0",
+        "points_used": 0,
+        "points_discount": "0.00",
+        "total": "252.00"
+      }
+    },
+    {
+      "cart": {
+        "lines": [
+          {
+            "sku": "MAT",
+            "qty": 5
+          }
+        ]
+      },
+      "coupons": [],
+      "customer": {
+        "tier": "silver",
+        "points": 1500,
+        "redeem": true
+      },
+      "checkout": {
+        "subtotal": "100.00",
+        "bundle_discount": "0",
+        "coupons": [],
+        "coupon_discount": "0",
+        "points_used": 1500,
+        "points_discount": "15.00",
+        "total": "85.00"
+      }
+    },
+    {
+      "cart": {
+        "lines": [
+          {
+            "sku": "LAMP",
+            "qty": 3
+          },
+          {
+            "sku": "MAT",
+            "qty": 2
+          },
+          {
+            "sku": "PEN",
+            "qty": 5
+          }
+        ]
+      },
+      "coupons": [
+        "TEN",
+        "FIVER",
+        "BIG"
+      ],
+      "customer": {
+        "tier": "basic",
+        "points": 0,
+        "redeem": false
+      },
+      "checkout": {
+        "subtotal": "166.00",
+        "bundle_discount": "18.00",
+        "coupons": [
+          "BIG",
+          "TEN"
+        ],
+        "coupon_discount": "49.80",
+        "points_used": 0,
+        "points_discount": "0.00",
+        "total": "98.20"
+      }
+    }
+  ]
+}

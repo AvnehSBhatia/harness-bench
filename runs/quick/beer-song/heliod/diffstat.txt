@@ -1,0 +1,4 @@
+ __pycache__/beer_song.cpython-313.pyc              | Bin 0 -> 1445 bytes
+ .../beer_song_test.cpython-313-pytest-8.4.1.pyc    | Bin 0 -> 15331 bytes
+ beer_song.py                                       |  30 ++++++++++++++++++++-
+ 3 files changed, 29 insertions(+), 1 deletion(-)

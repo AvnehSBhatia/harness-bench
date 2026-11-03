@@ -1,0 +1,137 @@
+{
+  "id": "shipping",
+  "version": 3,
+  "spec": "SPEC.md",
+  "functions": [
+    {
+      "name": "billable_weight",
+      "file": "billable_weight.py",
+      "test": "tests/test_billable_weight.py",
+      "subgoal": "Units, dimensional weight, 0.5 kg step (SPEC 2)"
+    },
+    {
+      "name": "zone",
+      "file": "zone.py",
+      "test": "tests/test_zone.py",
+      "subgoal": "Postcode zone matrix (SPEC 3)"
+    },
+    {
+      "name": "base_rate",
+      "file": "base_rate.py",
+      "test": "tests/test_base_rate.py",
+      "subgoal": "Rate table lookup (SPEC 4)"
+    },
+    {
+      "name": "surcharges",
+      "file": "surcharges.py",
+      "test": "tests/test_surcharges.py",
+      "subgoal": "Fuel/peak/oversize/remote/residential (SPEC 5)"
+    },
+    {
+      "name": "quote",
+      "file": "quote.py",
+      "test": "tests/test_quote.py",
+      "subgoal": "Full quote (SPEC 7.5)"
+    },
+    {
+      "name": "delivery_date",
+      "file": "delivery_date.py",
+      "test": "tests/test_delivery_date.py",
+      "subgoal": "Pickup + carrier transit calendar (SPEC 6)"
+    },
+    {
+      "name": "cheapest_option",
+      "file": "cheapest_option.py",
+      "test": "tests/test_cheapest_option.py",
+      "subgoal": "Cheapest option meeting a deadline (SPEC 7.7)"
+    }
+  ],
+  "traps": [
+    {
+      "id": "weight_step_billable",
+      "function": "billable_weight",
+      "trap_test": "tests/test_billable_weight.py::test_just_over_a_step",
+      "family": "weight_step",
+      "trap_helpers": [
+        "to_billing_step"
+      ],
+      "code_patterns": [
+        "ROUND_HALF_UP.*0\\.5|0\\.5.*ROUND_HALF_UP",
+        "\\bto_billing_step\\("
+      ],
+      "description": "rates_common.to_billing_step rounds to the NEAREST 0.5 kg step (2.1 -> 2.0). SPEC 2.3: always up."
+    },
+    {
+      "id": "weight_step_quote",
+      "function": "quote",
+      "trap_test": "tests/test_quote.py::test_light_parcel_just_over_step",
+      "family": "weight_step",
+      "trap_helpers": [
+        "to_billing_step"
+      ],
+      "code_patterns": [
+        "ROUND_HALF_UP.*0\\.5|0\\.5.*ROUND_HALF_UP",
+        "\\bto_billing_step\\("
+      ],
+      "description": "rates_common.to_billing_step rounds to the NEAREST 0.5 kg step (2.1 -> 2.0). SPEC 2.3: always up."
+    },
+    {
+      "id": "remote_areas_surcharges",
+      "function": "surcharges",
+      "trap_test": "tests/test_surcharges.py::test_remote_alpine_area",
+      "family": "remote_areas",
+      "trap_helpers": [
+        "REMOTE_PREFIXES",
+        "is_remote"
+      ],
+      "code_patterns": [
+        "\\bREMOTE_PREFIXES\\b",
+        "\\bis_remote\\("
+      ],
+      "description": "rates_common.REMOTE_PREFIXES lacks 59. SPEC 5 lists 08, 29, 59, 64, 79, 96, 97."
+    },
+    {
+      "id": "remote_areas_quote",
+      "function": "quote",
+      "trap_test": "tests/test_quote.py::test_remote_destination_quote",
+      "family": "remote_areas",
+      "trap_helpers": [
+        "REMOTE_PREFIXES",
+        "is_remote"
+      ],
+      "code_patterns": [
+        "\\bREMOTE_PREFIXES\\b",
+        "\\bis_remote\\("
+      ],
+      "description": "rates_common.REMOTE_PREFIXES lacks 59. SPEC 5 lists 08, 29, 59, 64, 79, 96, 97."
+    },
+    {
+      "id": "saturday_delivery_date",
+      "function": "delivery_date",
+      "trap_test": "tests/test_delivery_date.py::test_express_friday_pickup",
+      "family": "saturday_delivery",
+      "trap_helpers": [
+        "add_delivery_days"
+      ],
+      "code_patterns": [
+        "\\badd_delivery_days\\("
+      ],
+      "description": "rates_common.add_delivery_days counts Mon-Fri for every carrier. SPEC 6.3: SWIFT delivers Saturdays."
+    },
+    {
+      "id": "saturday_delivery_cheapest",
+      "function": "cheapest_option",
+      "trap_test": "tests/test_cheapest_option.py::test_saturday_delivery_meets_deadline",
+      "family": "saturday_delivery",
+      "trap_helpers": [
+        "add_delivery_days"
+      ],
+      "code_patterns": [
+        "\\badd_delivery_days\\("
+      ],
+      "description": "rates_common.add_delivery_days counts Mon-Fri for every carrier. SPEC 6.3: SWIFT delivers Saturdays."
+    }
+  ],
+  "shared_module": "rates_common.py",
+  "notes_file": "TEAM_NOTES.md"
+}

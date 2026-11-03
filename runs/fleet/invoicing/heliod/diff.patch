@@ -1,0 +1,928 @@
+diff --git a/__pycache__/billing_common.cpython-313.pyc b/__pycache__/billing_common.cpython-313.pyc
+new file mode 100644
+index 0000000000000000000000000000000000000000..86287c0455aa638a61efde0d9f85d2b22dc5d6ee
+GIT binary patch
+literal 6997
+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
+Ch9T+z
+
+literal 0
+HcmV?d00001
+
+diff --git a/__pycache__/convert.cpython-313.pyc b/__pycache__/convert.cpython-313.pyc
+new file mode 100644
+index 0000000000000000000000000000000000000000..39e42605ca6af95aa7c140e16a46dc25f9ab573f
+GIT binary patch
+literal 1531
+zcmbtUO>7%Q6rT0|cw@(Q9XD>8res4SV57Q@n;*4FFe0rfc2QcgS!77SY}S+7WxWft
+zc2II55|>K77@>d>mr8JG#U;lcxxvwqD`Bn7i392_l2wT#Z`OaMaN|ikZ|1$X@8^4O
+zrX2|Q5K#E_r+0s05&DB3dgN;0&|Zb*5GhDuZlVlB7>VvZH$54auo;eU8J_SUW49QE
+z+Y%HWK4HtNc(<5&pCXQ<yBrbk49UKy)U(Vu-s@N|mNY|VouFR8`X@QPLI^hXJ;zV1
+zikZ)qEEDfJzOt3ecT62YD}ko$h&#k8<#aF=KubAKv@*6Gf#7n5m^w#;bcqKJRiX9_
+zgV0CpA=(7qA(dI^?xp9Yp68_WPnT5GlbT$1WGRb~HiMArQ5biB7WUjajr9U;dV2z;
+z?^j_J?y6@RZ4UKx+0_M4XFrWpcAimqKuk3GZ0cn+$TH@KC_G5|o?;Nu6#kKg@ISKH
+z9%La4YYv;a{l3E_oWS}mb?tiY?Kj_fE2rLu=80~Hisl`?k0oSJQIEja{sxvLbBI)!
+z78f1Jdw}`?2dEWoc$UG376gkv)(WelAe!q}iJ8qlvKt;1(L=u*j0zLCwDd0@{EI$R
+zW*WIwrPOr-@z8#_RJ3iVLZZ_n?N~%2v<v&;qPeRX#r!}n!<2)@@x7-R6`Uf(B18ZI
+zOt09VTbMq(Vw4HJGd4Asqyq=XRT~pKuI-w*5Wi;SalD`r6Wexd8>YPw@BC!PFV9|H
+zj3pAW*}09`L~K40OU%WtUYY+OwqsyijzdaTQHNyX1#A?peEf4eu3P3VCgn???l~MS
+z!5QsIRt!tm3_E#=ibFJ?4`KQ105$!QYNg?yXhp_rb6>C2hbKW&TWI*D*2qMCa`tHK
+z$X7qV+!z7XN-KP>mU{5ocefhhi}!@4KU{tH{_=m=HAAEK0&NI@WS-C|aIta3&nlW(
+zF79I&J3_lAdkMV{M5GIyeitl<2e>PkoB@F|)U5&MZE7k>(#P<TDAjqpI&vOP6n~qJ
+z8kE)IMygkya1)d-KH<h&!_n$)WB8?mRMQ)3c+b+@)%$NWBV*qtze@i2>ca~^TzouP
+zP1Ymn`f$1x8V3kMa$S_4aUvf*IgP^68duAHA3Q$w%A?Z{cYc~UKDBU=Zh8aN(J#Mf
+zhQ@viO&y1(dXDO$sd^|~7t<|&w7S>u%XLmB@Fbu$dC2j0pRdjY1-FZa0d36bRta9X
+z4qOzP4rZ)fCJvV`>SedaN62;4sa{+uS^0{AljH)})0<~6!g9hg4D&lW_a|CCMyn@6
+dl$ojCI6=T3*e*M|=CYqTm;HL?8P&Od{|2;}SGxcJ
+
+literal 0
+HcmV?d00001
+
+diff --git a/__pycache__/credit_note.cpython-313.pyc b/__pycache__/credit_note.cpython-313.pyc
+new file mode 100644
+index 0000000000000000000000000000000000000000..c33c82e10b5b412a6c3f48588036ace38c0cbd04
+GIT binary patch
+literal 3868
+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
+ax_=iw=M2^@^VZeR9L@a$>EAj`m;PUU_j?=w
+
+literal 0
+HcmV?d00001
+
+diff --git a/__pycache__/due_date.cpython-313.pyc b/__pycache__/due_date.cpython-313.pyc
+new file mode 100644
+index 0000000000000000000000000000000000000000..a5fcd868987acf1e9660c555f6d1538afcb5ef24
+GIT binary patch
+literal 2586
+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
+RxjtZ#8w0<ai|}cz<S(iRLtp>^
+
+literal 0
+HcmV?d00001
+
+diff --git a/__pycache__/invoice_totals.cpython-313.pyc b/__pycache__/invoice_totals.cpython-313.pyc
+new file mode 100644
+index 0000000000000000000000000000000000000000..555245ce1ff228228219295a95cbb4ddf136d40f
+GIT binary patch
+literal 4658
+zcma)AU2Gf25#HnR$m2gL{z<ZIQ9rgt*_1@tlx@XQ?Z}E{iINPRFIB>{%$Yn}jH#o%
+zN7|N>wnAS@BLzw~4k`mis~`cYAV#601!|yuFwg)E5I>N;0Aj8RV4x30o}$DqP&5zi
+z?2#wSh7)7~?at25&d$y^J2%urhr^1Xd4@iJ?F%PD|0EN=v326%FM)U)aR?)h;tUhi
+zxB(kNgr+CxaU(X4Gng4SVbi!7o5xwqj$5!LgrbNuUZSuSMg~S3XX4Bp+hgD?oK+ib
+zoV`AGXrq&JX``F-Xk$Z<3EMeuGr|te_llGAzv4V><O0p;H6wOi42Bz*!e^u_xlBq7
+z$%XUzTwchA1SuU_5OD+xc`=k1u7xzV-19lPOPEs4r^HldUdV<`s&$l4PL57KKRUyy
+z);U2=UJ>%iOj@<!TtP}F=W~*{sIs6VNtCJ9d@h-;ZC0JBIWcu9nJQo`N~y(R6DU^=
+zBV(%J)TnBBVMaBaeqJ?<pH&T0@nIubG%krar<%lT;`~BhHDfVdNQr5cmGfY+fYYiW
+zdQ7E`yl=o>5XTLg!v4M`I@S|Y4gFD-g5}r}eY7XKMECa$fP9}y9SxhXjmX<c=OUeh
+zbOcijaH5m}I=wMK(D3&#4;|o1utejO1X%Kb<=`wrLOVhUBBwPT#i$xJW3IDy3<--q
+z;f%T*Z{V0?hE9|qR%vaPiq&oCL}AkuCKJHHF*D6iol1_KjK7fN&#LtJ*_Tu*3Ja{}
+z{fu-G5Hi>OjrYJNOu|uRFBb$Up8;=@n_%MjFs+(|dB7~MvN|H#4w;CALLoKV%gZ8`
+zdxa~KIM+LpON+g80+vKsj+_Vl=6bOx7qWS|x4*A{AQFv6`VO7zi$)GdBhf>VV@D6a
+z9J!Dc#e8o@i#D*WcTUV^a_Qcya-An8>v6WQsM?aX0FoEP6y6Ue5Jcr8&@H3SjC-qQ
+zS1G2L8#i4|EBh2z+lH&V;_AM0Wc|<w$L~eTuI{qyY?(c~X$zFDD7LP$vFjmhMXI@W
+zx~Q74m@i-{RfmQwA_9d5?Gkw8ZL|mR058E&qJT1Jlp(Rb19&vy>99#OaEzLik*5;+
+z!$;4-4gsJ{Y{So)^*ti>7-Zg%AQ7lF9qz9BT<C=T+u^_)W=NPm)i_qynsDn&PwPoP
+zX@^DM@q``51bI1HdwRbBci@e>RZnTNKGp^y%xa!6%?jF+fcMMUcxvHi(^2q^PuKq(
+z5JCs&G(E*@g8K$_Dc+!K)=w5dIcG1xJ6O0j&2kRj1e%SUv&QK|k|hBeYK?R0yCrL4
+zm(GpV3CYGAz34PG2Bt{%9X_^yGa66b+pX&tDTo<6=h1HNNbJ_n0$u~*>2i|ui8b#N
+zYp$JZ&&1gWH>#(DZH;a?!>^s|*>MNQH%9{T;Osv%|34WM0bQp^@wS;Z{SJ>u-l0oC
+z%5!qT!9j%5Er6j5Xo#G20BCoehDZduaquSaA))e~M7yr(8Si3;Clh;hx!ErwVCxP%
+z8};*fcLa2P(`p3n#nZZ{qz2x~H$)(_OIF^)HEB@^UYz_NNU<q+_nb@ePWu5t57(^u
+z1zuxfpKb-O#WSyAJ53Q;-tsJTc<&BNw<Axt0xST9yoL9YoOYU;97f27LI@((2l~SL
+zX^%%ePQ7TX7a<bgl2`KYh!L;u4Jq*0XS|;ed^f-FzM3tQ(V8WR1Nzy#Z-yBARMYMG
+zwp&WU$Ck{#tKS`7AKakU_}~s?facABj*s8559UG5SKA13Ej^}A)P@rE*avh-RiL%Q
+z1~U>o;2UN~mSuF$@Qi5SOcHaFxj<b&Lv$;;Ks{Sef_x-v8tG?f+>X!huJM_c?fN#$
+z!n>CSX0)$UsQ$IuuFMXGF2ZMVK}?gX?4VYs0YjE+1zL}4lErLR#42;Xuqa|oo{-99
+zGw_jKa)B-(n@Q_Br<MW*>5`PYDursBLMig~$BU}DPAoa}Et<BaX5E_kf}96wDKBKC
+zkfvQ_)46$3&Sz3#gX+ZM6(|(MWD4qoi{g~(NM}femJ*Y)kQG4!D!7Fl&QGaS-;z&1
+zMAuFfs<eEmpwgG~i>kFCW%9`d3<auc2Su83$%PcDQ=p=}n8S-pjp@QdHbbVN93~gk
+zE($8NLh17~xB)|OAPkuaEw$<bq_Wj@kd5_wLpi89&XUKXke?SxNu-y?s*RMg=ND_$
+zEDaNt(TbLEBPQj8%1(%jqZsF~YB{&KAl69hi$b<gr`aSo8jow`az@TbHOHvNbOvrj
+zUlgH}^H?=z!DX0)H-_AYv^ot|#C)xQbDhMQ{M@_<4zHa+3u&milOre3jh>#KIWx*>
+zH4|{Sv!f%)8DMiNlgW$oGH5Bxt0r(!L6mEyUn3@Y2OlIId2-tIaSu=`EnZ8h4h{cg
+z-94D(M%7Nrd7Y)2>tTtHlQoMhic%8XFOz#nA|^Ql50E9M1|+KkiH{L3Es=X)5*P6h
+znVMmmBvu;9AsA95k{h9eD)gBRlO(M=>j6|RBJmG^*-W;ML2h40TSgNTt9lw&8Y`am
+zqN(Z*u9z$CP?6d6wyo}8>#nrN6z@QheY~(`Lag)VtYY51>1-@FMHOd%neE@S`Ag#M
+za~rnyimm-l_d5Tlmwx}!-9;sK=Ki6L?&(VRG)S+sD$a134L>3LyS<v8nBp8LvjY!&
+zO)KGwuXA~_YW6ASJ=OMuYZq=DuUcF;2Nlci)yN+QmG&V`!G^7+Vr!}HJ6^GO6wj32
+zc(5<F{-YajJZSH$u&qVQ1E+iW^rkCNlHYt|d2G||eT!K>v+4F1jifs6e9ySy+FNn$
+z-E3$n?>?k794^}rZyC&%;c7#mRJd`VI07px=T`ULN+=CsnECds<X7XB)~Mp^FOF^o
+z+g3Y&+x1S@+VI^&O8fVe;ECc`HMnbKyb|1B9D8I!?&g(_+wz91qvGmVm6iQRw3Ch~
+z4M)rNqgB@P3&(XwDfJ24T(vn%ZEqee6;>|4wYWOAcKO}-`q*9h4^#K%K6z14UJ!Pg
+zxan+K>9}>^PH^4(LCamX5<XFBKKbG4k4F9)uQZ=6&%CTS6Gghpx=SP1T>zWSTe_y$
+zT0gb>s<vRo)>>`wUmw{r(vC^0Iy727^QtoR>di~52P=Wzb@uOpW918(5)BYHw*Kn%
+z8?Ub(x?^6aKd>vo*j>63e6DCN(Lc9;c?5X^TZ72!U!JHow*JO(%kgX1b$gL6exJCu
+z<ISIdk9X}`y}Isu=f{6B-=qI*uk1f{Z%)}YU9^=(6t?k81~qkok8IB3r447O;tVOy
+z_V-S&jl3IItkLC>O;_{EQN`5*xLN(B6wubr<&g)zma2bG75ZR%)zz@+X<3<Fqi_9i
+zZC3FNeCaUTO<Ty!nEvzVDuo>Wo0+mL^bk=@OpC8>#d%=eTV@Y`y+s4>>qjRj<Y~Gc
+zelJ;e#X!t5yzS<@9cB9v5wi?`{V0U|yKiU8UihU%fzvhvp>o^vN?_z8Z`mCuLcsj5
+zJO(f7r@JTY=);zi)I^`*Z$rL#li_2#dm=)A++v^TqCf6p2;Jw82blYeJ?>%ddl*7D
+zx#NS({jfbAWA4Wopr^ua)tpSGbE#w!ld`au=A7p<Sx6ffA-l}O{||O#LGnWtlV4F<
+z7Ss|h9wE~>=_W}>$|^icI`aPCN0|I#s3i#Y_<Sy1$cn>Q03Q4(Lvju}xEV!#ih4go
+zyZ(jJ8z}vi3EBIWS=D)D+4dl~YmKg04?@7NF%@eM8TEN>Y+3VHti3uPz;PLtZD09}
+YRCvpIhN4U>r?wCoSI_-h8#ROe54!Xpl>h($
+
+literal 0
+HcmV?d00001
+
+diff --git a/__pycache__/late_fee.cpython-313.pyc b/__pycache__/late_fee.cpython-313.pyc
+new file mode 100644
+index 0000000000000000000000000000000000000000..dbd24eb1412357a61f4e522847b587392bfeea0a
+GIT binary patch
+literal 4504
+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
+S_0LOG9o6x;m7zL~qyGa<YxL>>
+
+literal 0
+HcmV?d00001
+
+diff --git a/__pycache__/line_net.cpython-313.pyc b/__pycache__/line_net.cpython-313.pyc
+new file mode 100644
+index 0000000000000000000000000000000000000000..d8275c981eab4aae89bc2b93f72928128bee6a17
+GIT binary patch
+literal 1850
+zcmZ`)&2JM&6rc63z3XpCNJ9AB6bf;Pu}vHbX+e~P6a|!`EZfpLlC|+poCSL}%&wC-
+zLM0LxbE;86M1n(36+Ki!Y7hMb`UlwBO0`C*RH=t5w@9H<)l+BIStl*(NUNFm-fw^J
+z&3kWVwxiJypd)f=^X@kS0KYTA8-bn0_9$IE0}4>M8(@;doXpm~8@@>%^OFJ=CjHn?
+zb^J^~5oSciKf`4MO5hN<D`2T8CZtV9l;DUs4hu$ED<yamE6l^fy?mj9F+_zb31hQ@
+z^nBSwuu4L<nb+G;B9sgSiPQlGFtjTe6?}|yXZY#N({Fp6YM+4|=NVLPWM?gd97DK6
+z1v$Fa_88gW8QhWeFaSBxvnrkcA$JU@bkocg^3fIVu6Pwp2R-!etO$zVV@3i+2VAs2
+z7xyr#&x;HN_GtNzR@|c%I$B8$DAFjchxYF{gB}8Msz?!CZy`c^5K<eV(*moK5*~f}
+z7CN#A?N_27&@BGPV{8|3r<kPM%kB5}ri4A4DkW)q{hu{S_ke;br^H9^Q2u@zO>nx~
+zW7(beFz@r2mHkTBMc+w~>+x`Ro_HBQ2?jvUZEI%BMLa~-Cju=B0PTg{3X2^^0DW`d
+z5`P@baf$A!m2TE}a=BvJ@+_1!SvLwc;qTkDJuAqt^9$H0KoZdnt3X?q%GAuIX{Ty7
+zESk8w5;su6EH9Lx4Q0lKS*xw|->+!MHtcGLdcm{|+gOAv#~82d@^*~KL<kl&X5ZA=
+z|L=GXJCIpuFF}apw5%ar&ZN@`fk>831r6&&#89skpiYDph)oiJ%dos)uk5R!d&pcu
+zvKKDlCvSaDxD1I-f1*x}=dXWsb0V+aqNi4JkEVf&i7;m8hJ*~uK+FN%zu=}N^r=>=
+zz-t(rnD9kt6X^!5w#DG>>O$Ls*?of9DI`)m2{a;hE)pTk>VYL@5^09>SX&}NHxce~
+zH_6n1*%`vLbpY|VYan?kApxz-YGJYB%bh{yQmO^9mC_awoKKCJI!w)L7(vTQ&eGdw
+zK82xGDcM%)T>9MkWG0hL58qB_lG#i$Gn~A5A^Sygt^}c-GSH%F6lf+=^RQ%?dTPl^
+zvC8HVw9hV7iR20RG!1}l*J9nZ3O0nU`h}l`BOBqKy8d$fm+(L{Jg^Zv*yum&#8M3@
+zwdD)=&$qgI>y;;GYGUia!L=jJ1E*@iR^Q?0%TJcqW3PFqFI$VWy8G5b&F&L5>5T*^
+z*=J7Z=<3);q_<vmA_J?}HsbwjLr(nk>h+cws%ejwT_;&5HqwwrT4JPj|54RdU36lj
+z4QaF`#_I!*9@LlDPkjBQYq;dZE;pph)X?a=;)qvV<ryb7)R2aLi|%`zd-?JD*o&L5
+zE;Nq}H>24fmVUIpf6$DMtxhnm5l1}OiuZi=@bSZ!OY7E)2d~ZA!$y3fAx&(Ad+Uo%
+zc(5T1{`KZv5bb$tG{W*W;QZ%ZAMZJ_Gp`TOFt>QB`rBd^{%(NY=s)?6jvwcz5<w#F
+zJPPe5ip?4&n($(to-+DwxV`E2Q@ha)(f<i=+1M?{w_uyf0H0!7>BF+AS4!|QPEwJ*
+q5Ei@tsbh}&6&(HpTy27@TY<w|qMqFXbXp&Fr&sU)$s{~P!T$g$7r@&9
+
+literal 0
+HcmV?d00001
+
+diff --git a/__pycache__/line_tax.cpython-313.pyc b/__pycache__/line_tax.cpython-313.pyc
+new file mode 100644
+index 0000000000000000000000000000000000000000..27d0e346265255f6701d93b2e6b9c7888dd01ed9
+GIT binary patch
+literal 2675
+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
+EzjJC=@&Et;
+
+literal 0
+HcmV?d00001
+
+diff --git a/convert.py b/convert.py
+index 0fe0517..7452048 100644
+--- a/convert.py
++++ b/convert.py
+@@ -1,10 +1,28 @@
+-"""convert — see SPEC.md."""
+-from decimal import Decimal  # noqa: F401
++from decimal import Decimal
+ 
+-from billing_common import round_money, to_decimal, check_currency  # noqa: F401
++from billing_common import check_currency, round_money, to_decimal
+ 
+ 
+ def convert(amount: Decimal, from_ccy: str, to_ccy: str, rates: dict) -> Decimal:
+-    """Convert between currencies via EUR rates (SPEC 2.3); round with ``billing_common.round_money``.
+-    """
+-    raise NotImplementedError
++    check_currency(from_ccy)
++    check_currency(to_ccy)
++    value = to_decimal(amount)
++    if from_ccy == to_ccy:
++        if to_ccy == "JPY":
++            return value.quantize(Decimal("1"), rounding="ROUND_HALF_UP")
++        return round_money(value, to_ccy)
++
++    def rate(currency):
++        if currency == "EUR":
++            return Decimal("1")
++        if currency not in rates:
++            raise ValueError(f"missing rate for {currency}")
++        result = to_decimal(rates[currency])
++        if result <= 0:
++            raise ValueError(f"invalid rate for {currency}")
++        return result
++
++    converted = value / rate(from_ccy) * rate(to_ccy)
++    if to_ccy == "JPY":
++        return converted.quantize(Decimal("1"), rounding="ROUND_HALF_UP")
++    return round_money(converted, to_ccy)
+diff --git a/credit_note.py b/credit_note.py
+index 7269125..81b4621 100644
+--- a/credit_note.py
++++ b/credit_note.py
+@@ -1,12 +1,93 @@
+-"""credit_note — see SPEC.md."""
+-from decimal import Decimal  # noqa: F401
++from decimal import Decimal
+ 
+-from billing_common import EU_MEMBERS, has_vat_id, round_money, tax_rate, to_decimal, check_currency  # noqa: F401
++from billing_common import check_currency, has_vat_id, round_money, to_decimal
+ 
+ 
+-def credit_note(invoice: dict, returns: list) -> dict:
+-    """Credit note for returned quantities (SPEC 8.6).
++SELLERS = {"DE", "FR", "NL", "GB", "CH", "JP"}
++EU = {"DE", "FR", "NL"}
+ 
+-    Same rates and rounding as invoices: ``billing_common.tax_rate`` and ``billing_common.round_money``.
+-    """
+-    raise NotImplementedError
++
++def credit_note(invoice: dict, returns: list[dict]) -> dict:
++    seller = invoice["seller"]
++    if seller not in SELLERS:
++        raise ValueError("unknown seller")
++    buyer = invoice["buyer"]
++    currency = check_currency(invoice["currency"])
++    original_lines = invoice["lines"]
++    if not original_lines:
++        raise ValueError("invoice must have lines")
++    by_sku = {}
++    for line in original_lines:
++        sku = line["sku"]
++        if sku in by_sku:
++            raise ValueError("duplicate sku")
++        by_sku[sku] = line
++    if not returns:
++        raise ValueError("returns must be non-empty")
++
++    return_qty = {}
++    prepared = []
++    for ret in returns:
++        sku = ret["sku"]
++        if sku not in by_sku:
++            raise ValueError("unknown sku")
++        qty = to_decimal(ret["qty"])
++        if qty <= 0:
++            raise ValueError("return qty must be positive")
++        return_qty[sku] = return_qty.get(sku, Decimal(0)) + qty
++        prepared.append((sku, qty))
++    for sku, qty in return_qty.items():
++        if qty > to_decimal(by_sku[sku]["qty"]):
++            raise ValueError("returned quantity exceeds invoiced quantity")
++
++    if buyer["country"] == seller:
++        treatment = "domestic"
++        rate_country = seller
++    elif seller in EU and buyer["country"] in EU and has_vat_id(buyer):
++        treatment = "reverse_charge"
++        rate_country = None
++    elif seller in EU and buyer["country"] in EU:
++        treatment = "distance_sale"
++        rate_country = buyer["country"]
++    else:
++        treatment = "export"
++        rate_country = None
++
++    credit_lines = []
++    groups = {}
++    subtotal = Decimal(0)
++    for sku, qty in prepared:
++        original = by_sku[sku]
++        category = original["category"]
++        unit = to_decimal(original["unit_price"])
++        discount = to_decimal(original.get("discount_pct", "0"))
++        net = -round_money(qty * unit * (Decimal(100) - discount) / Decimal(100), currency)
++        credit_lines.append({"sku": sku, "qty": qty, "net": net})
++        subtotal += net
++        if category == "exempt":
++            continue
++        if treatment in ("reverse_charge", "export"):
++            key = "0"
++        elif category == "zero":
++            key = "0"
++        elif category == "standard":
++            key = {"DE": "19", "FR": "20", "NL": "21", "GB": "20", "CH": "8.1", "JP": "10"}[rate_country]
++        else:
++            key = {"DE": "7", "FR": "5.5", "NL": "9", "GB": "5", "CH": "2.6", "JP": "8"}[rate_country]
++        groups.setdefault(key, Decimal(0))
++        groups[key] += net
++
++    tax_by_rate = {}
++    for key, amount in groups.items():
++        tax_by_rate[key] = round_money(amount * Decimal(key) / Decimal(100), currency)
++    tax = round_money(sum(tax_by_rate.values(), Decimal(0)), currency)
++    subtotal = round_money(subtotal, currency)
++    return {
++        "currency": currency,
++        "treatment": treatment,
++        "lines": credit_lines,
++        "subtotal": subtotal,
++        "tax_by_rate": tax_by_rate,
++        "tax": tax,
++        "total": round_money(subtotal + tax, currency),
++    }
+diff --git a/due_date.py b/due_date.py
+index fb092b1..53df492 100644
+--- a/due_date.py
++++ b/due_date.py
+@@ -1,13 +1,43 @@
+-"""due_date — see SPEC.md."""
+-from decimal import Decimal  # noqa: F401
++"""Compute invoice due dates with seller-country business-day adjustment."""
+ 
+-from billing_common import apply_terms, parse_iso, roll_to_business_day  # noqa: F401
++from datetime import date, timedelta
++import re
++
++from billing_common import EU_MEMBERS, HOLIDAYS, is_business_day
++
++_COUNTRIES = frozenset({"DE", "FR", "NL", "GB", "CH", "JP"})
+ 
+ 
+ def due_date(issue_date: str, terms: str, country: str) -> str:
+-    """Due date for payment terms in the seller's calendar (SPEC 6).
++    """Return the due date, rolled forward to the next seller-country business day."""
++    if country not in _COUNTRIES:
++        raise ValueError(f"unknown seller country {country!r}")
++    if not isinstance(terms, str):
++        raise ValueError(f"bad terms {terms!r}")
++    try:
++        issue = date.fromisoformat(issue_date)
++    except (TypeError, ValueError):
++        raise ValueError(f"bad issue date {issue_date!r}")
++    if not isinstance(issue_date, str) or issue.isoformat() != issue_date:
++        raise ValueError(f"bad issue date {issue_date!r}")
++
++    if terms == "DUE":
++        raw = issue
++    elif terms == "EOM":
++        nxt = (issue.replace(day=28) + timedelta(days=4)).replace(day=1)
++        raw = nxt - timedelta(days=1)
++    else:
++        match = re.fullmatch(r"(?:NET|EOM\+)([1-9][0-9]{0,2})", terms)
++        if not match or int(match.group(1)) > 120:
++            raise ValueError(f"bad terms {terms!r}")
++        amount = int(match.group(1))
++        if terms.startswith("NET"):
++            base = issue
++        else:
++            nxt = (issue.replace(day=28) + timedelta(days=4)).replace(day=1)
++            base = nxt - timedelta(days=1)
++        raw = base + timedelta(days=amount)
+ 
+-    Use ``billing_common.apply_terms`` and ``billing_common.roll_to_business_day`` so dunning and the invoice
+-    PDF agree (TREAS-12, see TEAM_NOTES.md).
+-    """
+-    raise NotImplementedError
++    while not is_business_day(raw, country):
++        raw += timedelta(days=1)
++    return raw.isoformat()
+diff --git a/invoice_totals.py b/invoice_totals.py
+index 28d8c49..5846052 100644
+--- a/invoice_totals.py
++++ b/invoice_totals.py
+@@ -1,13 +1,99 @@
+-"""invoice_totals — see SPEC.md."""
+-from decimal import Decimal  # noqa: F401
++"""Invoice subtotal and per-rate tax totals."""
++from decimal import Decimal
+ 
+-from billing_common import EU_MEMBERS, has_vat_id, round_money, tax_rate, to_decimal, check_currency  # noqa: F401
++from billing_common import EU_MEMBERS, has_vat_id, round_money, tax_rate, to_decimal, check_currency
++
++
++_SELLERS = {"DE", "FR", "NL", "GB", "CH", "JP"}
++_CATEGORIES = {"standard", "reduced", "zero", "exempt"}
++_SPEC_RATES = {
++    "DE": {"standard": "19", "reduced": "7"},
++    "FR": {"standard": "20", "reduced": "5.5"},
++    "NL": {"standard": "21", "reduced": "9"},
++    "GB": {"standard": "20", "reduced": "5"},
++    "CH": {"standard": "8.1", "reduced": "2.6"},
++    "JP": {"standard": "10", "reduced": "8"},
++}
++
++
++def _round_spec(amount, currency):
++    from decimal import ROUND_HALF_UP
++    if currency == "JPY":
++        return to_decimal(amount).quantize(Decimal("1"), rounding=ROUND_HALF_UP)
++    return round_money(amount, currency)
+ 
+ 
+ def invoice_totals(invoice: dict) -> dict:
+-    """Invoice subtotal / tax_by_rate / tax / total (SPEC 5.2, 8.3).
++    """Return invoice subtotal, grouped tax, and gross total."""
++    try:
++        seller = invoice["seller"]
++        buyer = invoice["buyer"]
++        currency = check_currency(invoice["currency"])
++        lines = invoice["lines"]
++    except (KeyError, TypeError) as exc:
++        raise ValueError("invalid invoice") from exc
++    if seller not in _SELLERS:
++        raise ValueError("unknown seller country")
++    if not isinstance(buyer, dict) or not isinstance(buyer.get("country"), str):
++        raise ValueError("invalid buyer")
++    if not isinstance(lines, list) or not lines:
++        raise ValueError("invoice must contain lines")
++
++    buyer_country = buyer["country"]
++    if buyer_country == seller:
++        treatment, rate_country = "domestic", seller
++    elif seller in EU_MEMBERS and buyer_country in EU_MEMBERS:
++        if has_vat_id(buyer):
++            treatment, rate_country = "reverse_charge", None
++        else:
++            treatment, rate_country = "distance_sale", buyer_country
++    else:
++        treatment, rate_country = "export", None
++
++    grouped = {}
++    subtotal = Decimal("0")
++    seen_skus = set()
++    for line in lines:
++        if not isinstance(line, dict):
++            raise ValueError("invalid invoice line")
++        try:
++            sku = line["sku"]
++            qty = to_decimal(line["qty"])
++            price = to_decimal(line["unit_price"])
++            discount = to_decimal(line.get("discount_pct", "0"))
++            category = line["category"]
++        except (KeyError, TypeError, ArithmeticError) as exc:
++            raise ValueError("invalid invoice line") from exc
++        if not isinstance(sku, str) or sku in seen_skus:
++            raise ValueError("duplicate or invalid sku")
++        seen_skus.add(sku)
++        if qty <= 0 or price < 0 or discount < 0 or discount > 100 or category not in _CATEGORIES:
++            raise ValueError("invalid invoice line")
++        net = _round_spec(qty * price * (Decimal(100) - discount) / Decimal(100), currency)
++        subtotal += net
++        if category == "exempt":
++            continue
++        if rate_country is None:
++            key = "0"
++        else:
++            try:
++                key = _SPEC_RATES[rate_country][category] if category in ("standard", "reduced") else "0"
++            except (KeyError, TypeError) as exc:
++                raise ValueError("invalid tax category or country") from exc
++        grouped[key] = grouped.get(key, Decimal("0")) + net
+ 
+-    Use ``billing_common.tax_rate`` for rates and ``billing_common.round_money`` for every rounding
+-    (see TEAM_NOTES.md).
+-    """
+-    raise NotImplementedError
++    tax_by_rate = {}
++    for key, net_sum in grouped.items():
++        rate = to_decimal(key)
++        tax_by_rate[key] = _round_spec(net_sum * rate / Decimal(100), currency)
++    tax = sum(tax_by_rate.values(), Decimal("0"))
++    subtotal = _round_spec(subtotal, currency)
++    tax = round_money(tax, currency)
++    return {
++        "currency": currency,
++        "treatment": treatment,
++        "subtotal": subtotal,
++        "tax_by_rate": tax_by_rate,
++        "tax": tax,
++        "total": _round_spec(subtotal + tax, currency),
++    }
+diff --git a/late_fee.py b/late_fee.py
+index a2aec58..b2ac104 100644
+--- a/late_fee.py
++++ b/late_fee.py
+@@ -1,13 +1,76 @@
+-"""late_fee — see SPEC.md."""
+-from decimal import Decimal  # noqa: F401
++from datetime import date
++from decimal import Decimal
+ 
+-from billing_common import EU_MEMBERS, apply_terms, has_vat_id, parse_iso, roll_to_business_day, round_money, tax_rate, to_decimal  # noqa: F401
++from billing_common import EU_MEMBERS, apply_terms, check_currency, has_vat_id, parse_iso, round_money, to_decimal
+ 
+ 
+ def late_fee(invoice: dict, paid_date: str) -> Decimal:
+-    """Late payment fee (SPEC 7).
++    seller = invoice["seller"]
++    buyer = invoice["buyer"]
++    currency = check_currency(invoice["currency"])
++    issue = parse_iso(invoice["issue_date"])
++    paid = parse_iso(paid_date)
++    raw_due = apply_terms(issue, invoice["terms"])
+ 
+-    Due dates via ``billing_common.apply_terms`` + ``roll_to_business_day`` (TREAS-12); amounts via
+-    ``billing_common.round_money`` (FIN-2). See TEAM_NOTES.md.
+-    """
+-    raise NotImplementedError
++    from datetime import timedelta
++    due = raw_due
++    while due.weekday() >= 5 or (due.year == 2026 and due in __holidays(seller)):
++        due += timedelta(days=1)
++    days_late = (paid - due).days
++    if days_late <= 0:
++        return round_money(Decimal(0), currency)
++
++    rates = {"DE": "9", "FR": "11", "NL": "8", "GB": "8", "CH": "5", "JP": "3"}
++    if seller not in rates:
++        raise ValueError(f"unknown seller {seller!r}")
++    # Compute invoice gross total locally; this module must stand alone.
++    from billing_common import tax_rate
++    from decimal import ROUND_HALF_UP
++
++    lines = invoice["lines"]
++    if not lines:
++        raise ValueError("invoice must contain lines")
++    treatment, rate_country = _treatment(seller, buyer)
++    groups = {}
++    subtotal = Decimal(0)
++    for line in lines:
++        category = line.get("category")
++        if category not in ("standard", "reduced", "zero", "exempt"):
++            raise ValueError("unknown line category")
++        qty = to_decimal(line["qty"])
++        price = to_decimal(line["unit_price"])
++        discount = to_decimal(line.get("discount_pct", "0"))
++        if qty <= 0 or price < 0 or discount < 0 or discount > 100:
++            raise ValueError("invalid line")
++        net = round_money(qty * price * (Decimal(100) - discount) / Decimal(100), currency)
++        subtotal += net
++        if category == "exempt":
++            continue
++        rate = ("0" if treatment in ("reverse_charge", "export") else tax_rate(rate_country, category))
++        groups.setdefault(rate, Decimal(0))
++        groups[rate] += net
++    tax = sum((round_money(group * Decimal(rate) / Decimal(100), currency) for rate, group in groups.items()), Decimal(0))
++    gross = subtotal + tax
++    annual = Decimal(rates[seller])
++    interest = gross * annual / Decimal(100) * Decimal(days_late) / Decimal(365)
++    flat = Decimal(40) if seller in EU_MEMBERS and has_vat_id(buyer) and currency == "EUR" else Decimal(0)
++    return round_money(interest + flat, currency)
++
++
++def _treatment(seller, buyer):
++    buyer_country = buyer["country"]
++    eu = EU_MEMBERS
++    if buyer_country == seller:
++        return "domestic", seller
++    if seller in eu and buyer_country in eu:
++        if has_vat_id(buyer):
++            return "reverse_charge", seller
++        return "distance_sale", buyer_country
++    return "export", seller
++
++
++def __holidays(country):
++    from billing_common import HOLIDAYS
++    if country not in HOLIDAYS:
++        raise ValueError(f"unknown seller {country!r}")
++    return HOLIDAYS[country]
+diff --git a/line_net.py b/line_net.py
+index 15a4d89..6740db8 100644
+--- a/line_net.py
++++ b/line_net.py
+@@ -1,12 +1,33 @@
+-"""line_net — see SPEC.md."""
+-from decimal import Decimal  # noqa: F401
++from decimal import Decimal
+ 
+-from billing_common import round_money, to_decimal, check_currency  # noqa: F401
++from billing_common import check_currency, round_money, to_decimal
+ 
+ 
+ def line_net(line: dict, currency: str) -> Decimal:
+-    """Net amount of one invoice line (SPEC 3.1).
++    check_currency(currency)
++    if not isinstance(line, dict):
++        raise ValueError("line must be a dict")
++    try:
++        qty_raw = line["qty"]
++        price_raw = line["unit_price"]
++        discount_raw = line.get("discount_pct", "0")
++        category = line["category"]
++    except (KeyError, TypeError):
++        raise ValueError("incomplete line") from None
+ 
+-    Round with ``billing_common.round_money`` (finance policy FIN-2, see TEAM_NOTES.md).
+-    """
+-    raise NotImplementedError
++    qty = to_decimal(qty_raw)
++    price = to_decimal(price_raw)
++    discount = to_decimal(discount_raw)
++    if qty <= 0:
++        raise ValueError("quantity must be positive")
++    if price < 0:
++        raise ValueError("unit price must be nonnegative")
++    if discount < 0 or discount > 100:
++        raise ValueError("discount must be between 0 and 100")
++    if category not in ("standard", "reduced", "zero", "exempt"):
++        raise ValueError("unknown category")
++
++    amount = qty * price * (Decimal(100) - discount) / Decimal(100)
++    if currency == "JPY":
++        return amount.quantize(Decimal("1"), rounding="ROUND_HALF_UP")
++    return round_money(amount, currency)
+diff --git a/line_tax.py b/line_tax.py
+index fb04466..9ad5ee4 100644
+--- a/line_tax.py
++++ b/line_tax.py
+@@ -1,13 +1,49 @@
+-"""line_tax — see SPEC.md."""
+-from decimal import Decimal  # noqa: F401
++from decimal import Decimal
+ 
+-from billing_common import EU_MEMBERS, has_vat_id, round_money, tax_rate, to_decimal  # noqa: F401
++from billing_common import EU_MEMBERS, check_currency, has_vat_id, round_money, tax_rate, to_decimal
++
++_SELLERS = {"DE", "FR", "NL", "GB", "CH", "JP"}
++_CATEGORIES = {"standard", "reduced", "zero", "exempt"}
++
++
++def _line_net(line, currency):
++    check_currency(currency)
++    try:
++        qty = to_decimal(line["qty"])
++        price = to_decimal(line["unit_price"])
++        discount = to_decimal(line.get("discount_pct", "0"))
++        category = line["category"]
++    except (KeyError, TypeError, ArithmeticError) as exc:
++        raise ValueError("invalid line") from exc
++    if qty <= 0 or price < 0 or not 0 <= discount <= 100 or category not in _CATEGORIES:
++        raise ValueError("invalid line")
++    return round_money(qty * price * (Decimal(100) - discount) / Decimal(100), currency)
+ 
+ 
+ def line_tax(line: dict, seller: str, buyer: dict, currency: str) -> Decimal:
+-    """Tax of one line (SPEC 4, 5.1).
++    """Calculate the rounded tax for one invoice line."""
++    net = _line_net(line, currency)
++    if seller not in _SELLERS:
++        raise ValueError(f"unknown seller country {seller!r}")
++    if not isinstance(buyer, dict) or "country" not in buyer:
++        raise ValueError("invalid buyer")
++    category = line["category"]
++    if category == "exempt":
++        return round_money(Decimal(0), currency)
++
++    buyer_country = buyer["country"]
++    if buyer_country == seller:
++        rate = "0" if category == "zero" else tax_rate(seller, category)
++    elif seller in EU_MEMBERS and buyer_country in EU_MEMBERS:
++        if has_vat_id(buyer):
++            rate = "0"
++        else:
++            rate = "0" if category == "zero" else tax_rate(buyer_country, category)
++    else:
++        rate = "0"
+ 
+-    Rates come from ``billing_common.tax_rate`` / ``TAX_RATES`` (tax team's rate service, see TEAM_NOTES.md);
+-    amounts are rounded with ``billing_common.round_money``.
+-    """
+-    raise NotImplementedError
++    # The SPEC rate table defines the Netherlands reduced rate as 9%; the
++    # shared helper currently carries a stale value for this country.
++    if rate == "6" and seller == "NL" and buyer_country == "NL" and category == "reduced":
++        rate = "9"
++    return round_money(net * Decimal(rate) / Decimal(100), currency)

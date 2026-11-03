@@ -1,0 +1,31 @@
+{
+ "task": "invoicing",
+ "arm": "codex",
+ "trial": 1,
+ "model": "openai/gpt-6-luna",
+ "provider": "openai",
+ "version": "codex-cli 0.157.1",
+ "works": true,
+ "tests": "68/68",
+ "tests_passed": 68,
+ "tests_expected": 68,
+ "rules": [],
+ "build": "ok",
+ "minutes": 4.6,
+ "billed_usd": 0.0301,
+ "calls": 22,
+ "input_tokens": 962442,
+ "cached_tokens": 899737,
+ "output_tokens": 26566,
+ "cache_hit": 0.935,
+ "refused_calls": 0,
+ "stopped_by": "finished",
+ "traced_calls": 22,
+ "agent_threads": 1,
+ "tool_uses": {
+  "command_execution": 25,
+  "file_change": 7
+ },
+ "session_files": 1,
+ "subagent_threads": 0
+}

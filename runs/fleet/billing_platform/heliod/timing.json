@@ -1,0 +1,8 @@
+{
+  "key": "heliod-billing_platform",
+  "started": "2026-11-03T01:45:13.042Z",
+  "ended": "2026-11-03T01:46:28.692Z",
+  "stopped_by": "finished",
+  "budget_usd": 0.25,
+  "max_minutes": 15
+}

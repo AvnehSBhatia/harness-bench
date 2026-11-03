@@ -1,0 +1,163 @@
+{
+  "id": "pricing",
+  "version": 3,
+  "spec": "SPEC.md",
+  "functions": [
+    {
+      "name": "line_price",
+      "file": "line_price.py",
+      "test": "tests/test_line_price.py",
+      "subgoal": "Graduated volume tiers (SPEC 2)"
+    },
+    {
+      "name": "bundle_discount",
+      "file": "bundle_discount.py",
+      "test": "tests/test_bundle_discount.py",
+      "subgoal": "Bundle applications (SPEC 3)"
+    },
+    {
+      "name": "coupon_discount",
+      "file": "coupon_discount.py",
+      "test": "tests/test_coupon_discount.py",
+      "subgoal": "One coupon: validity + discount (SPEC 4.1-4.2)"
+    },
+    {
+      "name": "best_coupons",
+      "file": "best_coupons.py",
+      "test": "tests/test_best_coupons.py",
+      "subgoal": "Best allowed coupon combination (SPEC 4.3-4.4)"
+    },
+    {
+      "name": "loyalty_redemption",
+      "file": "loyalty_redemption.py",
+      "test": "tests/test_loyalty_redemption.py",
+      "subgoal": "Points redemption with tier caps (SPEC 5.1)"
+    },
+    {
+      "name": "price_cart",
+      "file": "price_cart.py",
+      "test": "tests/test_price_cart.py",
+      "subgoal": "Full cart pricing (SPEC 6)"
+    },
+    {
+      "name": "points_earned",
+      "file": "points_earned.py",
+      "test": "tests/test_points_earned.py",
+      "subgoal": "Points earned on the order (SPEC 5.2)"
+    }
+  ],
+  "traps": [
+    {
+      "id": "tier_all_units_line",
+      "function": "line_price",
+      "trap_test": "tests/test_line_price.py::test_quantity_across_tiers",
+      "family": "tier_all_units",
+      "trap_helpers": [
+        "tier_price"
+      ],
+      "code_patterns": [
+        "\\btier_price\\(",
+        "unit\\s*=\\s*.*\\n?.*\\*\\s*qty"
+      ],
+      "description": "promo_common.tier_price prices ALL units at the tier the quantity reaches. SPEC 2: graduated tiers."
+    },
+    {
+      "id": "tier_all_units_cart",
+      "function": "price_cart",
+      "trap_test": "tests/test_price_cart.py::test_bulk_order",
+      "family": "tier_all_units",
+      "trap_helpers": [
+        "tier_price"
+      ],
+      "code_patterns": [
+        "\\btier_price\\(",
+        "unit\\s*=\\s*.*\\n?.*\\*\\s*qty"
+      ],
+      "description": "promo_common.tier_price prices ALL units at the tier the quantity reaches. SPEC 2: graduated tiers."
+    },
+    {
+      "id": "point_value_redeem",
+      "function": "loyalty_redemption",
+      "trap_test": "tests/test_loyalty_redemption.py::test_redeem_blocks",
+      "family": "point_value",
+      "trap_helpers": [
+        "points_value",
+        "POINT_VALUE",
+        "REDEEM_BLOCK"
+      ],
+      "code_patterns": [
+        "\\bREDEEM_BLOCK\\b",
+        "\\bPOINT_VALUE\\b",
+        "\\bpoints_value\\(",
+        "//\\s*100\\b"
+      ],
+      "description": "promo_common.REDEEM_BLOCK=100 / POINT_VALUE=0.01 (100 points = 1.00). SPEC 5.1: blocks of 200, each 1.00."
+    },
+    {
+      "id": "point_value_cart",
+      "function": "price_cart",
+      "trap_test": "tests/test_price_cart.py::test_points_redemption",
+      "family": "point_value",
+      "trap_helpers": [
+        "points_value",
+        "POINT_VALUE",
+        "REDEEM_BLOCK"
+      ],
+      "code_patterns": [
+        "\\bREDEEM_BLOCK\\b",
+        "\\bPOINT_VALUE\\b",
+        "\\bpoints_value\\(",
+        "//\\s*100\\b"
+      ],
+      "description": "promo_common.REDEEM_BLOCK=100 / POINT_VALUE=0.01 (100 points = 1.00). SPEC 5.1: blocks of 200, each 1.00."
+    },
+    {
+      "id": "point_value_earned",
+      "function": "points_earned",
+      "trap_test": "tests/test_points_earned.py::test_after_redeeming_points",
+      "family": "point_value",
+      "trap_helpers": [
+        "points_value",
+        "POINT_VALUE",
+        "REDEEM_BLOCK"
+      ],
+      "code_patterns": [
+        "\\bREDEEM_BLOCK\\b",
+        "\\bPOINT_VALUE\\b",
+        "\\bpoints_value\\(",
+        "//\\s*100\\b"
+      ],
+      "description": "promo_common.REDEEM_BLOCK=100 / POINT_VALUE=0.01 (100 points = 1.00). SPEC 5.1: blocks of 200, each 1.00."
+    },
+    {
+      "id": "exclusive_coupons_best",
+      "function": "best_coupons",
+      "trap_test": "tests/test_best_coupons.py::test_exclusive_coupon_alone",
+      "family": "exclusive_coupons",
+      "trap_helpers": [
+        "can_combine"
+      ],
+      "code_patterns": [
+        "\\bcan_combine\\(",
+        "exclusive['\"]\\)\\s*and\\s*\\w+\\.get\\(['\"]exclusive"
+      ],
+      "description": "promo_common.can_combine only forbids exclusive+exclusive. SPEC 4.3: an exclusive coupon combines with nothing."
+    },
+    {
+      "id": "exclusive_coupons_cart",
+      "function": "price_cart",
+      "trap_test": "tests/test_price_cart.py::test_exclusive_with_other_coupon",
+      "family": "exclusive_coupons",
+      "trap_helpers": [
+        "can_combine"
+      ],
+      "code_patterns": [
+        "\\bcan_combine\\(",
+        "exclusive['\"]\\)\\s*and\\s*\\w+\\.get\\(['\"]exclusive"
+      ],
+      "description": "promo_common.can_combine only forbids exclusive+exclusive. SPEC 4.3: an exclusive coupon combines with nothing."
+    }
+  ],
+  "shared_module": "promo_common.py",
+  "notes_file": "TEAM_NOTES.md"
+}

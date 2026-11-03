@@ -1,0 +1,31 @@
+{
+ "task": "a06_unique_slug",
+ "arm": "codex",
+ "trial": 1,
+ "model": "openai/gpt-6-luna",
+ "provider": "openai",
+ "version": "codex-cli 0.157.1",
+ "works": true,
+ "tests": "5/5",
+ "tests_passed": 5,
+ "tests_expected": 5,
+ "rules": [],
+ "build": "ok",
+ "minutes": 0.2,
+ "billed_usd": 0.0033,
+ "calls": 6,
+ "input_tokens": 95393,
+ "cached_tokens": 78614,
+ "output_tokens": 906,
+ "cache_hit": 0.824,
+ "refused_calls": 0,
+ "stopped_by": "finished",
+ "traced_calls": 6,
+ "agent_threads": 1,
+ "tool_uses": {
+  "command_execution": 4,
+  "file_change": 1
+ },
+ "session_files": 1,
+ "subagent_threads": 0
+}

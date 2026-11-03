@@ -1,0 +1,17 @@
+diff --git a/blog/slugs.py b/blog/slugs.py
+index b67ed4c..814c313 100644
+--- a/blog/slugs.py
++++ b/blog/slugs.py
+@@ -7,4 +7,11 @@ def slugify(title):
+ 
+ def unique_slug(title, existing):
+     """Slug for a new post that does not clash with existing slugs."""
+-    raise NotImplementedError
++    base = slugify(title)
++    if base not in existing:
++        return base
++
++    suffix = 2
++    while f"{base}-{suffix}" in existing:
++        suffix += 1
++    return f"{base}-{suffix}"

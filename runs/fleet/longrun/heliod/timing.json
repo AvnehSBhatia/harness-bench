@@ -1,0 +1,8 @@
+{
+  "key": "heliod-longrun",
+  "started": "2026-11-03T02:01:20.284Z",
+  "ended": "2026-11-03T02:03:25.973Z",
+  "stopped_by": "finished",
+  "budget_usd": 0.25,
+  "max_minutes": 15
+}

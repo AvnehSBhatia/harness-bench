@@ -1,0 +1,211 @@
+{
+  "id": "billing_platform",
+  "version": 200,
+  "spec": "SPEC.md",
+  "functions": [
+    {
+      "name": "parse_amount",
+      "file": "parse_amount.py",
+      "test": "tests/test_parse_amount.py",
+      "subgoal": "Amount text parsing (SPEC 2-3)"
+    },
+    {
+      "name": "parse_usage",
+      "file": "parse_usage.py",
+      "test": "tests/test_parse_usage.py",
+      "subgoal": "Usage event line (SPEC 4)"
+    },
+    {
+      "name": "aggregate_usage",
+      "file": "aggregate_usage.py",
+      "test": "tests/test_aggregate_usage.py",
+      "subgoal": "Usage totals in a half-open window (SPEC 5)"
+    },
+    {
+      "name": "rated_usage",
+      "file": "rated_usage.py",
+      "test": "tests/test_rated_usage.py",
+      "subgoal": "Graduated usage charge (SPEC 6)"
+    },
+    {
+      "name": "convert",
+      "file": "convert.py",
+      "test": "tests/test_convert.py",
+      "subgoal": "FX conversion with banker's rounding (SPEC 7)"
+    },
+    {
+      "name": "line_tax",
+      "file": "line_tax.py",
+      "test": "tests/test_line_tax.py",
+      "subgoal": "Tax of one line (SPEC 8)"
+    },
+    {
+      "name": "prorate",
+      "file": "prorate.py",
+      "test": "tests/test_prorate.py",
+      "subgoal": "Calendar-day proration (SPEC 9)"
+    },
+    {
+      "name": "due_date",
+      "file": "due_date.py",
+      "test": "tests/test_due_date.py",
+      "subgoal": "Payment terms with weekend roll (SPEC 10)"
+    },
+    {
+      "name": "build_invoice",
+      "file": "build_invoice.py",
+      "test": "tests/test_build_invoice.py",
+      "subgoal": "Invoice assembly from SPEC 5-9 (SPEC 11)"
+    },
+    {
+      "name": "apply_credits",
+      "file": "apply_credits.py",
+      "test": "tests/test_apply_credits.py",
+      "subgoal": "Credits by expiry (SPEC 12)"
+    },
+    {
+      "name": "reconcile",
+      "file": "reconcile.py",
+      "test": "tests/test_reconcile.py",
+      "subgoal": "Reference-then-FIFO payment matching (SPEC 13)"
+    },
+    {
+      "name": "aging_report",
+      "file": "aging_report.py",
+      "test": "tests/test_aging_report.py",
+      "subgoal": "Aging buckets from SPEC 10 + 13 (SPEC 14)"
+    }
+  ],
+  "traps": [
+    {
+      "id": "half_up_convert",
+      "function": "convert",
+      "trap_test": "tests/test_convert.py::test_small_amounts",
+      "family": "half_up",
+      "trap_helpers": [
+        "round_money"
+      ],
+      "code_patterns": [
+        "\\bround_money\\(",
+        "ROUND_HALF_UP"
+      ],
+      "description": "platform_common.round_money rounds ROUND_HALF_UP. SPEC 2: every rounding is ROUND_HALF_EVEN."
+    },
+    {
+      "id": "half_up_line_tax",
+      "function": "line_tax",
+      "trap_test": "tests/test_line_tax.py::test_low_value_lines",
+      "family": "half_up",
+      "trap_helpers": [
+        "round_money"
+      ],
+      "code_patterns": [
+        "\\bround_money\\(",
+        "ROUND_HALF_UP"
+      ],
+      "description": "platform_common.round_money rounds ROUND_HALF_UP. SPEC 2: every rounding is ROUND_HALF_EVEN."
+    },
+    {
+      "id": "half_up_rated_usage",
+      "function": "rated_usage",
+      "trap_test": "tests/test_rated_usage.py::test_sub_unit_prices",
+      "family": "half_up",
+      "trap_helpers": [
+        "round_money"
+      ],
+      "code_patterns": [
+        "\\bround_money\\(",
+        "ROUND_HALF_UP"
+      ],
+      "description": "platform_common.round_money rounds ROUND_HALF_UP. SPEC 2: every rounding is ROUND_HALF_EVEN."
+    },
+    {
+      "id": "thirty_day_month_prorate",
+      "function": "prorate",
+      "trap_test": "tests/test_prorate.py::test_calendar_months",
+      "family": "thirty_day_month",
+      "trap_helpers": [
+        "remaining_fraction",
+        "BILLING_MONTH_DAYS"
+      ],
+      "code_patterns": [
+        "\\bremaining_fraction\\(",
+        "\\bBILLING_MONTH_DAYS\\b",
+        "/\\s*30\\b"
+      ],
+      "description": "platform_common.remaining_fraction divides by a 30-day month. SPEC 9: actual calendar days of the period."
+    },
+    {
+      "id": "thirty_day_month_build_invoice",
+      "function": "build_invoice",
+      "trap_test": "tests/test_build_invoice.py::test_plan_change_in_may",
+      "family": "thirty_day_month",
+      "trap_helpers": [
+        "remaining_fraction",
+        "BILLING_MONTH_DAYS"
+      ],
+      "code_patterns": [
+        "\\bremaining_fraction\\(",
+        "\\bBILLING_MONTH_DAYS\\b",
+        "/\\s*30\\b"
+      ],
+      "description": "platform_common.remaining_fraction divides by a 30-day month. SPEC 9: actual calendar days of the period."
+    },
+    {
+      "id": "period_end_inclusive_aggregate_usage",
+      "function": "aggregate_usage",
+      "trap_test": "tests/test_aggregate_usage.py::test_closing_instant",
+      "family": "period_end_inclusive",
+      "trap_helpers": [
+        "in_period"
+      ],
+      "code_patterns": [
+        "\\bin_period\\(",
+        "<=\\s*\\w*end"
+      ],
+      "description": "platform_common.in_period includes the window end. SPEC 5: start <= ts < end."
+    },
+    {
+      "id": "period_end_inclusive_build_invoice",
+      "function": "build_invoice",
+      "trap_test": "tests/test_build_invoice.py::test_month_end_usage",
+      "family": "period_end_inclusive",
+      "trap_helpers": [
+        "in_period"
+      ],
+      "code_patterns": [
+        "\\bin_period\\(",
+        "<=\\s*\\w*end"
+      ],
+      "description": "platform_common.in_period includes the window end. SPEC 5: start <= ts < end."
+    },
+    {
+      "id": "weekend_due_due_date",
+      "function": "due_date",
+      "trap_test": "tests/test_due_date.py::test_spring_invoices",
+      "family": "weekend_due",
+      "trap_helpers": [
+        "payment_due"
+      ],
+      "code_patterns": [
+        "\\bpayment_due\\("
+      ],
+      "description": "platform_common.payment_due never moves a Saturday/Sunday due date. SPEC 10: roll to the following Monday."
+    },
+    {
+      "id": "weekend_due_aging_report",
+      "function": "aging_report",
+      "trap_test": "tests/test_aging_report.py::test_spring_statement",
+      "family": "weekend_due",
+      "trap_helpers": [
+        "payment_due"
+      ],
+      "code_patterns": [
+        "\\bpayment_due\\("
+      ],
+      "description": "platform_common.payment_due never moves a Saturday/Sunday due date. SPEC 10: roll to the following Monday."
+    }
+  ],
+  "shared_module": "platform_common.py",
+  "notes_file": "TEAM_NOTES.md"
+}

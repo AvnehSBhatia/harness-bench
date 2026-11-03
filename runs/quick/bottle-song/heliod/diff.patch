@@ -1,0 +1,104 @@
+diff --git a/__pycache__/bottle_song.cpython-313.pyc b/__pycache__/bottle_song.cpython-313.pyc
+new file mode 100644
+index 0000000000000000000000000000000000000000..81508d3d47eeb8e948beb9512f618459b826d115
+GIT binary patch
+literal 1541
+zcmZuwOHbog6uyq_ydNaI#B?4WN|;8%F-Ztz0MX8%wzGk$Fh-+N6`ACccre$g?Eu4y
+zC9^8C7>TM~FzP1VvFI<DUyvz%1goklb(I|`L)EU@bDe}~rC!_Tb<g?Ex#u3YB9S11
+z_1%2)@i#0&zf+~VJRPAG1>rf8S(&+p9y2B?c~V@H0b`--LOsLq0R(DQVC%CW1TeA(
+zf;gF%y|PdC%K<qkhvaZNv=vl>6O0@II6v`7h_I^^&Rq&xr6}%t#E4Ly9L;y~$gzB9
+zuNOU-M~HBWXBa75z7xH~cO&2Md`BdF+gI+PnB55CRoErp8}F{9@KGekbDl1j6LPQO
+z1zTT^m9Fv$XyF5dLP$WXfvZTii`|P>d@KHyfW=A3@<7Em5vsyTD!YpBosPQ-=aKs*
+z<{={?#V>-j7oG=j4iZoTAF~Tk8^vD`+T7wufcS}T1P}$()izLSVA1gq!(k1A9oF74
+z9NsRQ7(3jCQ8j^T+hDh}U5B^uHYN^_wNlx3IHI`$n505YT9Zjz-E;|Ub(5onwzcV{
+zgtn^br-UB3Nr$I!b#<W7m|pl=V?gGZ=SYDun0|zi3XrnrAtSSdS@tN1LP9$^g^8jZ
+zJAzXDqMO?Bt{b+kW5?I#)}Bu&!9j@dElRNtUofhKmJQ7Dk?PhuHZ6;06@-0fQ&KF@
+zC3TzNvNUfLu~b$~f-Os2$D~k}Ol(zk+mf>5*-0^z5yx}O<5@A26|+-fJ~Q!&_<2<;
+zY)b9aqGgbhRK~hy6r~-jV_l=xbmfT?X?v|z%BE^z=Z1+3nvK)5x=~PdYcBnt?H;Jm
+z8U^y_K5D!r9N+tD`sr@%?g7_G3>_t(rR(wA$Ah)LnztU4>VByOp2&;=Y5on%?aW@k
+zP*zDvBPGEgf?dYKj;iZpdzpKrC}<mC#GOvHGYeMPsOm*QEflmOCN?-f5jNbA@NyZO
+z_>Qg%>sa`I+_VE%;_xP9gu&TTcb#BCt!RLv?P15ORw|ejodAX_z@}>BR0t-^R!z7Y
+zTiwLwZK&PxZo_S0%e+AqU!iK6P=^yFc-LNQUnH-QB8H)K9UV@GX*6$vw-o{+T&?#_
+zfkJrOJvMWo(5bU7fIvro3&k3t9`{W&LUH#66=YWp$1euMG4K9Im)AY~__-fNd-gy4
+zB|dOi{km|Rd@**yoZify-2W;5?g4+6xOL2*CPsfwWL_mQr-|Hw@2r3LIA6=WxO>_!
+z9t0cy=ogWvkw$FbK&uaq)x+Yy#qfKL=(VHiqp|wvOg%h%9^eOqe;_^(y6~aI)ayPp
+zD%G}sNKRfNCOq?fa`M@yhsv+RcaE}Oj?|V;@;?qu9da!eMdD{eQx}xKN=~+@?>S=l
+znZI6B(V~CiOJDMS#=n?i+}Qv|dtzRv<ZVg>AdY`_%P3ZLJZDaT>UNC&vF9wqFqfWN
+I%#7>%4?@#^!T<mO
+
+literal 0
+HcmV?d00001
+
+diff --git a/__pycache__/bottle_song_test.cpython-313-pytest-8.4.1.pyc b/__pycache__/bottle_song_test.cpython-313-pytest-8.4.1.pyc
+new file mode 100644
+index 0000000000000000000000000000000000000000..333744b5e3a2e2d4ecf6f1d52fe259a9256323ac
+GIT binary patch
+literal 3729
+zcmcgv%}*Og6rVL-dod8&G!RTbvP~O<RexXuDKrU98zrieimF*6Rc)lz+8*p}HfwmZ
+zhLBUGR#lI^<WQ-H9^saMg+m%?uQ_pxLZeEY`rfQDHY{{oHC@R+&&Qj6GrxK7H?zA#
+zLn(&O?{hofmd-Nvj4Jz&+Ai$g#lj<IFhjY;K#~8kn|&gtvzu{H^`IvK3G9j8O5W5!
+z)7cn1&y2otX2kC%ZlB(N<-z}KUr>frUCF9DR9Va_egb&a_IUNckTIoQ*<HZGBX(EL
+z0b+&%eMW4YL7e=6YQzx}hKiUp5{R0SMC>;-#FWtw1NBsPz(4hA)AJl|G~N0V7v9bw
+zzO=gUf;=VgN0V#2E8?=hR9xi_yWMR?miT<rUIxRZ8-4T29c4Ba^ysY4vhl@id@r-a
+zUA+z*u_Ap7y<xd^+pX(OSN9rRU$-152O19CD}CbDbbA?lc+VJJG@31^rd!pjUE{8Y
+zBR2G98n-vS)ZoA;97nHk-L(%540Tr6p>5w%d{uZBcv~@lz!HLkcYU>GIY5iTwz%NV
+zvaj(6E4=FQnxK{Gy1!DqgQlWrt+~8Wyw<GoV#5NL3z4sIx7sKI7cIvV#qw17V!l+$
+zPfagPmGh-?zC4$oEzNwLUv1gdd&Pi^yuh6(Hn?LqYsGcZZZ)aZ^l*a;D;xe870hKD
+z5bNCKU{}pGoC5bJdUvyMoZ%2oUFZnku@^D*OzJ1?`5@~bda8|WYh%BT{#MyeXE*1b
+zXfwNL^NQnPa;bsA(6hUto0NkwoD1|L?3KIs*jsP@{pi9D?IKWk!zqH-5ZYS^Z(!L!
+zE6H-KBcx`+NIhydiZ9tchj0w1)-UHaC!c83K!&e6#iCG>1Db6>XsMgfBgqz$pM@O?
+z|C9JkOFm^>n(MaLFw15;-~GujM#C)S1m7k{ub#9EUmTK(a9O$#&Y2r221znc;w;GQ
+zE+$HC&cZW0#Bh>4gfo`JE~(^KvG9of6D2p|^RYu(t}bT#rA7xpX$hpFKHHmEjHJ3b
+z$k8B~&@<if$L)H<i;&VVK;z#<*opy3njiP9d;FOE9_bQ8l#D<zh5vq7EC$+oU{%7G
+zi}MJS+bOA+qdj`Lxw@S$Jx0a6d^A%3J@0ge9_Ag-&{KgDcH|J!I5YTwKqgEltwHZ}
+z$gu6iE@Y@<oS;Auu85-tis+F>?^AXmj4~;R-DV%-i#wbROV0Fe&a6#qJ3aLnCGpb#
+zz*#9QRs+st6m~)p@<a%cxi@(|S|H}&B8{Oye%KSpg0Drn>lE7VjA-UL_^{)y=O7gJ
+zgD6=e*OoD&80TQF<ErOgwQR3NII`Odo466lItTN|IBT{b^1>!=M6%AoM;&K9dnQ9T
+zs<;0r5v7iukch)F5%G4rpMmd$W#B>oZCsjo4}s*WEK_e;>CU~%CTyq6k3V~&U6HxB
+zg<l(kzGj-Pb)TE2pEAw+&05Q$@}OzbEx6q?Yz7xk2PNKZnkJkf8s8)!eFS;_Oi^i?
+z;1YsAVw!lb_VAW!c^=r67A^-zULgZI*X8{S==(|n-O&U|)sHy)q&oZJbW)w^hC%hp
+zi??1^FTc#ps0+axXfS@wXqA@jc(yD2!K*79W~Y`mS2l>lLU66On{EO4I^d_3-`{ES
+zllyHc92`&%zSeSWk1GB^MSiZxySV%&@U<muzh>d}UrxSvLB4i5;BWyx$Jx=*FD4M4
+o_bH0<XNoDx5A6Hlm+_bq`y=&GQ5Jsw>gh;kdnEIcQBAJvFK@i9R{#J2
+
+literal 0
+HcmV?d00001
+
+diff --git a/bottle_song.py b/bottle_song.py
+index 9a5e67f..c70586e 100644
+--- a/bottle_song.py
++++ b/bottle_song.py
+@@ -1,2 +1,32 @@
+ def recite(start, take=1):
+-    pass
++    numbers = {
++        0: "no",
++        1: "one",
++        2: "two",
++        3: "three",
++        4: "four",
++        5: "five",
++        6: "six",
++        7: "seven",
++        8: "eight",
++        9: "nine",
++        10: "ten",
++    }
++
++    def bottle_phrase(count):
++        noun = "bottle" if count == 1 else "bottles"
++        return f"{numbers[count]} green {noun}"
++
++    verses = []
++    for count in range(start, max(start - take, 0), -1):
++        current = bottle_phrase(count).capitalize()
++        next_count = bottle_phrase(count - 1)
++        verses.append([
++            f"{current} hanging on the wall,",
++            f"{current} hanging on the wall,",
++            "And if one green bottle should accidentally fall,",
++            f"There'll be {next_count} hanging on the wall.",
++        ])
++
++    return [line for index, verse in enumerate(verses)
++            for line in (([""] if index else []) + verse)]

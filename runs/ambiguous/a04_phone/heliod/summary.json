@@ -1,0 +1,32 @@
+{
+ "task": "a04_phone",
+ "arm": "heliod",
+ "trial": 1,
+ "model": "openai/gpt-6-luna",
+ "provider": "openai",
+ "version": "heliod 0.1.14",
+ "works": true,
+ "tests": "12/12",
+ "tests_passed": 12,
+ "tests_expected": 12,
+ "rules": [],
+ "build": "ok",
+ "minutes": 0.7,
+ "billed_usd": 0.0028,
+ "calls": 8,
+ "input_tokens": 38251,
+ "cached_tokens": 30495,
+ "output_tokens": 2987,
+ "cache_hit": 0.797,
+ "refused_calls": 0,
+ "stopped_by": "finished",
+ "traced_calls": 8,
+ "agent_threads": 1,
+ "tool_uses": {
+  "bash": 8,
+  "read": 6,
+  "edit": 1
+ },
+ "session_files": 1,
+ "fleet_agents": 0
+}

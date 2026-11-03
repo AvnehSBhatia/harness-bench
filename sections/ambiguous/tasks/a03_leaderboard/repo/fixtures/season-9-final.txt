@@ -1,0 +1,7 @@
+SEASON 9: FINAL STANDINGS
+ 1  cat   150
+ 2  amy   150
+ 3  bob   120
+ 4  zed   120
+ 5  eve   120
+ 6  dan    90

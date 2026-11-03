@@ -1,0 +1,206 @@
+[
+ {
+  "id": "affine-cipher",
+  "model": "openai/gpt-6-luna",
+  "budget_usd": 0.05,
+  "max_minutes": 5
+ },
+ {
+  "id": "beer-song",
+  "model": "openai/gpt-6-luna",
+  "budget_usd": 0.05,
+  "max_minutes": 5
+ },
+ {
+  "id": "book-store",
+  "model": "openai/gpt-6-luna",
+  "budget_usd": 0.05,
+  "max_minutes": 5
+ },
+ {
+  "id": "bottle-song",
+  "model": "openai/gpt-6-luna",
+  "budget_usd": 0.05,
+  "max_minutes": 5
+ },
+ {
+  "id": "bowling",
+  "model": "openai/gpt-6-luna",
+  "budget_usd": 0.05,
+  "max_minutes": 5
+ },
+ {
+  "id": "connect",
+  "model": "openai/gpt-6-luna",
+  "budget_usd": 0.05,
+  "max_minutes": 5
+ },
+ {
+  "id": "dominoes",
+  "model": "openai/gpt-6-luna",
+  "budget_usd": 0.05,
+  "max_minutes": 5
+ },
+ {
+  "id": "dot-dsl",
+  "model": "openai/gpt-6-luna",
+  "budget_usd": 0.05,
+  "max_minutes": 5
+ },
+ {
+  "id": "food-chain",
+  "model": "openai/gpt-6-luna",
+  "budget_usd": 0.05,
+  "max_minutes": 5
+ },
+ {
+  "id": "forth",
+  "model": "openai/gpt-6-luna",
+  "budget_usd": 0.05,
+  "max_minutes": 5
+ },
+ {
+  "id": "go-counting",
+  "model": "openai/gpt-6-luna",
+  "budget_usd": 0.05,
+  "max_minutes": 5
+ },
+ {
+  "id": "grade-school",
+  "model": "openai/gpt-6-luna",
+  "budget_usd": 0.05,
+  "max_minutes": 5
+ },
+ {
+  "id": "grep",
+  "model": "openai/gpt-6-luna",
+  "budget_usd": 0.05,
+  "max_minutes": 5
+ },
+ {
+  "id": "hangman",
+  "model": "openai/gpt-6-luna",
+  "budget_usd": 0.05,
+  "max_minutes": 5
+ },
+ {
+  "id": "list-ops",
+  "model": "openai/gpt-6-luna",
+  "budget_usd": 0.05,
+  "max_minutes": 5
+ },
+ {
+  "id": "paasio",
+  "model": "openai/gpt-6-luna",
+  "budget_usd": 0.05,
+  "max_minutes": 5
+ },
+ {
+  "id": "phone-number",
+  "model": "openai/gpt-6-luna",
+  "budget_usd": 0.05,
+  "max_minutes": 5
+ },
+ {
+  "id": "pig-latin",
+  "model": "openai/gpt-6-luna",
+  "budget_usd": 0.05,
+  "max_minutes": 5
+ },
+ {
+  "id": "poker",
+  "model": "openai/gpt-6-luna",
+  "budget_usd": 0.05,
+  "max_minutes": 5
+ },
+ {
+  "id": "pov",
+  "model": "openai/gpt-6-luna",
+  "budget_usd": 0.05,
+  "max_minutes": 5
+ },
+ {
+  "id": "proverb",
+  "model": "openai/gpt-6-luna",
+  "budget_usd": 0.05,
+  "max_minutes": 5
+ },
+ {
+  "id": "react",
+  "model": "openai/gpt-6-luna",
+  "budget_usd": 0.05,
+  "max_minutes": 5
+ },
+ {
+  "id": "rest-api",
+  "model": "openai/gpt-6-luna",
+  "budget_usd": 0.05,
+  "max_minutes": 5
+ },
+ {
+  "id": "robot-name",
+  "model": "openai/gpt-6-luna",
+  "budget_usd": 0.05,
+  "max_minutes": 5
+ },
+ {
+  "id": "scale-generator",
+  "model": "openai/gpt-6-luna",
+  "budget_usd": 0.05,
+  "max_minutes": 5
+ },
+ {
+  "id": "sgf-parsing",
+  "model": "openai/gpt-6-luna",
+  "budget_usd": 0.05,
+  "max_minutes": 5
+ },
+ {
+  "id": "simple-linked-list",
+  "model": "openai/gpt-6-luna",
+  "budget_usd": 0.05,
+  "max_minutes": 5
+ },
+ {
+  "id": "transpose",
+  "model": "openai/gpt-6-luna",
+  "budget_usd": 0.05,
+  "max_minutes": 5
+ },
+ {
+  "id": "tree-building",
+  "model": "openai/gpt-6-luna",
+  "budget_usd": 0.05,
+  "max_minutes": 5
+ },
+ {
+  "id": "two-bucket",
+  "model": "openai/gpt-6-luna",
+  "budget_usd": 0.05,
+  "max_minutes": 5
+ },
+ {
+  "id": "variable-length-quantity",
+  "model": "openai/gpt-6-luna",
+  "budget_usd": 0.05,
+  "max_minutes": 5
+ },
+ {
+  "id": "wordy",
+  "model": "openai/gpt-6-luna",
+  "budget_usd": 0.05,
+  "max_minutes": 5
+ },
+ {
+  "id": "zebra-puzzle",
+  "model": "openai/gpt-6-luna",
+  "budget_usd": 0.05,
+  "max_minutes": 5
+ },
+ {
+  "id": "zipper",
+  "model": "openai/gpt-6-luna",
+  "budget_usd": 0.05,
+  "max_minutes": 5
+ }
+]

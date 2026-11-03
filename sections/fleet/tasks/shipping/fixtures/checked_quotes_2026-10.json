@@ -1,0 +1,78 @@
+{
+  "source": "carrier invoices 2026-10",
+  "checked_by": "ops-finance",
+  "quotes": [
+    {
+      "shipment": {
+        "origin": "10115",
+        "dest": "10117",
+        "parcel": {
+          "length": 10,
+          "width": 10,
+          "height": 10,
+          "weight": "2.1",
+          "unit": "metric"
+        },
+        "ship_at": "2026-10-08T10:00"
+      },
+      "carrier": "SWIFT",
+      "service": "express",
+      "checked": {
+        "billable_kg": "2.0",
+        "surcharges": {
+          "fuel": "1.64"
+        },
+        "total": "12.94",
+        "delivery_date": "2026-10-09"
+      }
+    },
+    {
+      "shipment": {
+        "origin": "10115",
+        "dest": "59071",
+        "parcel": {
+          "length": 40,
+          "width": 30,
+          "height": 20,
+          "weight": "3.2",
+          "unit": "metric"
+        },
+        "ship_at": "2026-10-08T11:30"
+      },
+      "carrier": "TERRA",
+      "service": "ground",
+      "checked": {
+        "billable_kg": "4.0",
+        "surcharges": {
+          "fuel": "1.13"
+        },
+        "total": "13.38",
+        "delivery_date": "2026-10-15"
+      }
+    },
+    {
+      "shipment": {
+        "origin": "10115",
+        "dest": "34117",
+        "parcel": {
+          "length": 40,
+          "width": 30,
+          "height": 20,
+          "weight": "3.2",
+          "unit": "metric"
+        },
+        "ship_at": "2026-10-15T18:10"
+      },
+      "carrier": "SWIFT",
+      "service": "express",
+      "checked": {
+        "billable_kg": "5.0",
+        "surcharges": {
+          "fuel": "3.68"
+        },
+        "total": "29.08",
+        "delivery_date": "2026-10-19"
+      }
+    }
+  ]
+}

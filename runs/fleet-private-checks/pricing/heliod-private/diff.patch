@@ -1,0 +1,518 @@
+diff --git a/best_coupons.py b/best_coupons.py
+index 4a3be33..d0b681e 100644
+--- a/best_coupons.py
++++ b/best_coupons.py
+@@ -1,12 +1,82 @@
+-"""best_coupons — see SPEC.md."""
+-from decimal import Decimal  # noqa: F401
++"""Choose the best legal coupon combination (SPEC sections 4.3-4.4)."""
++from decimal import Decimal
+ 
+-from promo_common import can_combine, coupon_active, merged_lines, money, product, tier_price, to_decimal  # noqa: F401
++from promo_common import coupon_active, merged_lines, money, product, to_decimal
+ 
+ 
+-def best_coupons(cart: dict, catalog: dict, coupons: list, today: str) -> list:
+-    """Best allowed coupon combination (SPEC 4.3-4.4).
++def best_coupons(cart: dict, catalog: dict, coupons: list, today: str) -> list[str]:
++    lines = merged_lines(cart)
+ 
+-    Stacking rules: ``promo_common.can_combine`` (promo policy PROMO-4, see TEAM_NOTES.md).
+-    """
+-    raise NotImplementedError
++    def line_total(sku, qty):
++        item = product(catalog, sku)
++        base = to_decimal(item["price"])
++        tiers = item.get("tiers") or []
++        total = Decimal("0")
++        start = 1
++        unit_price = base
++        for min_qty, tier_price in tiers:
++            count = max(0, min(qty, min_qty - 1) - start + 1)
++            total += count * unit_price
++            start = min_qty
++            unit_price = to_decimal(tier_price)
++        total += max(0, qty - start + 1) * unit_price
++        return money(total)
++
++    line_prices = {sku: line_total(sku, qty) for sku, qty in lines.items()}
++    subtotal = sum(line_prices.values(), Decimal("0"))
++
++    remaining = dict(lines)
++    bundle_discount = Decimal("0")
++    for bundle in catalog.get("bundles", []):
++        items = bundle["items"]
++        applications = min((remaining.get(sku, 0) // count for sku, count in items.items()), default=0)
++        if applications <= 0:
++            continue
++        base_total = sum(
++            (to_decimal(product(catalog, sku)["price"]) * count for sku, count in items.items()),
++            Decimal("0"),
++        )
++        per_application = money(base_total * to_decimal(bundle["pct"]) / Decimal("100"))
++        bundle_discount += per_application * applications
++        for sku, count in items.items():
++            remaining[sku] -= count * applications
++    cap = subtotal - money(bundle_discount)
++
++    # A code represents one coupon, even if it occurs more than once in input.
++    unique_coupons = {}
++    for coupon in coupons:
++        unique_coupons.setdefault(coupon["code"], coupon)
++
++    valid = []
++    for code, coupon in unique_coupons.items():
++        if not coupon_active(coupon, today):
++            continue
++        if subtotal < to_decimal(coupon.get("min_spend", 0)):
++            continue
++        categories = coupon.get("categories")
++        eligible = sum(
++            (price for sku, price in line_prices.items()
++             if categories is None or product(catalog, sku)["category"] in categories),
++            Decimal("0"),
++        )
++        value = to_decimal(coupon["value"])
++        if coupon["kind"] == "percent":
++            discount = money(eligible * value / Decimal("100"))
++        elif coupon["kind"] == "fixed":
++            discount = money(min(value, eligible))
++        else:
++            raise ValueError(f"unknown coupon kind {coupon['kind']!r}")
++        valid.append((code, discount, coupon))
++
++    candidates = [(Decimal("0"), [])]
++    for code, discount, coupon in valid:
++        candidates.append((min(discount, cap), [code]))
++    for index, (code_a, discount_a, coupon_a) in enumerate(valid):
++        for code_b, discount_b, coupon_b in valid[index + 1:]:
++            # Per SPEC, neither coupon may be exclusive when combining.
++            if coupon_a.get("exclusive", False) or coupon_b.get("exclusive", False):
++                continue
++            candidates.append((min(discount_a + discount_b, cap), sorted([code_a, code_b])))
++
++    _, chosen = min(candidates, key=lambda candidate: (-candidate[0], len(candidate[1]), candidate[1]))
++    return sorted(chosen)
+diff --git a/bundle_discount.py b/bundle_discount.py
+index 82e74b8..92cde4d 100644
+--- a/bundle_discount.py
++++ b/bundle_discount.py
+@@ -1,10 +1,29 @@
+-"""bundle_discount — see SPEC.md."""
+-from decimal import Decimal  # noqa: F401
++from decimal import Decimal
+ 
+-from promo_common import merged_lines, money, product, to_decimal  # noqa: F401
++from promo_common import merged_lines, product, to_decimal, money
+ 
+ 
+ def bundle_discount(cart: dict, catalog: dict) -> Decimal:
+-    """Bundle discount of a cart (SPEC 3).
+-    """
+-    raise NotImplementedError
++    remaining = merged_lines(cart)
++    for sku in remaining:
++        product(catalog, sku)
++    discount = Decimal("0.00")
++
++    for bundle in catalog.get("bundles", []):
++        items = bundle["items"]
++        applications = min(
++            (remaining.get(sku, 0) // count for sku, count in items.items()),
++            default=0,
++        )
++        if applications <= 0:
++            continue
++
++        base_value = sum(
++            (to_decimal(product(catalog, sku)["price"]) * count for sku, count in items.items()),
++            Decimal("0"),
++        )
++        discount += money(base_value * to_decimal(bundle["pct"]) / Decimal("100")) * applications
++        for sku, count in items.items():
++            remaining[sku] -= count * applications
++
++    return money(discount)
+diff --git a/coupon_discount.py b/coupon_discount.py
+index 1905f51..c2b93bf 100644
+--- a/coupon_discount.py
++++ b/coupon_discount.py
+@@ -1,12 +1,39 @@
+-"""coupon_discount — see SPEC.md."""
+-from decimal import Decimal  # noqa: F401
++from decimal import Decimal
+ 
+-from promo_common import coupon_active, merged_lines, money, product, tier_price, to_decimal  # noqa: F401
++from promo_common import merged_lines, money, product, coupon_active, to_decimal
+ 
+ 
+ def coupon_discount(cart: dict, catalog: dict, coupon: dict, today: str) -> Decimal:
+-    """Discount of one coupon (SPEC 4.1-4.2).
++    """Return the valid coupon's discount on its eligible cart lines."""
++    subtotal = Decimal("0")
++    eligible = Decimal("0")
++    categories = coupon.get("categories")
+ 
+-    Line prices via ``promo_common.tier_price``; windows via ``promo_common.coupon_active``.
+-    """
+-    raise NotImplementedError
++    for sku, qty in merged_lines(cart).items():
++        item = product(catalog, sku)
++        base = to_decimal(item["price"])
++        tiers = item.get("tiers") or []
++        price = Decimal("0")
++        first_unit = 1
++        unit_price = base
++        for min_qty, tier_price in tiers:
++            count = max(0, min(qty, min_qty - 1) - first_unit + 1)
++            price += count * unit_price
++            first_unit = min_qty
++            unit_price = to_decimal(tier_price)
++        price += max(0, qty - first_unit + 1) * unit_price
++        price = money(price)
++        subtotal += price
++        if categories is None or item["category"] in categories:
++            eligible += price
++
++    min_spend = to_decimal(coupon.get("min_spend", 0))
++    if not coupon_active(coupon, today) or subtotal < min_spend:
++        return Decimal("0.00")
++
++    value = to_decimal(coupon["value"])
++    if coupon["kind"] == "percent":
++        return money(eligible * value / Decimal("100"))
++    if coupon["kind"] == "fixed":
++        return money(min(value, eligible))
++    raise ValueError(f"unknown coupon kind {coupon['kind']!r}")
+diff --git a/line_price.py b/line_price.py
+index c27783b..c9c0363 100644
+--- a/line_price.py
++++ b/line_price.py
+@@ -1,12 +1,31 @@
+-"""line_price — see SPEC.md."""
+-from decimal import Decimal  # noqa: F401
++"""Pricing for a single product line (SPEC section 2)."""
++from decimal import Decimal
+ 
+-from promo_common import money, product, tier_price, to_decimal  # noqa: F401
++from promo_common import money, product, to_decimal
+ 
+ 
+ def line_price(sku: str, qty: int, catalog: dict) -> Decimal:
+-    """Price of one cart line (SPEC 2).
++    """Return the graduated-tier price for ``qty`` units of ``sku``."""
++    if not isinstance(qty, int) or isinstance(qty, bool) or qty < 1:
++        raise ValueError(f"bad qty {qty!r}")
+ 
+-    Volume tiers: ``promo_common.tier_price`` (same pricing the storefront shows, see TEAM_NOTES.md).
+-    """
+-    raise NotImplementedError
++    item = product(catalog, sku)
++    base_price = to_decimal(item["price"])
++    tiers = item.get("tiers") or []
++    total = Decimal("0")
++    first_unit = 1
++
++    for index, (min_qty, unit_price) in enumerate(tiers):
++        # Units before this tier retain the price of the preceding tier.
++        last_unit = min(qty, min_qty - 1)
++        if first_unit <= last_unit:
++            price = base_price if index == 0 else to_decimal(tiers[index - 1][1])
++            total += (last_unit - first_unit + 1) * price
++        first_unit = min_qty
++        if first_unit > qty:
++            return money(total)
++
++    if first_unit <= qty:
++        price = base_price if not tiers else to_decimal(tiers[-1][1])
++        total += (qty - first_unit + 1) * price
++    return money(total)
+diff --git a/loyalty_redemption.py b/loyalty_redemption.py
+index bf8c870..a0621cd 100644
+--- a/loyalty_redemption.py
++++ b/loyalty_redemption.py
+@@ -1,12 +1,24 @@
+-"""loyalty_redemption — see SPEC.md."""
+-from decimal import Decimal  # noqa: F401
++from decimal import Decimal
+ 
+-from promo_common import money, points_value, to_decimal, POINT_VALUE, REDEEM_BLOCK, TIER_CAP  # noqa: F401
++from promo_common import TIER_CAP, money, to_decimal
++
++
++REDEEM_BLOCK = 200
++BLOCK_VALUE = Decimal("1.00")
+ 
+ 
+ def loyalty_redemption(amount: Decimal, points: int, tier: str) -> dict:
+-    """Redeem loyalty points on an amount (SPEC 5.1).
++    amount = to_decimal(amount)
++    if amount < 0:
++        raise ValueError("negative amount")
++    if not isinstance(points, int) or isinstance(points, bool) or points < 0:
++        raise ValueError("negative or invalid points")
++    if tier not in TIER_CAP:
++        raise ValueError("unknown tier")
+ 
+-    Point values: ``promo_common.REDEEM_BLOCK`` / ``points_value`` (loyalty team, see TEAM_NOTES.md).
+-    """
+-    raise NotImplementedError
++    cap_value = amount * TIER_CAP[tier]
++    blocks_by_points = points // REDEEM_BLOCK
++    blocks_by_cap = int(cap_value // BLOCK_VALUE)
++    blocks = min(blocks_by_points, blocks_by_cap)
++    discount = money(BLOCK_VALUE * blocks)
++    return {"points_used": blocks * REDEEM_BLOCK, "discount": discount}
+diff --git a/points_earned.py b/points_earned.py
+index c0ed6f0..ffba3c7 100644
+--- a/points_earned.py
++++ b/points_earned.py
+@@ -1,12 +1,103 @@
+-"""points_earned — see SPEC.md."""
+-from decimal import Decimal  # noqa: F401
++"""Loyalty points earned on the final order total (SPEC section 5.2)."""
++from datetime import date
++from decimal import Decimal, ROUND_FLOOR
+ 
+-from promo_common import can_combine, coupon_active, merged_lines, money, points_value, product, tier_price, to_decimal, EARN_MULTIPLIER, POINT_VALUE, REDEEM_BLOCK, TIER_CAP  # noqa: F401
++from promo_common import EARN_MULTIPLIER, merged_lines, money, product, to_decimal
++
++
++TIER_CAP = {"basic": Decimal("0.20"), "silver": Decimal("0.30"), "gold": Decimal("0.50")}
++REDEEM_BLOCK = 200
++
++
++def _line_price(sku, qty, catalog):
++    if not isinstance(qty, int) or isinstance(qty, bool) or qty < 1:
++        raise ValueError(f"bad qty {qty!r}")
++    item = product(catalog, sku)
++    unit_price = to_decimal(item["price"])
++    tiers = item.get("tiers") or []
++    total = Decimal("0")
++    first_unit = 1
++    for min_qty, tier_price in tiers:
++        count = max(0, min(qty, min_qty - 1) - first_unit + 1)
++        total += count * unit_price
++        first_unit = min_qty
++        unit_price = to_decimal(tier_price)
++    total += max(0, qty - first_unit + 1) * unit_price
++    return money(total)
++
++
++def _bundle_discount(lines, catalog):
++    remaining = dict(lines)
++    discount = Decimal("0")
++    for bundle in catalog.get("bundles", []):
++        items = bundle["items"]
++        applications = min((remaining.get(sku, 0) // count for sku, count in items.items()), default=0)
++        if applications <= 0:
++            continue
++        base = sum(
++            (to_decimal(product(catalog, sku)["price"]) * count for sku, count in items.items()),
++            Decimal("0"),
++        )
++        discount += money(base * to_decimal(bundle["pct"]) / Decimal("100")) * applications
++        for sku, count in items.items():
++            remaining[sku] -= applications * count
++    return money(discount)
+ 
+ 
+ def points_earned(cart: dict, catalog: dict, coupons: list, customer: dict, today: str) -> int:
+-    """Loyalty points earned on an order (SPEC 5.2).
++    tier = customer["tier"]
++    if tier not in EARN_MULTIPLIER:
++        raise ValueError(f"unknown tier {tier!r}")
++
++    lines = merged_lines(cart)
++    line_prices = {sku: _line_price(sku, qty, catalog) for sku, qty in lines.items()}
++    subtotal = money(sum(line_prices.values(), Decimal("0")))
++    bundle_discount = _bundle_discount(lines, catalog)
++
++    unique = {}
++    for coupon in coupons:
++        unique.setdefault(coupon["code"], coupon)
++    valid = []
++    for code, coupon in unique.items():
++        if not (date.fromisoformat(coupon["starts"]) <= date.fromisoformat(today) <= date.fromisoformat(coupon["ends"])):
++            continue
++        if subtotal < to_decimal(coupon.get("min_spend", 0)):
++            continue
++        categories = coupon.get("categories")
++        eligible = sum(
++            (price for sku, price in line_prices.items()
++             if categories is None or product(catalog, sku)["category"] in categories),
++            Decimal("0"),
++        )
++        value = to_decimal(coupon["value"])
++        if coupon["kind"] == "percent":
++            discount = money(eligible * value / Decimal("100"))
++        elif coupon["kind"] == "fixed":
++            discount = money(min(value, eligible))
++        else:
++            raise ValueError(f"unknown coupon kind {coupon['kind']!r}")
++        valid.append((code, discount, coupon))
++
++    cap = max(Decimal("0"), subtotal - bundle_discount)
++    choices = [(Decimal("0"), [])]
++    for code, discount, coupon in valid:
++        choices.append((min(discount, cap), [code]))
++    for index, (code_a, discount_a, coupon_a) in enumerate(valid):
++        for code_b, discount_b, coupon_b in valid[index + 1:]:
++            if coupon_a.get("exclusive", False) or coupon_b.get("exclusive", False):
++                continue
++            choices.append((min(discount_a + discount_b, cap), sorted([code_a, code_b])))
++    coupon_discount, _ = min(choices, key=lambda choice: (-choice[0], len(choice[1]), choice[1]))
++
++    points_discount = Decimal("0")
++    if customer.get("redeem", False):
++        points = customer["points"]
++        if not isinstance(points, int) or isinstance(points, bool) or points < 0:
++            raise ValueError(f"invalid points {points!r}")
++        amount = max(Decimal("0"), subtotal - bundle_discount - coupon_discount)
++        blocks_by_points = points // REDEEM_BLOCK
++        blocks_by_cap = int((amount * TIER_CAP[tier]).to_integral_value(rounding=ROUND_FLOOR))
++        points_discount = Decimal(min(blocks_by_points, blocks_by_cap))
+ 
+-    Use the promo_common helpers (``tier_price``, ``can_combine``, ``points_value``), see TEAM_NOTES.md.
+-    """
+-    raise NotImplementedError
++    total = money(subtotal - bundle_discount - coupon_discount - points_discount)
++    return int((total * EARN_MULTIPLIER[tier]).to_integral_value(rounding=ROUND_FLOOR))
+diff --git a/price_cart.py b/price_cart.py
+index 8c2c86c..b347e37 100644
+--- a/price_cart.py
++++ b/price_cart.py
+@@ -1,12 +1,126 @@
+-"""price_cart — see SPEC.md."""
+-from decimal import Decimal  # noqa: F401
++"""Complete checkout pricing (SPEC section 6)."""
++from datetime import date
++from decimal import Decimal, ROUND_FLOOR
+ 
+-from promo_common import can_combine, coupon_active, merged_lines, money, points_value, product, tier_price, to_decimal, EARN_MULTIPLIER, POINT_VALUE, REDEEM_BLOCK, TIER_CAP  # noqa: F401
++from promo_common import merged_lines, money, product, to_decimal
++
++
++TIER_CAP = {"basic": Decimal("0.20"), "silver": Decimal("0.30"), "gold": Decimal("0.50")}
++REDEEM_BLOCK = 200
++
++
++def _line_price(sku, qty, catalog):
++    if not isinstance(qty, int) or isinstance(qty, bool) or qty < 1:
++        raise ValueError(f"bad qty {qty!r}")
++    item = product(catalog, sku)
++    base = to_decimal(item["price"])
++    tiers = item.get("tiers") or []
++    total = Decimal("0")
++    first_unit = 1
++    unit_price = base
++    for min_qty, tier_price in tiers:
++        count = max(0, min(qty, min_qty - 1) - first_unit + 1)
++        total += count * unit_price
++        first_unit = min_qty
++        unit_price = to_decimal(tier_price)
++    total += max(0, qty - first_unit + 1) * unit_price
++    return money(total)
++
++
++def _bundle_discount(lines, catalog):
++    remaining = dict(lines)
++    discount = Decimal("0")
++    for bundle in catalog.get("bundles", []):
++        items = bundle["items"]
++        applications = min((remaining.get(sku, 0) // count for sku, count in items.items()), default=0)
++        if applications <= 0:
++            continue
++        base_total = sum(
++            (to_decimal(product(catalog, sku)["price"]) * count for sku, count in items.items()),
++            Decimal("0"),
++        )
++        per_application = money(base_total * to_decimal(bundle["pct"]) / Decimal("100"))
++        discount += per_application * applications
++        for sku, count in items.items():
++            remaining[sku] -= count * applications
++    return money(discount)
++
++
++def _coupon_discount(lines, line_prices, subtotal, coupon, today, catalog):
++    if not (date.fromisoformat(coupon["starts"]) <= date.fromisoformat(today) <= date.fromisoformat(coupon["ends"])):
++        return None
++    if subtotal < to_decimal(coupon.get("min_spend", 0)):
++        return None
++
++    categories = coupon.get("categories")
++    eligible = sum(
++        (price for sku, price in line_prices.items()
++         if categories is None or product(catalog, sku)["category"] in categories),
++        Decimal("0"),
++    )
++    value = to_decimal(coupon["value"])
++    if coupon["kind"] == "percent":
++        return money(eligible * value / Decimal("100"))
++    if coupon["kind"] == "fixed":
++        return money(min(value, eligible))
++    raise ValueError(f"unknown coupon kind {coupon['kind']!r}")
+ 
+ 
+ def price_cart(cart: dict, catalog: dict, coupons: list, customer: dict, today: str) -> dict:
+-    """Full cart pricing (SPEC 6).
++    lines = merged_lines(cart)
++    line_prices = {sku: _line_price(sku, qty, catalog) for sku, qty in lines.items()}
++    subtotal = money(sum(line_prices.values(), Decimal("0")))
++    bundles = _bundle_discount(lines, catalog)
++
++    # Deduplicate by code, preserving the first coupon offered for that code.
++    coupon_by_code = {}
++    for coupon in coupons:
++        coupon_by_code.setdefault(coupon["code"], coupon)
++
++    valid = []
++    for code, coupon in coupon_by_code.items():
++        discount = _coupon_discount(lines, line_prices, subtotal, coupon, today, catalog)
++        if discount is not None:
++            valid.append((code, discount, coupon))
++
++    cap = max(Decimal("0"), subtotal - bundles)
++    candidates = [(Decimal("0"), [])]
++    for code, discount, coupon in valid:
++        candidates.append((min(discount, cap), [code]))
++    for index, (code_a, discount_a, coupon_a) in enumerate(valid):
++        for code_b, discount_b, coupon_b in valid[index + 1:]:
++            if coupon_a.get("exclusive", False) or coupon_b.get("exclusive", False):
++                continue
++            candidates.append((min(discount_a + discount_b, cap), sorted([code_a, code_b])))
++    coupon_discount, selected_codes = min(
++        candidates,
++        key=lambda candidate: (-candidate[0], len(candidate[1]), candidate[1]),
++    )
++    coupon_discount = money(coupon_discount)
++
++    points_used = 0
++    points_discount = Decimal("0.00")
++    if customer.get("redeem", False):
++        tier = customer["tier"]
++        if tier not in TIER_CAP:
++            raise ValueError(f"unknown tier {tier!r}")
++        points = customer["points"]
++        if not isinstance(points, int) or isinstance(points, bool) or points < 0:
++            raise ValueError(f"invalid points {points!r}")
++        amount = max(Decimal("0"), subtotal - bundles - coupon_discount)
++        blocks_by_points = points // REDEEM_BLOCK
++        blocks_by_cap = int((amount * TIER_CAP[tier]).to_integral_value(rounding=ROUND_FLOOR))
++        blocks = min(blocks_by_points, blocks_by_cap)
++        points_used = blocks * REDEEM_BLOCK
++        points_discount = money(Decimal(blocks))
+ 
+-    Use the promo_common helpers (``tier_price``, ``can_combine``, ``points_value``), see TEAM_NOTES.md.
+-    """
+-    raise NotImplementedError
++    total = money(subtotal - bundles - coupon_discount - points_discount)
++    return {
++        "subtotal": subtotal,
++        "bundle_discount": bundles,
++        "coupons": sorted(selected_codes),
++        "coupon_discount": coupon_discount,
++        "points_used": points_used,
++        "points_discount": points_discount,
++        "total": total,
++    }

@@ -1,0 +1,8 @@
+{
+  "key": "heliod-private-longrun",
+  "started": "2026-11-03T03:38:58.298Z",
+  "ended": "2026-11-03T03:40:40.712Z",
+  "stopped_by": "finished",
+  "budget_usd": 0.25,
+  "max_minutes": 15
+}

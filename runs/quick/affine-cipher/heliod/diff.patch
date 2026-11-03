@@ -1,0 +1,131 @@
+diff --git a/__pycache__/affine_cipher.cpython-313.pyc b/__pycache__/affine_cipher.cpython-313.pyc
+new file mode 100644
+index 0000000000000000000000000000000000000000..89fd0d7f1c0b6e1f73b7c03828d908c624f041ef
+GIT binary patch
+literal 2365
+zcmb7FOKclO7@qMyocM)Z2l`0UE_GYQsvPI#rc@;mr%~T7^2VsDt3+Gx)OPEv-B~AT
+zdy0gF5`mOR5GhDSN(Bchai~NOJ#avR0|*XDUD9Y3PMmxT&83{+pY^Vt6obSs?Z5N<
+zA2a{=&6d~eLLjl>>dl`xgnnloTO3wn>nJo9k&I+~0iDMbOGtK5hs^Cml#_YTyexng
+zvSQd-Wt+m-;IbLDx)0hJ%tkEX;SX-mRvgqKO4sL7C~dn#F{>rxlhX((ZiLc;wI3YE
+ztUUy0QJ70qS@+%^MN%|Xnvf<Y^|ExGNSR`Z<|jy3n4`>};Ts>i_}<x}_{iwEeD3Oq
+z;d);wOp*~wixh&ziq6bPMlqVw3Du*@ltyyV;i5{SIfZIO*CW@7mdQma(I*RKJ=)vd
+zdpy$96Y1_7?e2~A^hSD5L}EStS0lG4^O;*w<;IP?Mk1MfDMx5DM+*6(8l48a=J<GR
+zysLEA@QzO@g}kbi$@ndDmqM<{37>ul)C}5ix@LPm)+)}9<v_)GXv4Q>Wp7`_*T2%z
+zzsaGN&=#yh8J3_et<W$J_$eebChj<5Y#*J3qDbRXD7k&7Wg%w$gXrvs2x+{GQ@rkY
+z+i~(FT!o0>0?bwdq00^lUB1w`niOx_Z;Z)xpAo1tO-OM`mfkCpW>K4R<@E?$b;=Qe
+zUfQfoHXH%JO>M%Q?bH5C=+YQi;FDgqbEnw3by~wJ6xyXpSlu+LMm}J379lr+y62Lw
+z?X<~yDbDsjA<BHy6=FYT7`fS!4%qu;F&(tqqoQp=cE+q*2_idQd+sm_w<IV#ECb&&
+zKuJ5m#X!;r-&QZEK^%g37f}kqO?u$$@u=fUKt}9jc{GI<1<1-*%PNZpxEna^s4@$Q
+zhX5<X(ba9>yup{rowCjXlB5~RF2ra(l_eUvQ=)^$UVsEZr0Z0nm{AJ)U{`%=H>}j#
+zLA|U(8LtH6Pmc{PD+{NW0!z0)i!EM)?w>j%gAdwvW6JPOcYzAKOavH0p*T&b!4;`$
+zh)StMG}YiTIZ9da7|y(|=Ck>-!QU+AHAA3^mL&#PAX?aIxJm^juZ^>~t&_TLIBRjL
+z2A=^m8$w=F$sPIz*wUFn$&`0%>4~+qlyM#$8`2+vdI?bE0}F3H<J;DK{+ToD{(aB=
+z(yCut^B<b!*WJE_!@s&amO^Xpj*Yh6OZ+G2zT}pNzi3%)>zo}~_XOt?bBX(X%lJX-
+zS3?iHj}NRKeCLPIcbV@yR}Y@Av|m{BTwM1C=C93Nn;-jV%v!(HzvhwtaHBwI(}z61
+z`GL8Cg@KB@edaXyn?Esk;#n~Mb?i~#@$eJ=n{!WYKRY&53C1h#_zEAVEb`{O@G0=Z
+zzp+BP&Ic(h<21V;Q|yY=IN%K)c%uo1?OL^XLy#RQVFzz;ukc14^C`iu?*<PvXx`)v
+z5%A2Y@fAteF@EJZa0ZkoV~<AMCU4aJY_kb=Y@hbu;tio0dhOi)!5dAZYUHzxH~3^7
+z_l+bP3<Jm(64k#z%%Y_LOhg&egj;Kf;7Y}5v-;^?HpL!R%J4<^Gu6S=0Z;${Z|!j*
+zY6An5y(Rz~Z3^BtVmMX8V5`!@Y}*k~+h8DBFsQAej4qfn{c}(a6m0ka4GYQp2P(c!
+zfI|%v9nbxtRexyBf8>8)!uhD@;ajUx>{|fEnO{ObW_|`xBrEOmnrHMsKyh@_vmF#G
+ze7jlmiLhw!6G}N}zWTKTV})bF*-VBq&NbK85^Xs(QB)@jWRON-0>FXvgP=A!jPY-%
+cZBs<M+Gcz&L<f$&aJlg?-rDcN`%MFX12mhr(f|Me
+
+literal 0
+HcmV?d00001
+
+diff --git a/__pycache__/affine_cipher_test.cpython-313-pytest-8.4.1.pyc b/__pycache__/affine_cipher_test.cpython-313-pytest-8.4.1.pyc
+new file mode 100644
+index 0000000000000000000000000000000000000000..b180fef4184a7cf689141da4419852468d9b378a
+GIT binary patch
+literal 6005
+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
+
+literal 0
+HcmV?d00001
+
+diff --git a/affine_cipher.py b/affine_cipher.py
+index 2d41e04..ec13c75 100644
+--- a/affine_cipher.py
++++ b/affine_cipher.py
+@@ -1,6 +1,36 @@
++from math import gcd
++
++
++_ALPHABET_SIZE = 26
++
++
++def _validate_key(a):
++    if gcd(a, _ALPHABET_SIZE) != 1:
++        raise ValueError("a and m must be coprime.")
++
++
+ def encode(plain_text, a, b):
+-    pass
++    _validate_key(a)
++    encoded = []
++    for char in plain_text.lower():
++        if "a" <= char <= "z":
++            index = ord(char) - ord("a")
++            encoded.append(chr((a * index + b) % _ALPHABET_SIZE + ord("a")))
++        elif char.isdigit():
++            encoded.append(char)
++
++    text = "".join(encoded)
++    return " ".join(text[i:i + 5] for i in range(0, len(text), 5))
+ 
+ 
+ def decode(ciphered_text, a, b):
+-    pass
++    _validate_key(a)
++    inverse = pow(a, -1, _ALPHABET_SIZE)
++    decoded = []
++    for char in ciphered_text.lower():
++        if "a" <= char <= "z":
++            index = ord(char) - ord("a")
++            decoded.append(chr((inverse * (index - b)) % _ALPHABET_SIZE + ord("a")))
++        elif char.isdigit():
++            decoded.append(char)
++    return "".join(decoded)

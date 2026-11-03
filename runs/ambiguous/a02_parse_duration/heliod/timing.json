@@ -1,0 +1,8 @@
+{
+  "key": "heliod-a02_parse_duration",
+  "started": "2026-11-03T02:05:23.331Z",
+  "ended": "2026-11-03T02:05:43.804Z",
+  "stopped_by": "finished",
+  "budget_usd": 0.1,
+  "max_minutes": 8
+}

@@ -1,0 +1,120 @@
+diff --git a/__pycache__/beer_song.cpython-313.pyc b/__pycache__/beer_song.cpython-313.pyc
+new file mode 100644
+index 0000000000000000000000000000000000000000..267929493ead6f6d9cac8ec9241c3913182cdea1
+GIT binary patch
+literal 1445
+zcmaJ>&rcgi6rTOz#rP+f0ulwZO{r7|+l%ecgoZ>)kxD5ts4Oc*O<P#(!FDjSWM&<T
+zd*Nu*L&71IBlS>;i+kh9kw3u|Rb{QB2&pG-Zmr(?W^Gq3LLKeAnfJ{%Z@+o-cH6<A
+z4?$a8xO%F~2>s5TUK6{Mb_gb~kS^)M7<wvDlozA&l>lJ2N8!vq=o0kyk6?ffWFl&a
+zNKZJ`ZH6%0oe!bU?jl5FL;kS4W)31`NNYU8wWf=`T`FgIt}TOWh_}#VISxnBrMQAn
+zkKY?rl$k@wkNEy66qPFrYuGMRqHb>5<__N6RG(wYFjK8<)h=L_StK7*w{X5lNRi}K
+z(*`E9O=<&m%d+hfW{K=S#{vaj=tI!kbuh1x0muLNF+wKfR2Owg6Q?*PyBH)*_pA!K
+zLIjR+*+ewN?hZ(R-bbX>K|rqaWkU=h-D}7pl$MC}pNRbs(MLQ6av1_x|G(yewAb(e
+z7BnQVp|s2uMZ+ssAQx30tXS%<MRD(JJP%tKQ`I7FKK9L0DW;N}Nr}oQi<WA`!!u{|
+zFeb^VTjc}D<1Tgs$JDvG{|la=ypkNHlUt{+o8wCO+B+RVtpwKL%G9E*=B#~E3A&y|
+zaK|0FS$d_vhbJn-uDm^yF&@OER+;2tD!?}!I`K1#DwJ2Y<L_wN*tclT2@w3Pz0p<a
+z_+4+WKuw07e%EnXikY>G7GY44NOhZ&*9-=wrkT$PE@%r@4r>LI63ke93zKX?qnMRT
+zHq%lwsgL5xWPB#QK9h<kQ}NWj_-yjdm+@!iVs=O4w-e`OsugglXyvqh=3*NhOY9vu
+z9=D>MVT!Xw8z<&VR@N-BhY1&kszmGr%pq#}BQMSG=Pw6Vn*-}DkMvHcg`{Ap<wNh^
+zu77b7J1(3qRsGG;$)5&~zpDnC{?S_U!av>|n?72;oSHd(bTKvi+Iu!vU20B5Yb*8l
+z>Pz+ejj_Ac<x2=)p3EOlo^Di?%kW6G`0`op-CD5m!Tqzvv$^v}=R4<LH`bms0$(-5
+z!_`7#WV*gwf6%y>X#`e4$$$@(^!wT%6FKNA2SZeHJk%t4>?r2m9ws?QfqQ^4>Tx{o
+z_vy&|gQf#~k5W3I#Vm6aYkQkvoADoqdkZw|E_YHx$HC#BGW#6NA^KAp^7vY}QE1@s
+z(>IaPn*76bRe9?lYz87PGDn%(tzQEZO>gK$@F;kUYsTwu>g<>C)Wt~pH}9Q4`q0p1
+z%Zmb$!wii;xRt2jRyGX$HME}_zR;22o!_-`<r02KCjfIr@ZWJu5(MEdaYBf=+`j>v
+CIeEMQ
+
+literal 0
+HcmV?d00001
+
+diff --git a/__pycache__/beer_song_test.cpython-313-pytest-8.4.1.pyc b/__pycache__/beer_song_test.cpython-313-pytest-8.4.1.pyc
+new file mode 100644
+index 0000000000000000000000000000000000000000..f8f32ae923a5764657b55bfb7dcff8172fdf0f1e
+GIT binary patch
+literal 15331
+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
+a;(x|lrNa5YEq#0F#O9$B&jNpzkLrIO4Yq3l
+
+literal 0
+HcmV?d00001
+
+diff --git a/beer_song.py b/beer_song.py
+index 9a5e67f..3c19e33 100644
+--- a/beer_song.py
++++ b/beer_song.py
+@@ -1,2 +1,30 @@
+ def recite(start, take=1):
+-    pass
++    """Return ``take`` verses of the song, beginning at ``start`` bottles."""
++
++    def verse(bottles):
++        if bottles == 0:
++            return [
++                "No more bottles of beer on the wall, no more bottles of beer.",
++                "Go to the store and buy some more, 99 bottles of beer on the wall.",
++            ]
++
++        bottle_word = "bottle" if bottles == 1 else "bottles"
++        next_bottles = bottles - 1
++        if next_bottles == 0:
++            next_phrase = "no more bottles"
++        else:
++            next_word = "bottle" if next_bottles == 1 else "bottles"
++            next_phrase = f"{next_bottles} {next_word}"
++
++        action = "Take it down" if bottles == 1 else "Take one down"
++        return [
++            f"{bottles} {bottle_word} of beer on the wall, {bottles} {bottle_word} of beer.",
++            f"{action} and pass it around, {next_phrase} of beer on the wall.",
++        ]
++
++    lyrics = []
++    for offset in range(take):
++        if offset:
++            lyrics.append("")
++        lyrics.extend(verse((start - offset) % 100))
++    return lyrics

@@ -1,0 +1,33 @@
+{
+ "task": "bowling",
+ "arm": "heliod",
+ "trial": 1,
+ "model": "openai/gpt-6-luna",
+ "provider": "openai",
+ "version": "heliod 0.1.14",
+ "works": true,
+ "tests": "31/31",
+ "tests_passed": 31,
+ "tests_expected": 31,
+ "rules": [],
+ "build": "ok",
+ "minutes": 1,
+ "billed_usd": 0.0094,
+ "calls": 12,
+ "input_tokens": 284235,
+ "cached_tokens": 246330,
+ "output_tokens": 4475,
+ "cache_hit": 0.867,
+ "refused_calls": 0,
+ "stopped_by": "finished",
+ "traced_calls": 12,
+ "agent_threads": 1,
+ "tool_uses": {
+  "bash": 6,
+  "read": 5,
+  "write": 1,
+  "edit": 3
+ },
+ "session_files": 1,
+ "fleet_agents": 0
+}

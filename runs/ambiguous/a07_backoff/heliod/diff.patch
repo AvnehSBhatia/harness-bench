@@ -1,0 +1,33 @@
+diff --git a/__pycache__/retry.cpython-313.pyc b/__pycache__/retry.cpython-313.pyc
+new file mode 100644
+index 0000000000000000000000000000000000000000..414d303dbc53bb280df865628ee18497899e0b57
+GIT binary patch
+literal 678
+zcmYLHzl#$=6n?WwE+M(ZA1COE=m<6e_a>K1%poFpAvqgGTyupf!X!IMR(EH^%<M_d
+zMzFPr;DM#>)mm8kC*<zLVzCgkNhhSTb2dNp!F;@L-uJ%wIn8F%pd;9sJOc#qGa}2-
+zd=}G4atIb&1_3>kH#*BoR8Hy<(_{Kh!yz=lLbuNY&<sHHpUyJMi=3fmq@G1HvCMQ=
+ztZdBLQn?0uNE!sBu?F|GBS-)BR=k1C6o8djc0Dp4TmZ-b)_RU^Xq;zV$gdn!A2SsQ
+zjs;U<h;8Q5p~Mcyl68D;%bU1E2Lonfs<7%aJfK65aU~ae*YO;+F^P6}a3!*En8aQn
+z73RLeZH77PQRVEj$%>XtqGL?1YRJdJ^d5BsRujS(VM0*eV`0p5c-{z;3!^Yem15pN
+z$*2$G&>;=Ugd}vIvp%W%HY0s1IFr(BGv4VF!DQenNs5KyEpv0zENnd~6wN}(ES1gD
+zR`IDxy|&W}{6KpYDy=r{Jomd@(r2#Y+vJ7R2Kp8@2E#D7sI}%dBC>i1(KE@KhF9<-
+znH!yZ{qlS6(s;dcn%f?ywttb*C+qXYFV{b|zLMH$rhY<dA9mkVM`%=en|{CZZS~qQ
+zsU2tP<9PkgNv1BN7d~3Qmxw>iqnZB^O!X9qRSjY4j_2Ef%kGM^n$DKi-v)li5JFQU
+Kfp(ENqxoOJ2c=p7
+
+literal 0
+HcmV?d00001
+
+diff --git a/retry.py b/retry.py
+index f5607bd..6d9ecd6 100644
+--- a/retry.py
++++ b/retry.py
+@@ -1,3 +1,6 @@
+ def backoff_delays(retries):
+-    """Seconds to wait before each retry."""
+-    raise NotImplementedError
++    """Return retry delays in seconds, capped at the payments retry limit."""
++    if retries < 0:
++        raise ValueError("retries must not be negative")
++
++    return [min(2**attempt, 30) for attempt in range(min(retries, 6))]

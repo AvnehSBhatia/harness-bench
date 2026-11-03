@@ -1,0 +1,101 @@
+{
+  "source": "ledger close 2026-10",
+  "reconciled_by": "finance-ops",
+  "invoices": [
+    {
+      "id": "JP-2026-0912",
+      "seller": "JP",
+      "buyer": {
+        "country": "JP",
+        "vat_id": "T1234567890123"
+      },
+      "currency": "JPY",
+      "issue_date": "2026-09-30",
+      "terms": "EOM+30",
+      "lines": [
+        {
+          "sku": "LIC-TEAM",
+          "qty": 3,
+          "unit_price": "1999",
+          "discount_pct": "15",
+          "category": "standard"
+        },
+        {
+          "sku": "BOOK-API",
+          "qty": 1,
+          "unit_price": "333",
+          "category": "reduced"
+        }
+      ],
+      "reconciled": {
+        "subtotal": "5430.45",
+        "tax_by_rate": {
+          "10": "509.75",
+          "8": "26.64"
+        },
+        "total": "5966.84",
+        "due_date": "2026-10-30"
+      }
+    },
+    {
+      "id": "NL-2026-0417",
+      "seller": "NL",
+      "buyer": {
+        "country": "NL"
+      },
+      "currency": "EUR",
+      "issue_date": "2026-10-05",
+      "terms": "NET30",
+      "lines": [
+        {
+          "sku": "SUB-M",
+          "qty": 1,
+          "unit_price": "50",
+          "category": "standard"
+        },
+        {
+          "sku": "MEAL-BOX",
+          "qty": 8,
+          "unit_price": "25",
+          "category": "reduced"
+        }
+      ],
+      "reconciled": {
+        "subtotal": "250.00",
+        "tax_by_rate": {
+          "21": "10.50",
+          "6": "12.00"
+        },
+        "total": "272.50",
+        "due_date": "2026-11-04"
+      }
+    },
+    {
+      "id": "DE-2026-1881",
+      "seller": "DE",
+      "buyer": {
+        "country": "DE",
+        "vat_id": "DE811569869"
+      },
+      "currency": "EUR",
+      "issue_date": "2026-10-02",
+      "terms": "EOM",
+      "lines": [
+        {
+          "sku": "CONSULT-H",
+          "qty": "7.5",
+          "unit_price": "120",
+          "category": "standard"
+        }
+      ],
+      "reconciled": {
+        "subtotal": "900.00",
+        "tax_by_rate": {
+          "19": "171.00"
+        },
+        "total": "1071.00",
+        "due_date": "2026-10-30"
+      }
+    }
+  ]
+}

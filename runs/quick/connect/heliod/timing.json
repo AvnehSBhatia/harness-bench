@@ -1,0 +1,8 @@
+{
+  "key": "heliod-connect",
+  "started": "2026-11-03T02:17:44.600Z",
+  "ended": "2026-11-03T02:18:05.011Z",
+  "stopped_by": "finished",
+  "budget_usd": 0.05,
+  "max_minutes": 5
+}

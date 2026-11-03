@@ -1,0 +1,182 @@
+{
+  "effort": "medium",
+  "smoke": false,
+  "versions": {
+    "codex": "codex-cli 0.157.1",
+    "heliod": "heliod 0.1.14",
+    "codex-solo": "codex-cli 0.157.1",
+    "heliod-private": "heliod 0.1.14"
+  },
+  "manifest": {
+    "started": "2026-11-03T03:33:33.202Z",
+    "port_bench_commit": "f16910b697044896c811057d0d69b5376c12f230",
+    "port_bench_dirty": false,
+    "files": {
+      "sections/fleet/tasks.json": "904ab5511ca8a2e4",
+      "models.json": "fd0cae76e085ff8a",
+      "sections/fleet/grade.py": "df32f515b00dc0f4",
+      "sections/fleet/prepare.py": "46191c22400255b4",
+      "proxy.mjs": "c7eb61491fef000f",
+      "run.mjs": "ab15a821c42484f7"
+    },
+    "harnesses": {
+      "codex": "codex-cli 0.157.1",
+      "heliod": "heliod 0.1.14"
+    },
+    "tools": {
+      "node": "v26.13.0",
+      "python": "Python 3.13.2",
+      "rustc": "rustc 1.98.1 (48a229cea 2026-09-01)",
+      "cargo": "cargo 1.98.1 (797e8a9bc 2026-08-05)"
+    },
+    "os": "darwin 25.6.0 arm64",
+    "reasoning": "medium",
+    "trials": 1,
+    "arms": [
+      "heliod-private"
+    ],
+    "prompt": "Do the task described in TASK.md in this repository.",
+    "section": "fleet",
+    "section_budget_usd": 1,
+    "finished": "2026-11-03T03:40:40.837Z"
+  },
+  "rows": [
+    {
+      "task": "billing_platform",
+      "arm": "heliod-private",
+      "trial": 1,
+      "model": "openai/gpt-6-luna",
+      "provider": "openai",
+      "version": "heliod 0.1.14",
+      "works": true,
+      "tests": "96/96",
+      "tests_passed": 96,
+      "tests_expected": 96,
+      "rules": [],
+      "build": "ok",
+      "minutes": 1,
+      "billed_usd": 0.0246,
+      "calls": 51,
+      "input_tokens": 279067,
+      "cached_tokens": 149883,
+      "output_tokens": 13886,
+      "cache_hit": 0.537,
+      "refused_calls": 0,
+      "stopped_by": "finished"
+    },
+    {
+      "task": "invoicing",
+      "arm": "heliod-private",
+      "trial": 1,
+      "model": "openai/gpt-6-luna",
+      "provider": "openai",
+      "version": "heliod 0.1.14",
+      "works": true,
+      "tests": "68/68",
+      "tests_passed": 68,
+      "tests_expected": 68,
+      "rules": [],
+      "build": "ok",
+      "minutes": 1.1,
+      "billed_usd": 0.0217,
+      "calls": 49,
+      "input_tokens": 344424,
+      "cached_tokens": 233846,
+      "output_tokens": 11175,
+      "cache_hit": 0.679,
+      "refused_calls": 0,
+      "stopped_by": "finished"
+    },
+    {
+      "task": "pricing",
+      "arm": "heliod-private",
+      "trial": 1,
+      "model": "openai/gpt-6-luna",
+      "provider": "openai",
+      "version": "heliod 0.1.14",
+      "works": true,
+      "tests": "38/38",
+      "tests_passed": 38,
+      "tests_expected": 38,
+      "rules": [],
+      "build": "ok",
+      "minutes": 2.2,
+      "billed_usd": 0.0255,
+      "calls": 54,
+      "input_tokens": 464833,
+      "cached_tokens": 364704,
+      "output_tokens": 18656,
+      "cache_hit": 0.785,
+      "refused_calls": 0,
+      "stopped_by": "finished"
+    },
+    {
+      "task": "shipping",
+      "arm": "heliod-private",
+      "trial": 1,
+      "model": "openai/gpt-6-luna",
+      "provider": "openai",
+      "version": "heliod 0.1.14",
+      "works": true,
+      "tests": "48/48",
+      "tests_passed": 48,
+      "tests_expected": 48,
+      "rules": [],
+      "build": "ok",
+      "minutes": 0.9,
+      "billed_usd": 0.0171,
+      "calls": 43,
+      "input_tokens": 209667,
+      "cached_tokens": 135014,
+      "output_tokens": 12807,
+      "cache_hit": 0.644,
+      "refused_calls": 0,
+      "stopped_by": "finished"
+    },
+    {
+      "task": "longrun",
+      "arm": "heliod-private",
+      "trial": 1,
+      "model": "openai/gpt-6-luna",
+      "provider": "openai",
+      "version": "heliod 0.1.14",
+      "works": true,
+      "tests": "40/40",
+      "tests_passed": 40,
+      "tests_expected": 40,
+      "rules": [],
+      "build": "ok",
+      "minutes": 1.7,
+      "billed_usd": 0.0098,
+      "calls": 15,
+      "input_tokens": 191124,
+      "cached_tokens": 172349,
+      "output_tokens": 11406,
+      "cache_hit": 0.902,
+      "refused_calls": 0,
+      "stopped_by": "finished",
+      "blocks": {
+        "T1-10": {
+          "done": 10,
+          "behavior": 10,
+          "rules_kept": 1
+        },
+        "T11-20": {
+          "done": 10,
+          "behavior": 10,
+          "rules_kept": 1
+        },
+        "T21-30": {
+          "done": 10,
+          "behavior": 10,
+          "rules_kept": 1
+        },
+        "T31-40": {
+          "done": 10,
+          "behavior": 10,
+          "rules_kept": 1
+        }
+      }
+    }
+  ]
+}

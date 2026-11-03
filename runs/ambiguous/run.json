@@ -1,0 +1,42 @@
+{
+ "run": "2026-11-03T02-04-45-432Z-ambiguous",
+ "manifest": {
+  "started": "2026-11-03T02:04:46.650Z",
+  "port_bench_commit": "HEAD",
+  "port_bench_dirty": false,
+  "files": {
+   "sections/ambiguous/tasks.json": "2a55390556783166",
+   "models.json": "fd0cae76e085ff8a",
+   "sections/ambiguous/grade.py": "5fd96b27a52ac7ef",
+   "sections/ambiguous/prepare.py": "b4f2c9b28bf34c8a",
+   "proxy.mjs": "c7eb61491fef000f",
+   "run.mjs": "90a621f9272d5cc7"
+  },
+  "harnesses": {
+   "codex": "codex-cli 0.157.1",
+   "heliod": "heliod 0.1.14"
+  },
+  "tools": {
+   "node": "v26.13.0",
+   "python": "Python 3.13.2",
+   "rustc": "rustc 1.98.1 (48a229cea 2026-09-01)",
+   "cargo": "cargo 1.98.1 (797e8a9bc 2026-08-05)"
+  },
+  "os": "darwin 25.6.0 arm64",
+  "reasoning": "medium",
+  "trials": 1,
+  "arms": [
+   "codex",
+   "heliod"
+  ],
+  "prompt": "Do the task described in TASK.md in this repository.",
+  "section": "ambiguous",
+  "section_budget_usd": 1,
+  "finished": "2026-11-03T02:12:11.246Z"
+ },
+ "versions": {
+  "codex": "codex-cli 0.157.1",
+  "heliod": "heliod 0.1.14",
+  "codex-solo": "codex-cli 0.157.1"
+ }
+}

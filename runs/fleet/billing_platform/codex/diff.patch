@@ -1,0 +1,783 @@
+diff --git a/aggregate_usage.py b/aggregate_usage.py
+index 7238689..aad635c 100644
+--- a/aggregate_usage.py
++++ b/aggregate_usage.py
+@@ -1,12 +1,52 @@
+-"""aggregate_usage — see SPEC.md."""
+-from decimal import Decimal  # noqa: F401
++"""Aggregate usage events over a half-open timestamp interval."""
++import re
+ 
+-from platform_common import USAGE_METRICS, format_ts, in_period, parse_ts  # noqa: F401
++from platform_common import USAGE_METRICS, format_ts, parse_ts
+ 
+ 
+-def aggregate_usage(lines: list, start: str, end: str) -> dict:
+-    """Usage totals in a billing window (SPEC 5).
++def _parse_line(line):
++    fields = line.split("|")
++    if len(fields) != 5:
++        raise ValueError("bad line: expected 5 fields")
++    event_id, account, metric, quantity, timestamp = (field.strip() for field in fields)
++    if not event_id or not account:
++        raise ValueError("bad line: empty field")
++    if metric not in USAGE_METRICS:
++        raise ValueError(f"unknown metric: {metric}")
++    if not re.fullmatch(r"[0-9]+", quantity):
++        raise ValueError(f"bad quantity: {quantity}")
++    try:
++        parsed_ts = format_ts(parse_ts(timestamp))
++    except ValueError:
++        raise ValueError(f"bad timestamp: {timestamp}") from None
++    return {"id": event_id, "account": account, "metric": metric,
++            "quantity": int(quantity), "ts": parsed_ts}
++
+ 
+-    Use the platform_common helpers (``in_period``, ``parse_ts``), see TEAM_NOTES.md.
+-    """
+-    raise NotImplementedError
++def aggregate_usage(lines: list, start: str, end: str) -> dict:
++    try:
++        start_dt = parse_ts(start)
++    except ValueError:
++        raise ValueError(f"bad timestamp: {start}") from None
++    try:
++        end_dt = parse_ts(end)
++    except ValueError:
++        raise ValueError(f"bad timestamp: {end}") from None
++    if start_dt >= end_dt:
++        raise ValueError("empty period")
++    result = {}
++    seen = set()
++    for line in lines:
++        stripped = line.strip()
++        if not stripped or stripped.startswith("#"):
++            continue
++        parsed = _parse_line(stripped)
++        if parsed["id"] in seen:
++            continue
++        seen.add(parsed["id"])
++        event_dt = parse_ts(parsed["ts"])
++        if start_dt <= event_dt < end_dt:
++            account = result.setdefault(parsed["account"], {})
++            metric = parsed["metric"]
++            account[metric] = account.get(metric, 0) + parsed["quantity"]
++    return result
+diff --git a/aging_report.py b/aging_report.py
+index 78eefbf..8e41e96 100644
+--- a/aging_report.py
++++ b/aging_report.py
+@@ -1,12 +1,108 @@
+-"""aging_report — see SPEC.md."""
+-from decimal import Decimal  # noqa: F401
++"""Summarize open receivables by currency and age bucket."""
++import re
++from calendar import monthrange
++from datetime import date, timedelta
++from decimal import Decimal, ROUND_HALF_EVEN
+ 
+-from platform_common import MINOR_UNITS, payment_due, quantum, to_decimal  # noqa: F401
++from platform_common import MINOR_UNITS
++
++
++def _amount_text(text, currency):
++    value = text.strip() if isinstance(text, str) else ""
++    integer = r"(?:[0-9]+|[0-9]{1,3}(?:,[0-9]{3})+)"
++    number_re = rf"-?{integer}(?:\.[0-9]+)?|\({integer}(?:\.[0-9]+)?\)"
++    match = re.fullmatch(rf"(?:(?P<code>[A-Z]{{3}}) )?(?P<number>{number_re})", value)
++    if not match:
++        raise ValueError(f"bad amount: {text}")
++    if match.group("code") is not None and match.group("code") != currency:
++        raise ValueError("currency mismatch")
++    number = match.group("number")
++    negative = number.startswith(("-", "("))
++    number = number[1:-1] if number.startswith("(") else (number[1:] if number.startswith("-") else number)
++    number = number.replace(",", "")
++    if len(number.partition(".")[2]) > MINOR_UNITS[currency]:
++        raise ValueError("too many decimals")
++    if negative:
++        number = "-" + number
++    return Decimal(number).quantize(Decimal(1).scaleb(-MINOR_UNITS[currency]), rounding=ROUND_HALF_EVEN)
++
++
++def _due_date(issued, terms):
++    if terms == "EOM":
++        day = date.fromisoformat(issued)
++        raw = date(day.year, day.month, monthrange(day.year, day.month)[1])
++    elif re.fullmatch(r"NET[0-9]+", terms) and int(terms[3:]) <= 120:
++        raw = date.fromisoformat(issued) + timedelta(days=int(terms[3:]))
++    else:
++        raise ValueError(f"bad terms: {terms}")
++    if raw.weekday() == 5:
++        raw += timedelta(days=2)
++    elif raw.weekday() == 6:
++        raw += timedelta(days=1)
++    return raw
+ 
+ 
+ def aging_report(invoices: list, payments: list, as_of: str) -> dict:
+-    """Receivables aging (SPEC 14).
++    as_of_date = date.fromisoformat(as_of)
++    active_invoices = [invoice for invoice in invoices if date.fromisoformat(invoice["issued"]) <= as_of_date]
++    active_payments = [payment for payment in payments if date.fromisoformat(payment["date"]) <= as_of_date]
++
++    invoice_state = []
++    for invoice in active_invoices:
++        currency = invoice["currency"]
++        if currency not in MINOR_UNITS:
++            raise ValueError(f"unknown currency: {currency}")
++        invoice_state.append({"record": invoice, "currency": currency,
++                              "balance": _amount_text(invoice["total"], currency)})
++    payment_state = []
++    for payment in active_payments:
++        currency = payment["currency"]
++        if currency not in MINOR_UNITS:
++            raise ValueError(f"unknown currency: {currency}")
++        payment_state.append({"record": payment, "currency": currency,
++                              "left": _amount_text(payment["amount"], currency)})
++    payment_state.sort(key=lambda state: (state["record"]["date"], state["record"]["id"]))
++    for payment in payment_state:
++        reference = payment["record"].get("reference")
++        if reference is None or payment["left"] <= 0:
++            continue
++        key = reference.strip().casefold()
++        for invoice in invoice_state:
++            if (invoice["currency"] == payment["currency"]
++                    and str(invoice["record"]["id"]).casefold() == key
++                    and invoice["balance"] > 0):
++                amount = min(payment["left"], invoice["balance"])
++                if amount > 0:
++                    payment["left"] -= amount
++                    invoice["balance"] -= amount
++                break
++    invoice_fifo = sorted(invoice_state,
++                          key=lambda state: (state["record"]["issued"], state["record"]["id"]))
++    for payment in payment_state:
++        if payment["left"] <= 0:
++            continue
++        for invoice in invoice_fifo:
++            if invoice["currency"] != payment["currency"] or invoice["balance"] <= 0:
++                continue
++            amount = min(payment["left"], invoice["balance"])
++            if amount > 0:
++                payment["left"] -= amount
++                invoice["balance"] -= amount
++            if payment["left"] <= 0:
++                break
+ 
+-    Use the platform_common helpers (``payment_due``), see TEAM_NOTES.md.
+-    """
+-    raise NotImplementedError
++    buckets = ("current", "1-30", "31-60", "61-90", "90+")
++    result = {}
++    for invoice in invoice_state:
++        balance = invoice["balance"]
++        if balance <= 0:
++            continue
++        currency = invoice["currency"]
++        if currency not in result:
++            zero = Decimal("0").quantize(Decimal(1).scaleb(-MINOR_UNITS[currency]))
++            result[currency] = {bucket: zero for bucket in buckets}
++        due = _due_date(invoice["record"]["issued"], invoice["record"]["terms"])
++        days = (as_of_date - due).days
++        bucket = "current" if days <= 0 else "1-30" if days <= 30 else "31-60" if days <= 60 else "61-90" if days <= 90 else "90+"
++        result[currency][bucket] += balance
++    return result
+diff --git a/apply_credits.py b/apply_credits.py
+index 7eaa78c..8aa0e49 100644
+--- a/apply_credits.py
++++ b/apply_credits.py
+@@ -1,12 +1,56 @@
+-"""apply_credits — see SPEC.md."""
+-from decimal import Decimal  # noqa: F401
++"""Apply usable credits to an invoice total."""
++import re
++from datetime import date
++from decimal import Decimal, ROUND_HALF_EVEN
+ 
+-from platform_common import MINOR_UNITS, quantum, round_money, to_decimal  # noqa: F401
++from platform_common import MINOR_UNITS, to_decimal
+ 
+ 
+-def apply_credits(total, currency: str, credits: list, today: str) -> dict:
+-    """Customer credits against an invoice total (SPEC 12).
++def _parse_amount(text, currency):
++    value = text.strip() if isinstance(text, str) else ""
++    pattern = r"(?:(?P<code>[A-Z]{3}) )?(?P<number>-?(?:[0-9]+|[0-9]{1,3}(?:,[0-9]{3})+)(?:\.[0-9]+)?|\((?:[0-9]{1,3}(?:,[0-9]{3})+|[0-9]+)(?:\.[0-9]+)?\))"
++    match = re.fullmatch(pattern, value)
++    if not match:
++        raise ValueError(f"bad amount: {text}")
++    if match.group("code") is not None and match.group("code") != currency:
++        raise ValueError("currency mismatch")
++    number = match.group("number")
++    negative = number.startswith(("-", "("))
++    number = number[1:-1] if number.startswith("(") else (number[1:] if number.startswith("-") else number)
++    number = number.replace(",", "")
++    if len(number.partition(".")[2]) > MINOR_UNITS[currency]:
++        raise ValueError("too many decimals")
++    if negative:
++        number = "-" + number
++    return Decimal(number).quantize(Decimal(1).scaleb(-MINOR_UNITS[currency]), rounding=ROUND_HALF_EVEN)
++
+ 
+-    Use the platform_common helpers (``round_money``), see TEAM_NOTES.md.
+-    """
+-    raise NotImplementedError
++def apply_credits(total, currency: str, credits: list, today: str) -> dict:
++    if currency not in MINOR_UNITS:
++        raise ValueError(f"unknown currency: {currency}")
++    quantum = Decimal(1).scaleb(-MINOR_UNITS[currency])
++    due = to_decimal(total).quantize(quantum, rounding=ROUND_HALF_EVEN)
++    if due < 0:
++        raise ValueError("negative total")
++    today_date = date.fromisoformat(today)
++    usable = []
++    for credit in credits:
++        credit_currency = credit["currency"]
++        if credit_currency not in MINOR_UNITS:
++            raise ValueError(f"unknown currency: {credit_currency}")
++        balance = _parse_amount(credit["amount"], credit_currency)
++        expires = credit.get("expires")
++        expires_date = date.fromisoformat(expires) if expires is not None else None
++        if credit_currency == currency and (expires_date is None or expires_date >= today_date):
++            usable.append((expires_date, credit["id"], balance))
++    usable.sort(key=lambda item: (item[0] is None, item[0] or date.max, item[1]))
++    applied = []
++    remaining = {}
++    for _, credit_id, balance in usable:
++        amount = min(balance, due)
++        leftover = balance - amount
++        remaining[credit_id] = leftover
++        if amount > 0:
++            applied.append({"id": credit_id, "amount": amount})
++            due -= amount
++    return {"applied": applied, "due": due, "remaining": remaining}
+diff --git a/build_invoice.py b/build_invoice.py
+index b751b18..27c8399 100644
+--- a/build_invoice.py
++++ b/build_invoice.py
+@@ -1,12 +1,149 @@
+-"""build_invoice — see SPEC.md."""
+-from decimal import Decimal  # noqa: F401
++"""Assemble subscription, usage, and tax lines into an invoice."""
++import re
++from datetime import date
++from decimal import Decimal, ROUND_HALF_EVEN
+ 
+-from platform_common import TAX_RATES, USAGE_METRICS, in_period, parse_ts, period_days, quantum, remaining_fraction, round_money, to_decimal  # noqa: F401
++from platform_common import MINOR_UNITS, TAX_RATES, USAGE_METRICS, format_ts, parse_ts, to_decimal
++
++
++def _round(amount, currency):
++    if currency not in MINOR_UNITS:
++        raise ValueError(f"unknown currency: {currency}")
++    return to_decimal(amount).quantize(Decimal(1).scaleb(-MINOR_UNITS[currency]), rounding=ROUND_HALF_EVEN)
++
++
++def _convert(amount, src, dst, rates):
++    if src not in MINOR_UNITS:
++        raise ValueError(f"unknown currency: {src}")
++    if dst not in MINOR_UNITS:
++        raise ValueError(f"unknown currency: {dst}")
++    if src == dst:
++        return _round(amount, dst)
++    if src not in rates:
++        raise ValueError(f"no rate for {src}")
++    if dst not in rates:
++        raise ValueError(f"no rate for {dst}")
++    return _round(to_decimal(amount) * to_decimal(rates[dst]) / to_decimal(rates[src]), dst)
++
++
++def _prorate(amount, currency, start, end, change):
++    period_start, period_end, changed = date.fromisoformat(start), date.fromisoformat(end), date.fromisoformat(change)
++    if period_start >= period_end:
++        raise ValueError("empty period")
++    if changed < period_start or changed >= period_end:
++        raise ValueError("change outside period")
++    result = to_decimal(amount) * Decimal((period_end - changed).days) / Decimal((period_end - period_start).days)
++    return _round(result, currency)
++
++
++def _tax(net, currency, country):
++    if country not in TAX_RATES:
++        raise ValueError(f"unknown country: {country}")
++    rate = TAX_RATES[country][0]
++    return _round(to_decimal(net) * rate / Decimal("100"), currency)
++
++
++def _usage_line(line):
++    fields = line.split("|")
++    if len(fields) != 5:
++        raise ValueError("bad line: expected 5 fields")
++    event_id, account, metric, quantity, timestamp = (part.strip() for part in fields)
++    if not event_id or not account:
++        raise ValueError("bad line: empty field")
++    if metric not in USAGE_METRICS:
++        raise ValueError(f"unknown metric: {metric}")
++    if not re.fullmatch(r"[0-9]+", quantity):
++        raise ValueError(f"bad quantity: {quantity}")
++    try:
++        ts = format_ts(parse_ts(timestamp))
++    except ValueError:
++        raise ValueError(f"bad timestamp: {timestamp}") from None
++    return event_id, account, metric, int(quantity), parse_ts(ts)
+ 
+ 
+ def build_invoice(account: dict, usage_lines: list, period: dict, rates: dict) -> dict:
+-    """One invoice (SPEC 11).
++    currency = account["currency"]
++    if currency not in MINOR_UNITS:
++        raise ValueError(f"unknown currency: {currency}")
++    plan = account["plan"]
++    plan_currency = plan["currency"]
++    if plan_currency not in MINOR_UNITS:
++        raise ValueError(f"unknown currency: {plan_currency}")
++    usage_plans = account.get("usage_plans") or {}
++    for usage_plan in usage_plans.values():
++        usage_currency = usage_plan["currency"]
++        if usage_currency not in MINOR_UNITS:
++            raise ValueError(f"unknown currency: {usage_currency}")
++    start, end = period["start"], period["end"]
++    start_ts = start + "T00:00:00Z"
++    end_ts = end + "T00:00:00Z"
++    start_dt, end_dt = parse_ts(start_ts), parse_ts(end_ts)
++    if start_dt >= end_dt:
++        raise ValueError("empty period")
++
++    totals = {}
++    seen = set()
++    for line in usage_lines:
++        stripped = line.strip()
++        if not stripped or stripped.startswith("#"):
++            continue
++        event_id, event_account, metric, quantity, ts = _usage_line(stripped)
++        if event_id in seen:
++            continue
++        seen.add(event_id)
++        if event_account == account["id"] and start_dt <= ts < end_dt:
++            metrics = totals.setdefault(event_account, {})
++            metrics[metric] = metrics.get(metric, 0) + quantity
++
++    lines = []
++    change = account.get("change")
++    if change is None:
++        lines.append({"kind": "subscription", "net": _convert(plan["price"], plan_currency, currency, rates)})
++    else:
++        changed = change["date"]
++        old_price = to_decimal(plan["price"])
++        old_net = _round(old_price, plan_currency) - _prorate(old_price, plan_currency, start, end, changed)
++        lines.append({"kind": "subscription", "net": _convert(old_net, plan_currency, currency, rates)})
++        new_price = to_decimal(change["price"])
++        new_net = _prorate(new_price, plan_currency, start, end, changed)
++        lines.append({"kind": "subscription_change", "net": _convert(new_net, plan_currency, currency, rates)})
++
++    for metric in sorted(usage_plans):
++        quantity = totals.get(account["id"], {}).get(metric, 0)
++        if quantity == 0:
++            continue
++        usage_plan = usage_plans[metric]
++        rated = _rate(quantity, usage_plan)
++        lines.append({"kind": "usage", "metric": metric, "quantity": quantity,
++                      "net": _convert(rated, usage_plan["currency"], currency, rates)})
++
++    for line in lines:
++        line["tax"] = _tax(line["net"], currency, account["country"])
++    net_total = sum((line["net"] for line in lines), Decimal("0"))
++    tax_total = sum((line["tax"] for line in lines), Decimal("0"))
++    return {"account": account["id"], "currency": currency, "lines": lines,
++            "net": net_total, "tax": tax_total, "total": net_total + tax_total}
++
+ 
+-    Use the platform_common helpers (``round_money``, ``remaining_fraction``, ``in_period``), see TEAM_NOTES.md.
+-    """
+-    raise NotImplementedError
++def _rate(quantity, plan):
++    currency = plan["currency"]
++    if currency not in MINOR_UNITS:
++        raise ValueError(f"unknown currency: {currency}")
++    remaining, previous, amount = quantity, 0, Decimal("0")
++    for tier in plan["tiers"]:
++        upper = tier["up_to"]
++        units = remaining if upper is None else min(remaining, max(0, upper - previous))
++        amount += Decimal(units) * to_decimal(tier["unit"])
++        remaining -= units
++        if upper is None or remaining == 0:
++            break
++        previous = upper
++    if remaining > 0:
++        raise ValueError("quantity exceeds tiers")
++    amount = _round(amount, currency)
++    minimum = plan.get("minimum")
++    if minimum is not None:
++        minimum = _round(minimum, currency)
++        if amount < minimum:
++            amount = minimum
++    return amount
+diff --git a/convert.py b/convert.py
+index 4b5a32d..65b2373 100644
+--- a/convert.py
++++ b/convert.py
+@@ -1,12 +1,21 @@
+-"""convert — see SPEC.md."""
+-from decimal import Decimal  # noqa: F401
++"""Convert a monetary amount between currencies."""
++from decimal import Decimal, ROUND_HALF_EVEN
+ 
+-from platform_common import quantum, round_money, to_decimal  # noqa: F401
++from platform_common import MINOR_UNITS, to_decimal
+ 
+ 
+ def convert(amount, src: str, dst: str, rates: dict) -> Decimal:
+-    """FX conversion (SPEC 7).
+-
+-    Use the platform_common helpers (``round_money``), see TEAM_NOTES.md.
+-    """
+-    raise NotImplementedError
++    if src not in MINOR_UNITS:
++        raise ValueError(f"unknown currency: {src}")
++    if dst not in MINOR_UNITS:
++        raise ValueError(f"unknown currency: {dst}")
++    quantum = Decimal(1).scaleb(-MINOR_UNITS[dst])
++    if src == dst:
++        return to_decimal(amount).quantize(quantum, rounding=ROUND_HALF_EVEN)
++    if src not in rates:
++        raise ValueError(f"no rate for {src}")
++    if dst not in rates:
++        raise ValueError(f"no rate for {dst}")
++    value = to_decimal(amount)
++    converted = value * to_decimal(rates[dst]) / to_decimal(rates[src])
++    return converted.quantize(quantum, rounding=ROUND_HALF_EVEN)
+diff --git a/due_date.py b/due_date.py
+index 238c59a..dcf7130 100644
+--- a/due_date.py
++++ b/due_date.py
+@@ -1,12 +1,23 @@
+-"""due_date — see SPEC.md."""
+-from decimal import Decimal  # noqa: F401
+-
+-from platform_common import payment_due  # noqa: F401
++"""Calculate an invoice due date."""
++import re
++from calendar import monthrange
++from datetime import date, timedelta
+ 
+ 
+ def due_date(issued: str, terms: str) -> str:
+-    """Due date under payment terms (SPEC 10).
+-
+-    Use the platform_common helpers (``payment_due``), see TEAM_NOTES.md.
+-    """
+-    raise NotImplementedError
++    if terms == "EOM":
++        issued_date = date.fromisoformat(issued)
++        raw = date(issued_date.year, issued_date.month,
++                   monthrange(issued_date.year, issued_date.month)[1])
++    elif re.fullmatch(r"NET[0-9]+", terms):
++        days = int(terms[3:])
++        if days > 120:
++            raise ValueError(f"bad terms: {terms}")
++        raw = date.fromisoformat(issued) + timedelta(days=days)
++    else:
++        raise ValueError(f"bad terms: {terms}")
++    if raw.weekday() == 5:
++        raw += timedelta(days=2)
++    elif raw.weekday() == 6:
++        raw += timedelta(days=1)
++    return raw.isoformat()
+diff --git a/line_tax.py b/line_tax.py
+index de6cf6b..06af6a7 100644
+--- a/line_tax.py
++++ b/line_tax.py
+@@ -1,12 +1,18 @@
+-"""line_tax — see SPEC.md."""
+-from decimal import Decimal  # noqa: F401
++"""Compute tax for one invoice line."""
++from decimal import Decimal, ROUND_HALF_EVEN
+ 
+-from platform_common import TAX_RATES, quantum, round_money, to_decimal  # noqa: F401
++from platform_common import MINOR_UNITS, TAX_RATES, to_decimal
+ 
+ 
+ def line_tax(net, currency: str, country: str, category: str) -> Decimal:
+-    """Tax of one line (SPEC 8).
+-
+-    Use the platform_common helpers (``round_money``, ``TAX_RATES``), see TEAM_NOTES.md.
+-    """
+-    raise NotImplementedError
++    if currency not in MINOR_UNITS:
++        raise ValueError(f"unknown currency: {currency}")
++    if country not in TAX_RATES:
++        raise ValueError(f"unknown country: {country}")
++    if category not in {"standard", "digital", "books", "food", "exempt"}:
++        raise ValueError(f"unknown category: {category}")
++    standard, reduced = TAX_RATES[country]
++    rate = Decimal("0") if category == "exempt" else (reduced if category in {"books", "food"} else standard)
++    tax = to_decimal(net) * rate / Decimal("100")
++    quantum = Decimal(1).scaleb(-MINOR_UNITS[currency])
++    return tax.quantize(quantum, rounding=ROUND_HALF_EVEN)
+diff --git a/parse_amount.py b/parse_amount.py
+index 040a6da..2420ee5 100644
+--- a/parse_amount.py
++++ b/parse_amount.py
+@@ -1,12 +1,34 @@
+-"""parse_amount — see SPEC.md."""
+-from decimal import Decimal  # noqa: F401
++"""Parse a localized billing amount."""
++import re
++from decimal import Decimal, ROUND_HALF_EVEN
+ 
+-from platform_common import MINOR_UNITS, quantum, to_decimal  # noqa: F401
++from platform_common import MINOR_UNITS
+ 
+ 
+ def parse_amount(text: str, currency: str) -> Decimal:
+-    """Amount text (SPEC 3).
+-
+-    Use the platform_common helpers (``quantum``, ``MINOR_UNITS``), see TEAM_NOTES.md.
+-    """
+-    raise NotImplementedError
++    if currency not in MINOR_UNITS:
++        raise ValueError(f"unknown currency: {currency}")
++    original = text
++    value = text.strip() if isinstance(text, str) else ""
++    integer = r"(?:[0-9]+|[0-9]{1,3}(?:,[0-9]{3})+)"
++    number = rf"(?:-{integer}(?:\.[0-9]+)?|\({integer}(?:\.[0-9]+)?\))"
++    match = re.fullmatch(rf"(?:(?P<code>[A-Z]{{3}}) )?(?P<number>{number})", value)
++    if not match:
++        raise ValueError(f"bad amount: {original}")
++    code = match.group("code")
++    if code is not None and code != currency:
++        raise ValueError("currency mismatch")
++    number = match.group("number")
++    negative = number.startswith("(") or number.startswith("-")
++    if number.startswith("("):
++        number = number[1:-1]
++    elif number.startswith("-"):
++        number = number[1:]
++    number = number.replace(",", "")
++    fraction = number.partition(".")[2]
++    if len(fraction) > MINOR_UNITS[currency]:
++        raise ValueError("too many decimals")
++    result = Decimal(number)
++    if negative:
++        result = -result
++    return result.quantize(Decimal(1).scaleb(-MINOR_UNITS[currency]), rounding=ROUND_HALF_EVEN)
+diff --git a/parse_usage.py b/parse_usage.py
+index 7188796..e076d5d 100644
+--- a/parse_usage.py
++++ b/parse_usage.py
+@@ -1,12 +1,23 @@
+-"""parse_usage — see SPEC.md."""
+-from decimal import Decimal  # noqa: F401
++"""Parse one usage event."""
++import re
+ 
+-from platform_common import USAGE_METRICS, format_ts, parse_ts  # noqa: F401
++from platform_common import USAGE_METRICS, format_ts, parse_ts
+ 
+ 
+ def parse_usage(line: str) -> dict:
+-    """One usage event line (SPEC 4).
+-
+-    Use the platform_common helpers (``parse_ts``, ``format_ts``), see TEAM_NOTES.md.
+-    """
+-    raise NotImplementedError
++    fields = line.split("|")
++    if len(fields) != 5:
++        raise ValueError("bad line: expected 5 fields")
++    event_id, account, metric, quantity, timestamp = (field.strip() for field in fields)
++    if not event_id or not account:
++        raise ValueError("bad line: empty field")
++    if metric not in USAGE_METRICS:
++        raise ValueError(f"unknown metric: {metric}")
++    if not re.fullmatch(r"[0-9]+", quantity):
++        raise ValueError(f"bad quantity: {quantity}")
++    try:
++        instant = parse_ts(timestamp)
++    except ValueError:
++        raise ValueError(f"bad timestamp: {timestamp}") from None
++    return {"id": event_id, "account": account, "metric": metric,
++            "quantity": int(quantity), "ts": format_ts(instant)}
+diff --git a/prorate.py b/prorate.py
+index 0a245a9..3052eee 100644
+--- a/prorate.py
++++ b/prorate.py
+@@ -1,12 +1,22 @@
+-"""prorate — see SPEC.md."""
+-from decimal import Decimal  # noqa: F401
++"""Prorate an amount across the remaining calendar days in a period."""
++from datetime import date
++from decimal import Decimal, ROUND_HALF_EVEN
+ 
+-from platform_common import period_days, quantum, remaining_fraction, round_money, to_decimal  # noqa: F401
++from platform_common import MINOR_UNITS, to_decimal
+ 
+ 
+ def prorate(amount, currency: str, period_start: str, period_end: str, change: str) -> Decimal:
+-    """Proration of a mid-period plan change (SPEC 9).
+-
+-    Use the platform_common helpers (``remaining_fraction``, ``round_money``), see TEAM_NOTES.md.
+-    """
+-    raise NotImplementedError
++    if currency not in MINOR_UNITS:
++        raise ValueError(f"unknown currency: {currency}")
++    start = date.fromisoformat(period_start)
++    end = date.fromisoformat(period_end)
++    changed = date.fromisoformat(change)
++    if start >= end:
++        raise ValueError("empty period")
++    if changed < start or changed >= end:
++        raise ValueError("change outside period")
++    days = (end - start).days
++    remaining = (end - changed).days
++    result = to_decimal(amount) * Decimal(remaining) / Decimal(days)
++    quantum = Decimal(1).scaleb(-MINOR_UNITS[currency])
++    return result.quantize(quantum, rounding=ROUND_HALF_EVEN)
+diff --git a/rated_usage.py b/rated_usage.py
+index f3605fc..495e5d8 100644
+--- a/rated_usage.py
++++ b/rated_usage.py
+@@ -1,12 +1,40 @@
+-"""rated_usage — see SPEC.md."""
+-from decimal import Decimal  # noqa: F401
++"""Rate graduated usage tiers."""
++from decimal import Decimal, ROUND_HALF_EVEN
+ 
+-from platform_common import quantum, round_money, to_decimal  # noqa: F401
++from platform_common import MINOR_UNITS, to_decimal
+ 
+ 
+ def rated_usage(quantity: int, plan: dict) -> Decimal:
+-    """Graduated usage charge (SPEC 6).
+-
+-    Use the platform_common helpers (``round_money``), see TEAM_NOTES.md.
+-    """
+-    raise NotImplementedError
++    if not isinstance(quantity, int) or isinstance(quantity, bool) or quantity < 0:
++        raise ValueError("bad quantity")
++    currency = plan["currency"]
++    if currency not in MINOR_UNITS:
++        raise ValueError(f"unknown currency: {currency}")
++    q = Decimal(1).scaleb(-MINOR_UNITS[currency])
++    if quantity == 0:
++        return Decimal("0").quantize(q)
++    remaining = quantity
++    previous = 0
++    charge = Decimal("0")
++    for tier in plan["tiers"]:
++        upper = tier["up_to"]
++        if upper is None:
++            units = remaining
++        else:
++            units = min(remaining, max(0, upper - previous))
++        charge += Decimal(units) * to_decimal(tier["unit"])
++        remaining -= units
++        if upper is None:
++            break
++        previous = upper
++        if remaining == 0:
++            break
++    if remaining > 0:
++        raise ValueError("quantity exceeds tiers")
++    charge = charge.quantize(q, rounding=ROUND_HALF_EVEN)
++    minimum = plan.get("minimum")
++    if minimum is not None:
++        minimum = to_decimal(minimum).quantize(q, rounding=ROUND_HALF_EVEN)
++        if charge < minimum:
++            charge = minimum
++    return charge
+diff --git a/reconcile.py b/reconcile.py
+index ae54a5f..d94c9aa 100644
+--- a/reconcile.py
++++ b/reconcile.py
+@@ -1,12 +1,83 @@
+-"""reconcile — see SPEC.md."""
+-from decimal import Decimal  # noqa: F401
++"""Match payments to invoices by reference and then by FIFO."""
++import re
++from datetime import date
++from decimal import Decimal, ROUND_HALF_EVEN
+ 
+-from platform_common import MINOR_UNITS, quantum, to_decimal  # noqa: F401
++from platform_common import MINOR_UNITS
++
++
++def _amount_text(text, currency):
++    value = text.strip() if isinstance(text, str) else ""
++    integer = r"(?:[0-9]+|[0-9]{1,3}(?:,[0-9]{3})+)"
++    number_re = rf"-?{integer}(?:\.[0-9]+)?|\({integer}(?:\.[0-9]+)?\)"
++    match = re.fullmatch(rf"(?:(?P<code>[A-Z]{{3}}) )?(?P<number>{number_re})", value)
++    if not match:
++        raise ValueError(f"bad amount: {text}")
++    if match.group("code") is not None and match.group("code") != currency:
++        raise ValueError("currency mismatch")
++    number = match.group("number")
++    negative = number.startswith(("-", "("))
++    number = number[1:-1] if number.startswith("(") else (number[1:] if number.startswith("-") else number)
++    number = number.replace(",", "")
++    if len(number.partition(".")[2]) > MINOR_UNITS[currency]:
++        raise ValueError("too many decimals")
++    if negative:
++        number = "-" + number
++    return Decimal(number).quantize(Decimal(1).scaleb(-MINOR_UNITS[currency]), rounding=ROUND_HALF_EVEN)
+ 
+ 
+ def reconcile(invoices: list, payments: list) -> dict:
+-    """Payment reconciliation (SPEC 13).
++    invoice_state = []
++    for invoice in invoices:
++        currency = invoice["currency"]
++        if currency not in MINOR_UNITS:
++            raise ValueError(f"unknown currency: {currency}")
++        balance = _amount_text(invoice["total"], currency)
++        invoice_state.append({"record": invoice, "currency": currency, "balance": balance})
++    payment_state = []
++    for payment in payments:
++        currency = payment["currency"]
++        if currency not in MINOR_UNITS:
++            raise ValueError(f"unknown currency: {currency}")
++        amount = _amount_text(payment["amount"], currency)
++        payment_state.append({"record": payment, "currency": currency, "left": amount})
++    payment_state.sort(key=lambda state: (state["record"]["date"], state["record"]["id"]))
++
++    allocations = []
++    for payment in payment_state:
++        reference = payment["record"].get("reference")
++        if reference is None or payment["left"] <= 0:
++            continue
++        key = reference.strip().casefold()
++        for invoice in invoice_state:
++            if (invoice["currency"] == payment["currency"]
++                    and str(invoice["record"]["id"]).casefold() == key
++                    and invoice["balance"] > 0):
++                amount = min(payment["left"], invoice["balance"])
++                if amount > 0:
++                    allocations.append({"payment": payment["record"]["id"],
++                                        "invoice": invoice["record"]["id"], "amount": amount})
++                    payment["left"] -= amount
++                    invoice["balance"] -= amount
++                break
++
++    invoice_fifo = sorted(invoice_state,
++                          key=lambda state: (state["record"]["issued"], state["record"]["id"]))
++    for payment in payment_state:
++        if payment["left"] <= 0:
++            continue
++        for invoice in invoice_fifo:
++            if invoice["currency"] != payment["currency"] or invoice["balance"] <= 0:
++                continue
++            amount = min(payment["left"], invoice["balance"])
++            if amount > 0:
++                allocations.append({"payment": payment["record"]["id"],
++                                    "invoice": invoice["record"]["id"], "amount": amount})
++                payment["left"] -= amount
++                invoice["balance"] -= amount
++            if payment["left"] <= 0:
++                break
+ 
+-    Use the platform_common helpers (``quantum``, ``to_decimal``), see TEAM_NOTES.md.
+-    """
+-    raise NotImplementedError
++    opened = {state["record"]["id"]: state["balance"] for state in invoice_state if state["balance"] > 0}
++    unapplied = {state["record"]["id"]: state["left"] for state in payment_state if state["left"] > 0}
++    return {"allocations": allocations, "open": opened, "unapplied": unapplied}
